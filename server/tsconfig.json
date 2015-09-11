@@ -5,8 +5,8 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": false,
-        "declaration": true,
-        "outDir": "./lib"
+        "declaration": false,
+        "outDir": "./build"
     },
     "filesGlob": [
         "src/**/*.ts"

@@ -4,7 +4,7 @@
   "description": "My cycling history",
   "license": "MIT",
   "repository": "https://github.com/RWander/cycling.git",
-  "author": "Roman Korneyev",
+  "author": "Roman Korneyev (roman.korneyev@gmail.com)",
   "keywords": [
     "cycling",
     "running",
@@ -14,7 +14,6 @@
     "node.js"
   ],
   "files": [
-    "lib"
   ],
   "scripts": {
     "test": "gulp test"
