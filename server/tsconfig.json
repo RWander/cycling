@@ -12,6 +12,8 @@
         "src/**/*.ts"
     ],
     "files": [
-        "src/greeter.ts"
+        "src/app.ts",
+        "src/greeter.ts",
+        "src/routes/index.ts"
     ]
 }

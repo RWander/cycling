@@ -16,6 +16,12 @@
     },
     "node/node.d.ts": {
       "commit": "a461a243e2e09b213bc49d12650f80d81047576d"
+    },
+    "morgan/morgan.d.ts": {
+      "commit": "a461a243e2e09b213bc49d12650f80d81047576d"
+    },
+    "body-parser/body-parser.d.ts": {
+      "commit": "a461a243e2e09b213bc49d12650f80d81047576d"
     }
   }
 }
