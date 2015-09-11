@@ -1,5 +1,5 @@
 {
-  "name": "Cycling server",
+  "name": "Cycling",
   "version": "0.1.0",
   "description": "My cycling history",
   "license": "MIT",
@@ -13,12 +13,13 @@
     "tracking",
     "node.js"
   ],
-  "files": [
-  ],
+  "files": [],
   "scripts": {
     "test": "gulp test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.3"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-tslint": "^3.1",
