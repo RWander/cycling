@@ -18,7 +18,8 @@
     "test": "gulp test"
   },
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "request": "^2.61.0"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
