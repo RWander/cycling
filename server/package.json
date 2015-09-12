@@ -1,10 +1,10 @@
 {
-  "name": "Cycling server",
+  "name": "Cycling",
   "version": "0.1.0",
   "description": "My cycling history",
   "license": "MIT",
   "repository": "https://github.com/RWander/cycling.git",
-  "author": "Roman Korneyev",
+  "author": "Roman Korneyev (roman.korneyev@gmail.com)",
   "keywords": [
     "cycling",
     "running",
@@ -13,13 +13,14 @@
     "tracking",
     "node.js"
   ],
-  "files": [
-    "lib"
-  ],
+  "files": [],
   "scripts": {
     "test": "gulp test"
   },
-  "dependencies": {},
+  "dependencies": {
+    "express": "^4.13.3",
+    "request": "^2.61.0"
+  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-tslint": "^3.1",
