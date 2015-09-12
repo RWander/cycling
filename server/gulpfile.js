@@ -6,9 +6,11 @@ var gulp    = require('gulp-help')(gulp);
 var tsconfig = require('gulp-tsconfig-files');
 var dotbin  = require('dotbin');
 
+var tsConfig = require('./tsconfig.json');
+
 var tsFilesGlob = (function(c) {
   return c.filesGlob || c.files || '**/*.ts';
-})(require('./tsconfig.json'));
+})(tsConfig);
 
 gulp.task('tslint', 'Lints all TypeScript source files', function(){
   return gulp.src(tsFilesGlob)
@@ -16,7 +18,12 @@ gulp.task('tslint', 'Lints all TypeScript source files', function(){
   .pipe(tslint.report('verbose'));
 });
 
-gulp.task('build', 'Compiles all TypeScript source files', ['tsconfig_files'], function (cb) {
+gulp.task('build.copyconfigs', function () {
+  return gulp.src('./src/config/*')
+    .pipe(gulp.dest(tsConfig.compilerOptions.outDir + '/config'));
+});
+
+gulp.task('build', 'Compiles all TypeScript source files', ['tsconfig_files', 'build.copyconfigs'], function (cb) {
   exec('tsc', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
@@ -30,7 +37,7 @@ gulp.task('test', 'Runs the Jasmine test specs', ['build'], function () {
 });
 
 gulp.task('tsconfig_files', 'Update files section in tsconfig.json', function () {
-  var src = require('./tsconfig.json').filesGlob;
+  var src = tsConfig.filesGlob;
   if (typeof src !== 'undefined') {
      gulp.src(src).pipe(tsconfig());
   }

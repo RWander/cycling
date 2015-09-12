@@ -27,15 +27,15 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use((req: express.Request, res: express.Response, next: Function) => {
-   var err = new Error('Not Found');
-   err['status'] = 404;
+   var err: any = new Error('Not Found');
+   err.status = 404;
    next(err);
 });
 
 // error handlers
 if (app.get('env') === 'development') {
    app.use((err: any, req: express.Request, res: express.Response, next: Function) => {
-       res.status(err['status'] || 500);
+       res.status(err.status || 500);
        res.render('error', {
            message: err.message,
            error: app.get('env') === 'production' ? {} : err
