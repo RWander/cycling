@@ -1,9 +1,11 @@
 /// <reference path='../typings/tsd.d.ts' />
+/// <reference path='../typings-custom/node-config.d.ts' />
 
 import express = require('express');
 import path = require('path');
 import logger = require('morgan');
 import bodyParser = require('body-parser');
+import config = require('config');
 
 // TODO (Roman)
 // use routes
@@ -12,8 +14,6 @@ import bodyParser = require('body-parser');
 
 var app = express();
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
