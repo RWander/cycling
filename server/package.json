@@ -18,7 +18,10 @@
     "test": "gulp test"
   },
   "dependencies": {
+    "body-parser": "^1.13.3",
     "express": "^4.13.3",
+    "lodash": "^3.10.1",
+    "morgan": "^1.6.1",
     "node-config": "0.0.2",
     "request": "^2.61.0"
   },
