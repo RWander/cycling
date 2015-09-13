@@ -14,6 +14,6 @@
     "files": [
         "src/app.ts",
         "src/greeter.ts",
-        "src/routes/index.ts"
+        "src/routes/athletes.ts"
     ]
 }
