@@ -13,9 +13,7 @@
     ],
     "files": [
         "src/app.ts",
-        "src/controllers/strava-controller.ts",
         "src/greeter.ts",
-        "src/models/athlete.ts",
         "src/routes/athletes.ts"
     ]
 }

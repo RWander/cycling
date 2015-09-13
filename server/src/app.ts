@@ -35,9 +35,10 @@ if (app.get('env') === 'development') {
 }
 
 // start server
-var server = app.listen(3000, function () {
-  var host = server.address().address
-  var port = server.address().port
+var http = config.get('http');
+var server = app.listen(http.port, http.host, function () {
+  var host = server.address().address;
+  var port = server.address().port;
 
-  console.log('Example app listening at http://%s:%s', host, port)
-})
+  console.log('RESTful server "%s" listening at http://%s:%s', app.get('env'), host, port);
+});
