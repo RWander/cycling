@@ -3,7 +3,7 @@ import express = require('express');
 var router = express.Router();
 
 /* GET current athlete. */
-router.get('/', function(req: express.Request, res: express.Response, next: Function) {
+router.get('/', function(req, res, next) {
   res.send('Roman');
 });
 
