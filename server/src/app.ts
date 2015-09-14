@@ -24,18 +24,16 @@ app.use((req: express.Request, res: express.Response, next: Function) => {
 });
 
 // error handlers
-if (app.get('env') === 'development') {
-  app.use((err: any, req: express.Request, res: express.Response, next: Function) => {
-    res.status(err.status || 500);
-    res.send({
-      message: err.message,
-      error: app.get('env') === 'production' ? {} : err
-    });
+app.use((err: any, req: express.Request, res: express.Response, next: Function) => {
+  res.status(err.status || 500);
+  res.send({
+    message: err.message,
+    error: app.get('env') === 'production' ? {} : err
   });
-}
+});
 
 // start server
-var http = config.get('http');
+var http: any = config.get('http');
 var server = app.listen(http.port, http.host, function () {
   var host = server.address().address;
   var port = server.address().port;
