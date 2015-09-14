@@ -4,7 +4,7 @@
     "port": "5000"
   },
   "strava": {
-    "url": "https://www.strava.com/api/v3/",
+    "url": "https://www.strava.com/api/v3",
     "accessToken": "937b1b28754911fc5d214cfe874f2fd29e0219e7" // Public Access Token
   }
 }
