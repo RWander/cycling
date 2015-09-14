@@ -23,7 +23,7 @@
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
-    "request": "^2.61.0"
+    "request-promise": "^0.4.3"
   },
   "devDependencies": {
     "dotbin": "^1.0.1",
