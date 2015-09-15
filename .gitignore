@@ -1,5 +1,5 @@
 coverage/
 node_modules/
 typings/
-/build
+build/
 npm-debug.log
