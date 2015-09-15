@@ -37,6 +37,9 @@
     },
     "request/request.d.ts": {
       "commit": "7a3ca1f0b8a0960af9fc1838f3234cc9d6ce0645"
+    },
+    "qs/qs.d.ts": {
+      "commit": "52b0ea5c9719831eecf6ba7436660e30061a4b3c"
     }
   }
 }
