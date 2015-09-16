@@ -2,39 +2,30 @@
   "name": "Cycling",
   "version": "0.0.1",
   "description": "My cycling history",
-  "license": "MIT",
+  "scripts": {
+    "test": "gulp test"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/RWander/cycling.git"
   },
-  "author": "Roman Korneyev <roman.korneyev@gmail.com>",
   "keywords": [
     "cycling",
     "running",
     "strava",
     "sport",
-    "tracking",
-    "node.js"
+    "tracking"
   ],
-  "files": [],
-  "scripts": {
-    "test": "gulp test"
-  },
+  "author": "Roman Korneyev <roman.korneyev@gmail.com>",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/RWander/cycling/issues"
   },
-  "dependencies": {
-    "body-parser": "^1.13.3",
-    "config": "^1.16.0",
-    "express": "^4.13.3",
-    "lodash": "^3.10.1",
-    "morgan": "^1.6.1",
-    "qs": "^5.1.0",
-    "request-promise": "^0.4.3"
-  },
+  "homepage": "https://github.com/RWander/cycling",
   "devDependencies": {
+    "dotbin": "^1.0.1",
     "gulp": "^3.9.0",
-    "gulp-help": "^1.6.0",
+    "gulp-help": "^1.6.1",
     "gulp-jasmine": "^2.0.1",
     "gulp-live-server": "0.0.28",
     "gulp-tsconfig-files": "0.0.2",

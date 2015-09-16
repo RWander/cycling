@@ -1,20 +1,20 @@
 {
-    "compilerOptions": {
-        "target": "ES5",
-        "module": "commonjs",
-        "noImplicitAny": true,
-        "removeComments": true,
-        "preserveConstEnums": true,
-        "sourceMap": false,
-        "declaration": false,
-        "outDir": "./build"
-    },
-    "filesGlob": [
-        "src/**/*.ts"
-    ],
-    "files": [
-        "src/app.ts",
-        "src/greeter.ts",
-        "src/routes/athletes.ts"
-    ]
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": false,
+    "declaration": false,
+    "outDir": "./build"
+  },
+  "filesGlob": [
+    "src/**/*.ts"
+  ],
+  "files": [
+    "src\\app.ts",
+    "src\\greeter.ts",
+    "src\\routes\\athletes.ts"
+  ]
 }
