@@ -1,0 +1,27 @@
+{
+  "name": "Cycling",
+  "version": "0.0.1",
+  "homepage": "https://github.com/RWander/cycling",
+  "authors": [
+    "Roman Korneyev <roman.korneyev@gmail.com>"
+  ],
+  "description": "My cycling history",
+  "keywords": [
+    "cycling",
+    "running",
+    "strava",
+    "sport",
+    "tracking"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5"
+  }
+}

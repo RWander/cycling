@@ -1,28 +1,14 @@
 <!doctype html>
-<html lang="">
+<html ng-app>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>client</title>
+    <script src="../bower_components/angular/angular.js"></script>
   </head>
   <body>
-
-    <main>Loading...</main>
-
-    <script src="lib/traceur-runtime.js"></script>
-    <script src="lib/system-csp-production.src.js"></script>
-    <script src="lib/Reflect.js"></script>
-
-    <script>
-      System.config({defaultJSExtensions: true});
-    </script>
-
-    <script src="lib/angular2.js"></script>
-
-    <script>
-      System.import('index').catch(console.log.bind(console));
-    </script>
-
+    <div>
+      <label>Name:</label>
+      <input type="text" ng-model="yourName" placeholder="Enter a name here">
+      <hr>
+      <h1>Hello {{yourName}}!</h1>
+    </div>
   </body>
 </html>
