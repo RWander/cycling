@@ -37,12 +37,12 @@ gulp.task('tsconfig_files', 'Update files section in tsconfig.json', function ()
   }
 });
 
-gulp.task('serve', 'Run development server', ['build'], function() {
-  var server = gls('./build/app.js', { env: { NODE_ENV: 'development' } });
-  server.start().then(function(result) {
-      console.log('Development server exited with result:', result);
-      process.exit(result.code);
-  });
-});
-
-gulp.task('default', ['serve']);
+// gulp.task('serve', 'Run development server', ['build'], function() {
+//   var server = gls('./build/app.js', { env: { NODE_ENV: 'development' } });
+//   server.start().then(function(result) {
+//       console.log('Development server exited with result:', result);
+//       process.exit(result.code);
+//   });
+// });
+//
+// gulp.task('default', ['serve']);
