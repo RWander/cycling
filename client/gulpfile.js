@@ -1,6 +1,7 @@
 var gulp    = require('gulp-help')(require('gulp'));
 var tslint  = require('gulp-tslint');
 var exec    = require('child_process').exec;
+var jade = require('gulp-jade');
 var jasmine = require('gulp-jasmine');
 var tsconfig = require('gulp-tsconfig-files');
 var gls = require('gulp-live-server');
@@ -17,7 +18,17 @@ gulp.task('tslint', 'Lints all TypeScript source files', function() {
     .pipe(tslint.report('verbose'));
 });
 
-gulp.task('build', 'Compiles all TypeScript source files', ['tslint', 'tsconfig_files'], function (cb) {
+gulp.task('jade', 'Compiles all jade templates', function() {
+  var LOCALS = {};
+
+  gulp.src('./src/*.jade')
+    .pipe(jade({
+      locals: LOCALS
+    }))
+    .pipe(gulp.dest(tsConfig.compilerOptions.outDir));
+});
+
+gulp.task('build', 'Compiles all TypeScript source files', ['tslint', 'tsconfig_files', 'jade'], function (cb) {
   exec('tsc', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);
