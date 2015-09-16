@@ -1,9 +1,10 @@
-var gulp    = require('gulp-help')(require('gulp'));
-var tslint  = require('gulp-tslint');
-var exec    = require('child_process').exec;
-var jasmine = require('gulp-jasmine');
-var tsconfig = require('gulp-tsconfig-files');
-var gls = require('gulp-live-server');
+var gulp      = require('gulp-help')(require('gulp'));
+var tslint    = require('gulp-tslint');
+var exec      = require('child_process').exec;
+var jasmine   = require('gulp-jasmine');
+var tsconfig  = require('gulp-tsconfig-files');
+var gls       = require('gulp-live-server');
+var del       = require('del');
 
 var tsConfig = require('./tsconfig.json');
 
@@ -15,6 +16,12 @@ gulp.task('tslint', 'Lints all TypeScript source files', function() {
   return gulp.src(tsFilesGlob)
     .pipe(tslint())
     .pipe(tslint.report('verbose'));
+});
+
+gulp.task('clean', 'Cleans build folder', function() {
+  return del([
+    tsConfig.compilerOptions.outDir
+  ]);
 });
 
 gulp.task('build', 'Compiles all TypeScript source files', ['tslint', 'tsconfig_files'], function (cb) {
