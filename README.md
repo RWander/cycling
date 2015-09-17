@@ -12,7 +12,6 @@ cycling/
 ```
 
 Install dependecies:
-
 ```shell
 npm install tds -g
 # server setup
