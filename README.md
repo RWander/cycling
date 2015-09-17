@@ -15,12 +15,8 @@ Install dependecies:
 
 ```shell
 npm install tds -g
-
 # server setup
-cd server && npm install && tsd install
-
-cd ..
-
+cd server && npm install && tsd install && cd ..
 # client setup
 cd client && npm install && tsd install
 ```
