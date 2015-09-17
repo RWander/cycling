@@ -1,4 +1,4 @@
-var Greeter = require("../build/greeter");
+var Greeter = require("../dist/greeter");
 
 describe("greeter", function () {
   it("should greet with message", function () {
