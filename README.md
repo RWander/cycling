@@ -4,11 +4,11 @@
 
 The application file system layout is:
 ```
-cycling/
-|-- client/        # web app
-|-- server/        # RESTful-server
-|-- ..
-|-- README.md
+cycling
+├── client        # web app
+├── server        # RESTful-server
+├── ..
+└── README.md
 ```
 
 Install dependecies:
