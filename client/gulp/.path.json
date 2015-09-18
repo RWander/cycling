@@ -5,7 +5,9 @@
     "ts": "src/ts/**/*.ts",
     "scss": "'src/scss/**/*.scss",
     "img": "src/img/**/*.*",
-    "fonts": "src/fonts/**/*.*"
+    "fonts": "src/fonts/**/*.*",
+
+    "theme": "src/theme/**/*.*"
   },
   "dist": {
     "root": "dist/",
