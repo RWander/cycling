@@ -1,0 +1,5 @@
+{
+  "app": "dist/app.js",
+  "dist": "dist/",
+  "test": "test/**/*.js"
+}

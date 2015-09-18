@@ -8,7 +8,7 @@ var runSequence = require('run-sequence');        // https://github.com/OverZeal
 // * Finally call the callback function
 gulp.task('build', 'Builds the site.', function(cb) {
   runSequence('clean',
-              ['ts'/*, 'scss'*/],
-              'jade',
-              cb);
+    ['ts'/*, 'scss'*/],
+    'jade',
+    cb);
 });
