@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/RWander/cycling",
   "devDependencies": {
+    "browser-sync": "^2.9.3",
     "del": "^2.0.2",
     "gulp": "^3.9.0",
     "gulp-debug": "^2.1.0",
