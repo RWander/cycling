@@ -32,6 +32,7 @@
     "gulp-live-server": "0.0.28",
     "gulp-tsconfig-files": "0.0.2",
     "gulp-tslint": "^3.1",
+    "gulp-watch": "^4.3.5",
     "jasmine": "^2.3.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.3",
