@@ -4,7 +4,7 @@ var tsconfig  = require('gulp-tsconfig-files');
 var exec = require('child_process').exec;
 var tsConfig = require('../tsconfig.json');
 
-gulp.task('ts', 'Compiles all TypeScript source files', ['tsconfig_files', 'tslint'], function (cb) {
+gulp.task('build:ts', 'Compiles all TypeScript source files', ['tsconfig_files', 'tslint'], function (cb) {
   exec('tsc', function (err, stdout, stderr) {
     console.log(stdout);
     console.log(stderr);

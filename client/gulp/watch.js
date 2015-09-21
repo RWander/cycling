@@ -4,18 +4,15 @@ var path = require('./.path.json');
 
 gulp.task('watch', "Spy on src files", function() {
     watch([path.src.jade], function(event, cb) {
-        gulp.start('jade');
+        gulp.start('build:jade');
     });
     // watch([path.watch.scss], function(event, cb) {
     //     gulp.start('scss');
     // });
     watch([path.src.ts], function(event, cb) {
-        gulp.start('ts');
+        gulp.start('build:ts');
     });
-    // watch([path.src.img], function(event, cb) {
-    //     gulp.start('img');
-    // });
-    // watch([path.src.fonts], function(event, cb) {
-    //     gulp.start('fonts');
-    // });
+    watch([path.src.img], function(event, cb) {
+        gulp.start('build:img');
+    });
 });

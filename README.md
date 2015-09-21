@@ -1,6 +1,6 @@
 # cycling
 
-### Quick start (for development):
+### Quick start
 
 The application file system layout is:
 ```
