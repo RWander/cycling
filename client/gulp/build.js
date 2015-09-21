@@ -10,14 +10,7 @@ var path = require('./.path.json');
 // * Finally call the callback function
 gulp.task('build', 'Builds the site.', function(cb) {
   runSequence('clean',
-    ['build:js'/*, 'scss'*/, 'build:static'],
+    ['build:js'/*, 'scss'*/, 'build:img', 'build:css'],
     'build:jade',
     cb);
-});
-
-// TODO (Roman) - избавиться от этого таска.
-gulp.task('build:static', 'Move static files in the dist folder.', function() {
-  gulp.src(path.src.theme)
-    .pipe(debug({ title: 'static:'}))
-    .pipe(gulp.dest(path.dist.html));
 });
