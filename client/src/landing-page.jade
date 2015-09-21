@@ -19,9 +19,9 @@ html(lang='en')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
     // WARNING: Respond.js doesn't work if you view the page via file://
     //if lt IE 9
-      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-  body
+    script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+    script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+  body(ng-app='')
     // Navigation
     nav.navbar.navbar-default.navbar-fixed-top.topnav(role='navigation')
       .container.topnav
@@ -148,6 +148,11 @@ html(lang='en')
                   span.network-name Linkedin
       // /.container
     // /.banner
+    div
+      label Name:
+      input(type='text', ng-model='yourName', placeholder='Enter a name here')
+      hr
+      h1 Hello {{yourName}}!
     // Footer
     footer
       .container
@@ -166,7 +171,4 @@ html(lang='en')
               li
                 a(href='./landing-page.html') Contact
             p.copyright.text-muted.small Copyright © Your Company 2014. All Rights Reserved
-    // jQuery
-    script(src='./js/jquery.js')
-    // Bootstrap Core JavaScript
-    script(src='./js/bootstrap.min.js')
+    script(src='./js/app.min.js')
