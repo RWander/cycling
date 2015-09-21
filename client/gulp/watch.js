@@ -12,10 +12,7 @@ gulp.task('watch', "Spy on src files", function() {
     watch([path.src.ts], function(event, cb) {
         gulp.start('build:ts');
     });
-    // watch([path.src.img], function(event, cb) {
-    //     gulp.start('img');
-    // });
-    // watch([path.src.fonts], function(event, cb) {
-    //     gulp.start('fonts');
-    // });
+    watch([path.src.img], function(event, cb) {
+        gulp.start('build:img');
+    });
 });
