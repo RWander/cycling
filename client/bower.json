@@ -23,13 +23,26 @@
   ],
   "dependencies": {
     "angular": "~1.4.5",
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "font-awesome": "fontawesome#~4.4.0"
   },
   "overrides": {
-      "angular": {
-          "dependencies": {
-              "jquery": "~1.8"
-          }
+    "angular": {
+      "dependencies": {
+        "jquery": "~1.8"
       }
+    },
+    "font-awesome": {
+      "main": [
+        "css/font-awesome.css.map",
+        "css/font-awesome.min.css"
+      ]
+    },
+    "bootstrap": {
+      "main": [
+        "dist/css/bootstrap.css.map",
+        "dist/css/bootstrap.min.css"
+      ]
+    }
   }
 }
