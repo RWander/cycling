@@ -6,9 +6,9 @@ gulp.task('watch', "Spy on src files", function() {
     watch([path.src.jade], function(event, cb) {
         gulp.start('build:jade');
     });
-    // watch([path.watch.scss], function(event, cb) {
-    //     gulp.start('scss');
-    // });
+    watch([path.src.scss], function(event, cb) {
+        gulp.start('build:scss');
+    });
     watch([path.src.ts], function(event, cb) {
         gulp.start('build:ts');
     });
