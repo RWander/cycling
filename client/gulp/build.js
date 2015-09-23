@@ -5,12 +5,12 @@ var path = require('./.path.json');
 
 // This will run in this order:
 // * clean
-// * build *.ts and *.scss files in parallel
+// * build *.ts, *.scss files and images in parallel
 // * build *.jade
 // * Finally call the callback function
 gulp.task('build', 'Builds the site.', function(cb) {
   runSequence('clean',
-    ['build:js'/*, 'scss'*/, 'build:img', 'build:css'],
+    ['build:js', 'build:scss', 'build:img'],
     'build:jade',
     cb);
 });

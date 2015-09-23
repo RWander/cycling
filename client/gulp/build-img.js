@@ -4,7 +4,7 @@ var pngquant = require('imagemin-pngquant');
 var debug = require('gulp-debug');
 var path = require('./.path.json');
 
-gulp.task('build:img', 'Copy images to the dist folder.', function() {
+gulp.task('build:img', 'Copy optimized images to the dist folder.', function() {
   gulp.src(path.src.img)
     .pipe(debug({ title: 'img:'}))
     .pipe(imagemin({

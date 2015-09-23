@@ -10,17 +10,13 @@ var size = require('gulp-size');
 var merge = require('merge-stream');
 var path = require('./.path.json');
 
-function vendorCss() {
-  return gulp.src(bowerFiles('**/*.{min.css,map}'))
-    .pipe(size({ showFiles: true, title: 'css:'}))
-    .pipe(gulp.dest(path.dist.css));
-}
-
 gulp.task('build:scss', 'Build scss-files.', function() {
+  // vendor styles
   var vendorCss = gulp.src(bowerFiles('**/*.{min.css,map}'))
     .pipe(size({ showFiles: true, title: 'css:'}))
     .pipe(gulp.dest(path.dist.css));
 
+  // application styles
   var appCss = gulp.src(path.src.scss)
     .pipe(debug({ title: 'scss:'}))
     .pipe(rename({ suffix: '.min' }))
