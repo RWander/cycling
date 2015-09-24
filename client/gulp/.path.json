@@ -8,7 +8,8 @@
     "fonts": "src/fonts/**/*.*"
   },
   "compile": {
-    "tmp": ".tmp"
+    "tmp": ".tmp",
+    "js": ".tmp/**/*.js"
   },
   "dist": {
     "root": "dist/",

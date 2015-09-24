@@ -20,20 +20,22 @@ gulp.task(
   'build:js-vendor',
   'Concatenate and minify all vendor js files.',
   function() {
-    gulp.src(bowerFiles('**/*.js'))
-      .pipe(debug({ title: 'js:'}))
-      .pipe(sourcemaps.init())
-        .pipe(concat('app.min.js'))
-        .pipe(uglify())
-      .pipe(sourcemaps.write("."))
-      .pipe(gulp.dest(path.dist.js))
-      .pipe(size({ showFiles: true, title: 'js (main):'}));
+    concatAndMinify(bowerFiles('**/*.js'), 'vendor.min.js');
   }
 );
 
 gulp.task(
   'build:ts',
-  'Update files property of tsconfig.json file.',
+  'Compile all TypeScript files into js, then concatenate and minify them.',
+  ['build:ts-compile'],
+  function() {
+    concatAndMinify(path.compile.js, 'app.min.js');
+  }
+);
+
+gulp.task(
+  'build:ts-compile',
+  'Compile all TypeScript files.',
   ['build:tsconfig'],
   function() {
     var reportOptions = {
@@ -55,3 +57,14 @@ gulp.task(
       .pipe(tsconfig());
   }
 );
+
+function concatAndMinify(files, outputName) {
+  gulp.src(files)
+    .pipe(debug({ title: 'js:'}))
+    .pipe(sourcemaps.init())
+      .pipe(concat(outputName))
+      .pipe(uglify())
+    .pipe(sourcemaps.write("."))
+    .pipe(gulp.dest(path.dist.js))
+    .pipe(size({ showFiles: true, title: 'js (output):'}));
+}
