@@ -6,7 +6,7 @@ var bowerFiles = require('main-bower-files');
 var debug = require('gulp-debug');
 var size = require('gulp-size');
 var tsconfig = require('gulp-tsconfig-files');
-var exec = require('gulp-exec');
+var typescript = require('gulp-typescript');
 var path = require('./.path.json');
 var tsConfig = require('../tsconfig.json');
 
@@ -38,14 +38,17 @@ gulp.task(
   'Compile all TypeScript files.',
   ['build:tsconfig'],
   function() {
-    var reportOptions = {
-      err: true, // default = true, false means don't write err
-      stderr: true, // default = true, false means don't write stderr
-      stdout: true // default = true, false means don't write stdout
-    }
-    gulp.src('.')
-      .pipe(exec('tsc'))
-      .pipe(exec.reporter(reportOptions));
+    // TODO (Roman)
+    // write *.map file to the separate file.
+    var tsProject = typescript.createProject('tsconfig.json', { sortOutput: true });
+    return tsProject.src()
+        .pipe(sourcemaps.init())
+        .pipe(typescript(tsProject))
+        .js
+        .pipe(debug({ title: 'js:'}))
+        .pipe(sourcemaps.write())
+        .pipe(concat('app.js'))
+        .pipe(gulp.dest(path.dist.js))
   }
 );
 
@@ -64,7 +67,7 @@ function concatAndMinify(files, outputName) {
     .pipe(sourcemaps.init())
       .pipe(concat(outputName))
       .pipe(uglify())
-    .pipe(sourcemaps.write("."))
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest(path.dist.js))
     .pipe(size({ showFiles: true, title: 'js (output):'}));
 }
