@@ -1,17 +1,22 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "target": "es5",
-    "noImplicitAny": false,
-    "outDir": "./dist",
-    "rootDir": ".",
-    "sourceMap": false
-  },
-  "exclude": [
-    "node_modules"
-  ],
-  "filesGlob": [
-    "src/**/*.ts"
-  ],
-  "files": []
+    "compilerOptions": {
+        "module": "commonjs",
+        "target": "es5",
+        "noImplicitAny": false,
+        "outDir": "./dist",
+        "rootDir": ".",
+        "sourceMap": false
+    },
+    "exclude": [
+        "node_modules"
+    ],
+    "filesGlob": [
+        "src/**/*.ts"
+    ],
+    "files": [
+        "src/ts/controllers/cycling.ts",
+        "src/ts/index.ts",
+        "src/ts/interfaces/repository.ts",
+        "src/ts/models/athlete.ts"
+    ]
 }
