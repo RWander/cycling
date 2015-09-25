@@ -1,28 +1,22 @@
 var gulp = require('gulp-help')(require('gulp'));
 var sourcemaps = require('gulp-sourcemaps');
 var uglify = require('gulp-uglify');
+var bowerFiles = require('main-bower-files');
+var concat = require('gulp-concat');
 var debug = require('gulp-debug');
 var size = require('gulp-size');
-var typescript = require('gulp-typescript');
 var path = require('./.path.json');
 
 gulp.task(
-  'build:ts',
-  'Compile all TypeScript files.',
-  ['build:tsconfig'],
+  'build:js-vendor',
+  'Concatenate and minify all vendor js files.',
   function() {
-    var tsProject = typescript.createProject(
-      'tsconfig.json', {
-        sortOutput: true,
-        outFile: "app.js",
-      }
-    );
-    return tsProject.src()
+    gulp.src(bowerFiles('**/*.js'))
+      .pipe(debug({ title: 'js:'}))
       .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject)).js
+        .pipe(concat('vendor.min.js'))
         .pipe(uglify())
       .pipe(sourcemaps.write('.'))
-      .pipe(debug({ title: 'js:'}))
       .pipe(gulp.dest(path.dist.js))
       .pipe(size({ showFiles: true, title: 'js (output):'}));
   }
