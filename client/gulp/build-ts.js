@@ -20,35 +20,36 @@ gulp.task(
   'build:js-vendor',
   'Concatenate and minify all vendor js files.',
   function() {
-    concatAndMinify(bowerFiles('**/*.js'), 'vendor.min.js');
+    gulp.src(bowerFiles('**/*.js'))
+      .pipe(debug({ title: 'js:'}))
+      .pipe(sourcemaps.init())
+        .pipe(concat('vendor.min.js'))
+        .pipe(uglify())
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest(path.dist.js))
+      .pipe(getSize());
   }
 );
 
 gulp.task(
   'build:ts',
-  'Compile all TypeScript files into js, then concatenate and minify them.',
-  ['build:ts-compile'],
-  function() {
-    concatAndMinify(path.compile.js, 'app.min.js');
-  }
-);
-
-gulp.task(
-  'build:ts-compile',
   'Compile all TypeScript files.',
   ['build:tsconfig'],
   function() {
-    // TODO (Roman)
-    // write *.map file to the separate file.
-    var tsProject = typescript.createProject('tsconfig.json', { sortOutput: true });
+    var tsProject = typescript.createProject(
+      'tsconfig.json', {
+        sortOutput: true,
+        outFile: "app.js",
+      }
+    );
     return tsProject.src()
-        .pipe(sourcemaps.init())
-        .pipe(typescript(tsProject))
-        .js
-        .pipe(debug({ title: 'js:'}))
-        .pipe(sourcemaps.write())
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest(path.dist.js))
+      .pipe(sourcemaps.init())
+        .pipe(typescript(tsProject)).js
+        .pipe(uglify())
+      .pipe(sourcemaps.write('.'))
+      .pipe(debug({ title: 'js:'}))
+      .pipe(gulp.dest(path.dist.js))
+      .pipe(getSize());
   }
 );
 
@@ -61,13 +62,6 @@ gulp.task(
   }
 );
 
-function concatAndMinify(files, outputName) {
-  gulp.src(files)
-    .pipe(debug({ title: 'js:'}))
-    .pipe(sourcemaps.init())
-      .pipe(concat(outputName))
-      .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest(path.dist.js))
-    .pipe(size({ showFiles: true, title: 'js (output):'}));
+function getSize() {
+  return size({ showFiles: true, title: 'js (output):'});
 }
