@@ -22,7 +22,7 @@ gulp.task('build:scss', 'Build scss-files.', function() {
     .pipe(rename({ suffix: '.min' }))
     .pipe(sourcemaps.init())
       .pipe(sass())
-      .pipe(autoprefixer())
+      .pipe(autoprefixer({ browsers: ["last 3 versions"] }))
       .pipe(cssmin())
     .pipe(sourcemaps.write("."))
     .pipe(gulp.dest(path.dist.css))
