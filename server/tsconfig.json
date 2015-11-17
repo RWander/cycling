@@ -13,8 +13,8 @@
     "src/**/*.ts"
   ],
   "files": [
-    "src\\app.ts",
-    "src\\greeter.ts",
-    "src\\routes\\athletes.ts"
+    "src/app.ts",
+    "src/greeter.ts",
+    "src/routes/athletes.ts"
   ]
 }
