@@ -13,7 +13,7 @@ cycling
 
 Install dependecies:
 ```shell
-npm install tds -g
+npm install gulp bower tds -g
 # server setup
 cd server && npm install && tsd install && cd ..
 # client setup
