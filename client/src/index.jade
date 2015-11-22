@@ -18,7 +18,7 @@ html(lang='en')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and CSS3 media queries
     script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
     script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-  body(ng-app='')
+  body(ng-app='cycling')
     // Navigation
     nav.navbar.navbar-default.navbar-fixed-top.topnav(role='navigation')
       .container.topnav
@@ -145,11 +145,8 @@ html(lang='en')
                   span.network-name Linkedin
       // /.container
     // /.banner
-    div
-      label Name:
-      input(type='text', ng-model='yourName', placeholder='Enter a name here')
-      hr
-      h1 Hello {{yourName}}!      
+    div(ng-controller='cyclingCtrl')
+      h1 {{Athlete.firstName}} {{Athlete.lastName}} 
     // Footer
     footer
       .container
