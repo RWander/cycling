@@ -14,7 +14,7 @@ gulp.task(
     var tsProject = typescript.createProject(
       'tsconfig.json', {
         sortOutput: true,
-        outFile: "app.js",
+        outFile: "app.min.js",
       }
     );
     return tsProject.src()

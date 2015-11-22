@@ -4,8 +4,7 @@
     "jade": "src/**/*.jade",
     "ts": "src/ts/**/*.ts",
     "scss": "src/scss/**/*.scss",
-    "img": "src/img/**/*.*",
-    "fonts": "src/fonts/**/*.*"
+    "img": "src/img/**/*.*"
   },
   "compile": {
     "tmp": ".tmp",
