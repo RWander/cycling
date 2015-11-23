@@ -1,5 +1,4 @@
 /// <reference path='../typings/tsd.d.ts' />
-/// <reference path='../typings-custom/node-config.d.ts' />
 
 import express = require('express');
 import path = require('path');
