@@ -9,10 +9,10 @@ var router = express.Router();
 router.get('/', (req, res, next) => {
   var strava = config.get<any>('strava');
   var params = qs.stringify({ access_token: strava.accessToken });
+
   request(strava.url + '/athlete?' + params)
     .then((body) => res.send(body))
-    .catch((err) => next(err)
-  );
+    .catch((err) => next(err));
 });
 
 export = router;
