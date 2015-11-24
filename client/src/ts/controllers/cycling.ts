@@ -11,14 +11,16 @@ module Cycling {
 		// See http://docs.angularjs.org/guide/di
 		public static $inject = [
 			'$scope',
-      '$http'
+      '$http',
+      'CYCLING_CONFIG'
 		];
 
 		constructor(
       private $scope: ICyclingScope,
-      private $http: angular.IHttpService) {
+      private $http: angular.IHttpService,
+      private CYCLING_CONFIG: any) {
       $scope.Athlete = this.get();
-      $http.get('http://localhost:5000/').success((data: any) => {
+      $http.get(CYCLING_CONFIG.backend).success((data: any) => {
         $scope.FullInfo = data;
       });
 		}
