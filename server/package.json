@@ -29,7 +29,7 @@
     "express": "^4.13.3",
     "lodash": "^3.10.1",
     "morgan": "^1.6.1",
-    "qs": "^6.0.0",
+    "qs": "^6.0.1",
     "request-promise": "^1.0.2"
   },
   "devDependencies": {
@@ -40,7 +40,7 @@
     "gulp-jasmine": "^2.0.1",
     "gulp-live-server": "0.0.29",
     "gulp-tsconfig-files": "0.1.2",
-    "gulp-tslint": "^3.6.0",
+    "gulp-tslint": "^4.0.0",
     "jasmine": "^2.3.1",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
