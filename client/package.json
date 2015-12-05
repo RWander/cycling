@@ -41,17 +41,17 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tsconfig-files": "0.1.2",
     "gulp-tslint": "^4.0.0",
-    "gulp-typescript": "^2.9.0",
+    "gulp-typescript": "^2.10.0",
     "gulp-uglify": "^1.4.2",
     "gulp-watch": "^4.3.5",
     "imagemin-pngquant": "^4.2.0",
-    "jasmine": "^2.3.1",
+    "jasmine": "^2.4.1",
     "main-bower-files": "^2.9.0",
     "merge-stream": "^1.0.0",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.4",
-    "tslint": "^3.0.0",
-    "typescript": "^1.5"
+    "tslint": "^3.1.1",
+    "typescript": "^1.7.3"
   },
   "engines": {
     "node": ">=0.12.0"
