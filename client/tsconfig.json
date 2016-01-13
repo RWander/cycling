@@ -14,8 +14,8 @@
     "src/**/*.ts"
   ],
   "files": [
-    "src/ts/controllers/cycling.ts",
     "src/ts/index.ts",
+    "src/ts/controllers/cycling.ts",
     "src/ts/interfaces/repository.ts",
     "src/ts/models/athlete.ts"
   ],
