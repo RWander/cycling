@@ -1,10 +1,8 @@
-/// <reference path='../typings/tsd.d.ts' />
-
-import express = require('express');
-import path = require('path');
-import logger = require('morgan');
-import bodyParser = require('body-parser');
-import config = require('config');
+var express = require('express');
+var path = require('path');
+var logger = require('morgan');
+var bodyParser = require('body-parser');
+var config = require('config');
 
 var app = express();
 
@@ -23,14 +21,14 @@ app.use(function(req, res, next) {
 app.use('/', require('./routes/athletes'));
 
 // catch 404 and forward to error handler
-app.use((req: express.Request, res: express.Response, next: Function) => {
-  var err: any = new Error('Not Found');
+app.use((req, res, next) => {
+  var err = new Error('Not Found');
   err.status = 404;
   next(err);
 });
 
 // error handlers
-app.use((err: any, req: express.Request, res: express.Response, next: Function) => {
+app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send({
     message: err.message,
@@ -39,7 +37,7 @@ app.use((err: any, req: express.Request, res: express.Response, next: Function) 
 });
 
 // start server
-var http: any = config.get('http');
+var http = config.get('http');
 var server = app.listen(http.port, http.host, function () {
   var host = server.address().address;
   var port = server.address().port;

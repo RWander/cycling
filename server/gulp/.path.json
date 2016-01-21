@@ -1,5 +1,4 @@
 {
-  "app": "dist/app.js",
-  "dist": "dist/",
+  "app": "src/app.js",
   "test": "test/**/*.js"
 }
