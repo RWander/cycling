@@ -18,6 +18,9 @@
         ],
         "no-unused-vars": [
             1
+        ],
+        "no-console": [
+            1
         ]
     },
     "env": {
