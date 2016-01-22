@@ -1,5 +1,4 @@
 var express = require('express');
-var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
 var config = require('config');
@@ -42,5 +41,7 @@ var server = app.listen(http.port, http.host, function () {
   var host = server.address().address;
   var port = server.address().port;
 
+  /* eslint-disable no-console */
   console.log('RESTful server "%s" listening at http://%s:%s', app.get('env'), host, port);
+  /* eslint-disable no-console */
 });
