@@ -5,13 +5,26 @@ class Athlete extends Document {
     super();
 
     this.schema({
-      // General information
-      firstName: String,
-      lastName: String,
-      birthday: Date,
-      country: String,
-      City: String,
-      Bio: String
+      firstName: {
+        type: String,
+        required: true
+      },
+      lastName: {
+        type: String,
+        required: true
+      },
+      birthday: {
+        type: Date
+      },
+      country: {
+        type: String
+      },
+      City: {
+        type: String
+      },
+      Bio: {
+        type: String
+      }
     });
   }
 
@@ -19,3 +32,5 @@ class Athlete extends Document {
     return 'athletes';
   }
 }
+
+module.exports = Athlete;
