@@ -1,3 +1,5 @@
+'use strict';
+
 var Document = require('camo').Document;
 
 class Athlete extends Document {
