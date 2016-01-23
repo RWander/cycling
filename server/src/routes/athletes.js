@@ -1,12 +1,11 @@
 var express = require('express');
 var config = require('config');
-var request = require('request-promise');
-var qs = require('qs');
+var strava = require('strava-v3');
+
 var models = require('../models');
+var athletes = models.Athlete;
 
 var router = express.Router();
-
-var athletes = models.Athlete;
 
 /**
  * GETs a information about athelete (from local db and Strava API).
@@ -66,10 +65,12 @@ function fromDB() {
  * @return {Promise}
  */
 function fromStravaAPI() {
-  var strava = config.get('strava');
-  var params = qs.stringify({ access_token: strava.accessToken });
-
-  return request(strava.url + '/athlete?' + params);
+  return new Promise(function(resolve, reject) {
+    strava.athlete.get({ }, (err, payload) => {
+      if (err) reject(err);
+      resolve(payload);
+    });
+  });
 }
 
 module.exports = router;
