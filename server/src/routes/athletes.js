@@ -10,23 +10,23 @@ var athletes = models.Athlete;
 
 /* GET current athlete. */
 router.get('/', (req, res, next) => {
-  athletes
-    .loadOne({ }) // get first athelete
-    .then((me) => attachStravaProfile(me, req, res, next));
-});
-
-function attachStravaProfile(profile, req, res, next) {
   var strava = config.get('strava');
-  var params = qs.stringify({
-    access_token: strava.accessToken
-  });
+  var params = qs.stringify({ access_token: strava.accessToken });
 
-  request(strava.url + '/athlete?' + params)
-   .then((body) => {
-     profile.stravaProfile = body;
-     res.send(profile);
-   })
-   .catch((err) => next(err));
-}
+  Promise.all([
+    // Load athlete info from db
+    athletes.loadOne({ }),
+    // Load athlete info from the Strava API
+    request(strava.url + '/athlete?' + params)
+  ])
+  .then(
+    results => {
+      var info = results[0];
+      info.stravaProfile = results[1];
+      res.send(info);
+    },
+    err => next(err)
+  );
+});
 
 module.exports = router;
