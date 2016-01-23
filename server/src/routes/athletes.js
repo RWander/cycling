@@ -8,7 +8,9 @@ var router = express.Router();
 
 var athletes = models.Athlete;
 
-/* GET current athlete. */
+/**
+ * GETs a information about athelete (from local db and Strava API).
+ */
 router.get('/', (req, res, next) => {
   Promise.all([
     // Load athlete info from db
@@ -26,6 +28,10 @@ router.get('/', (req, res, next) => {
   );
 });
 
+
+/**
+ * GETs a short information about athelete (from local db).
+ */
 router.get('/short', (req, res, next) => {
   fromDB()
     .then(
@@ -34,8 +40,18 @@ router.get('/short', (req, res, next) => {
     );
 });
 
+
 /**
- * fromDB - Load athelete info from local db.
+ * GETs a full athelete information including track history.
+ */
+router.get('/full', (req, res, next) => {
+  // TODO
+  // ..
+});
+
+
+/**
+ * fromDB - Loads athelete info from local db.
  *
  * @return {Promise}
  */
@@ -43,8 +59,9 @@ function fromDB() {
   return athletes.loadOne({ });
 }
 
+
 /**
- * fromStravaAPI - Loads athelete info from Strava API
+ * fromStravaAPI - Loads athelete info from Strava API.
  *
  * @return {Promise}
  */
