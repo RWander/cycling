@@ -18,7 +18,7 @@ router.get('/', (req, res, next) => {
   ])
   .then(
     results => {
-      var info = results[0];
+      let info = results[0];
       info.stravaProfile = results[1];
       res.send(info);
     },
