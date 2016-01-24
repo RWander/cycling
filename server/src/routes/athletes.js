@@ -1,5 +1,4 @@
 var express = require('express');
-var config = require('config');
 var strava = require('strava-v3');
 
 var models = require('../models');
@@ -43,9 +42,12 @@ router.get('/short', (req, res, next) => {
 /**
  * GETs a full athelete information including track history.
  */
-router.get('/full', (req, res, next) => {
-  // TODO
-  // ..
+router.get('/activities', (req, res, next) => {
+  fromStravaAPIGetActivities()
+    .then(
+      activities => res.send(activities),
+      err => next(err)
+    );
 });
 
 
@@ -65,8 +67,26 @@ function fromDB() {
  * @return {Promise}
  */
 function fromStravaAPI() {
-  return new Promise(function(resolve, reject) {
+  return new Promise((resolve, reject) => {
     strava.athlete.get({ }, (err, payload) => {
+      if (err) reject(err);
+      resolve(payload);
+    });
+  });
+}
+
+
+/**
+ * fromStravaAPIGetActivities - Loads athelete's activities from Strava API.
+ *
+ * @return {Promise}
+ */
+function fromStravaAPIGetActivities() {
+  return new Promise((resolve, reject) => {
+    strava.athlete.listActivities({
+      'page': 1,
+      'per_page': 200
+    }, (err, payload) => {
       if (err) reject(err);
       resolve(payload);
     });
