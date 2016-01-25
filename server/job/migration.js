@@ -14,25 +14,21 @@ var trainings = models.Training;
 require('../src/db');
 
 getActivities()
-  .then((activities) => {
-    let trainings = activities.map(createTraining);
-    let promises = trainings.map((t) => t.save());
+  .then((activities) => activities
+      .map(createTraining)
+      .map((t) => t.save())
+  )
+  .then((promises) => Promise.all(promises))
+  .then((trainings) => {
+    trainings.forEach((training) => {
 
-    Promise.all(promises)
-      .then((trainings) => {
-        trainings.forEach((t) => {
+      // TODO
+      // ..
 
-          // TODO
-          // ..
-
-          console.log(`Training saved: ${t}`);
-        });
-      })
-      .catch((err) => {
-        /* eslint-disable no-console */
-        console.log(err);
-        /* eslint-disable no-console */
-      });
+      /* eslint-disable no-console */
+      console.log(`Training saved: ${training}`);
+      /* eslint-disable no-console */
+    });
   })
   .catch((err) => {
     /* eslint-disable no-console */
