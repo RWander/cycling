@@ -13,8 +13,7 @@ class Training extends Document {
         required: true
       },
       desc: {
-        type: String,
-        required: true
+        type: String
       },
       type: {
         type: Number,
@@ -26,7 +25,7 @@ class Training extends Document {
         ],
         required: true
       },
-      date: {
+      startDate: {
         type: Date,
         default: Date.now,
         required: true

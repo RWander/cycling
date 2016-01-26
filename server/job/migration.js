@@ -34,7 +34,7 @@ require('../src/db')
     // ..
 
     /* eslint-disable no-console */
-    console.log(`Training '${training.name}' at ${training.date} is saved.`);
+    console.log(`Training '${training.name}' at ${training.startDate} is saved.`);
     /* eslint-disable no-console */
   });
 })
@@ -80,13 +80,29 @@ function getActivities() {
  * @return {Training} Training object.
  */
 function createTraining(activity) {
+
+  // console.log('=====================');
+  // console.log(activity);
+
   let training = models.Training.create();
 
-  training.name = '1';
-  training.desc = '2';
-  training.type = 1;
-  //training.date = Date.now;
+  // see http://strava.github.io/api/v3/activities/
+  training.name = activity.name;
+  training.desc = activity.description;
+  training.startDate = new Date(activity.start_date);
   training.athlete = currentAthlete;
+
+  var type = activity.type.toLowerCase();
+  var lowerName = activity.name.toLowerCase();
+  if (type === 'ride') {
+    training.type = 1;
+  }
+  else if (type === 'run' && !lowerName.includes('лыжи')) {
+    training.type = 2;
+  }
+  else if (type.includes('ski') || lowerName.includes('лыжи')) {
+    training.type = 3;
+  }
 
   return training;
 }
