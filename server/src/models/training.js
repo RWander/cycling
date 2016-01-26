@@ -33,6 +33,36 @@ class Training extends Document {
       athlete: {
         type: Athlete,
         required: true
+      },
+      distance: { // meters
+        type: Number,
+        required: true,
+        min: 0
+      },
+      movingTime: { // seconds
+        type: Number,
+        required: true,
+        min: 0
+      },
+      elapsedTime: { // seconds
+        type: Number,
+        required: true,
+        min: 0
+      },
+      elevationGain: { // meters - подъем
+        type: Number,
+        required: true,
+        min: 0
+      },
+      averageSpeed: { // meters per second
+        type: Number,
+        required: true,
+        min: 0
+      },
+      maxSpeed: { // meters per second
+        type: Number,
+        required: true,
+        min: 0
       }
     });
   }

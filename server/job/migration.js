@@ -80,17 +80,19 @@ function getActivities() {
  * @return {Training} Training object.
  */
 function createTraining(activity) {
-
-  // console.log('=====================');
-  // console.log(activity);
-
   let training = models.Training.create();
 
   // see http://strava.github.io/api/v3/activities/
   training.name = activity.name;
   training.desc = activity.description;
+  training.distance = activity.distance;
+  training.movingTime = activity.moving_time;
+  training.elapsedTime = activity.elapsed_time;
+  training.elevationGain = activity.total_elevation_gain;
   training.startDate = new Date(activity.start_date);
   training.athlete = currentAthlete;
+  training.averageSpeed = activity.average_speed;
+  training.maxSpeed = activity.max_speed;
 
   var type = activity.type.toLowerCase();
   var lowerName = activity.name.toLowerCase();
