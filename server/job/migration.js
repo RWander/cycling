@@ -6,35 +6,52 @@
 'use strict';
 
 var strava = require('strava-v3');
-var camo = require('camo');
-
 var models = require('../src/models');
-var trainings = models.Training;
 
-require('../src/db');
+var currentAthlete;
 
-getActivities()
-  .then((activities) => activities
-      .map(createTraining)
-      .map((t) => t.save())
-  )
-  .then((promises) => Promise.all(promises))
-  .then((trainings) => {
-    trainings.forEach((training) => {
+// 1. Connect db
+require('../src/db')
+// 2. Get Current Athlete
+.then(() => getCurrentAthelete())
+// 3. Get all activities of the currecnt athlete
+.then((athlete) => {
+  currentAthlete = athlete;
+  return getActivities();
+})
+// 4. Save activities into local db
+.then((activities) => activities
+  .map(createTraining)
+  .map((t) => t.save())
+)
+// 5. Wait until all activities saved into local db
+.then((promises) => Promise.all(promises))
+// 6. Calulate statistic.
+.then((trainings) => {
+  trainings.forEach((training) => {
 
-      // TODO
-      // ..
+    // TODO
+    // ..
 
-      /* eslint-disable no-console */
-      console.log(`Training saved: ${training}`);
-      /* eslint-disable no-console */
-    });
-  })
-  .catch((err) => {
     /* eslint-disable no-console */
-    console.log(err);
+    console.log(`Training '${training.name}' at ${training.date} is saved.`);
     /* eslint-disable no-console */
   });
+})
+.catch((err) => {
+  /* eslint-disable no-console */
+  console.log(err);
+  /* eslint-disable no-console */
+});
+
+/**
+ * getCurrentAthelete - Loads a current athlete info.
+ *
+ * @return {Promise}
+ */
+function getCurrentAthelete() {
+  return models.Athlete.loadOne({ });
+}
 
 /**
  * getActivities - Loads athlete's activities
@@ -63,10 +80,13 @@ function getActivities() {
  * @return {Training} Training object.
  */
 function createTraining(activity) {
-  let training = trainings.create();
+  let training = models.Training.create();
 
-  // TODO
-  // ..
+  training.name = '1';
+  training.desc = '2';
+  training.type = 1;
+  //training.date = Date.now;
+  training.athlete = currentAthlete;
 
   return training;
 }
