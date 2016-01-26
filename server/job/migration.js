@@ -14,10 +14,24 @@ var currentAthlete;
 require('../src/db')
 // 2. Get Current Athlete
 .then(() => getCurrentAthelete())
-// 3. Get all activities of the currecnt athlete
+// 3. Get all new activities of the currecnt athlete
 .then((athlete) => {
   currentAthlete = athlete;
-  return getActivities();
+  return Promise.all([
+    getStravaActivities(),
+    getLocalActivities()
+  ]);
+})
+// 4. Find activities from Strava API which do not exist in the local db.
+.then((activities) => {
+  let fromStrava = activities[0];
+  let fromLocal = activities[1];
+
+  // TODO: filter 'fromStrava'
+  // ..
+  debugger;
+
+  return fromStrava;
 })
 // 4. Save activities into local db
 .then((activities) => activities
@@ -30,11 +44,11 @@ require('../src/db')
 .then((trainings) => {
   trainings.forEach((training) => {
 
-    // TODO
+    // TODO:0 Calulate statistic
     // ..
 
     /* eslint-disable no-console */
-    console.log(`Training '${training.name}' at ${training.startDate} is saved.`);
+    //console.log(`Training '${training.name}' at ${training.startDate} is saved.`);
     /* eslint-disable no-console */
   });
 })
@@ -54,21 +68,45 @@ function getCurrentAthelete() {
 }
 
 /**
- * getActivities - Loads athlete's activities
+ * getStravaActivities - Loads all athlete's activities from Strava API
  *
  * @return {Promise}
  */
-function getActivities() {
+function getStravaActivities() {
   return new Promise((resolve, reject) => {
-    // TODO: load only newer activities
-    // ..
-    strava.athlete.listActivities({
-      'page': 1,
-      'per_page': 200
-    }, (err, payload) => {
-      if (err) reject(err);
-      resolve(payload);
-    });
+    let pageNo = 1;
+    const perPage = 200; //(200 is max - see http://strava.github.io/api/#pagination)
+    let result = [];
+
+    let pageLoader = () => {
+      strava.athlete.listActivities({
+        'page': pageNo,
+        'per_page': perPage
+      }, (err, payload) => {
+        if (err) reject(err);
+        if (payload != null && payload.length > 0) {
+          pageNo++;
+          result = result.concat(payload);
+          pageLoader();
+        } else {
+          resolve(result);
+        }
+      });
+    };
+
+    pageLoader();
+  });
+}
+
+
+/**
+* getLocalActivities - Loads all local activities from the local db.
+*
+* @return {Promise}
+ */
+function getLocalActivities() {
+  return models.Training.loadMany({ }, {
+    populate: false // don't load refs
   });
 }
 
