@@ -8,6 +8,9 @@ class Training extends Document {
     super();
 
     this.schema({
+      stravaId: {
+        type: Number
+      },
       name: {
         type: String,
         required: true

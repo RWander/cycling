@@ -5,6 +5,7 @@
 
 'use strict';
 
+var _ = require('lodash');
 var strava = require('strava-v3');
 var models = require('../src/models');
 
@@ -26,12 +27,9 @@ require('../src/db')
 .then((activities) => {
   let fromStrava = activities[0];
   let fromLocal = activities[1];
+  let diff = _.differenceWith(fromStrava, fromLocal, (s, l) => s.id === l.stravaId);
 
-  // TODO: filter 'fromStrava'
-  // ..
-  debugger;
-
-  return fromStrava;
+  return diff;
 })
 // 4. Save activities into local db
 .then((activities) => activities
@@ -121,6 +119,7 @@ function createTraining(activity) {
   let training = models.Training.create();
 
   // see http://strava.github.io/api/v3/activities/
+  training.stravaId = activity.id;
   training.name = activity.name;
   training.desc = activity.description;
   training.distance = activity.distance;
