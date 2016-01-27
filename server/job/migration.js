@@ -38,17 +38,12 @@ require('../src/db')
 )
 // 5. Wait until all activities saved into local db
 .then((promises) => Promise.all(promises))
-// 6. Calulate statistic.
+// 6. Print result.
 .then((trainings) => {
-  trainings.forEach((training) => {
-
-    // TODO:0 Calulate statistic
-    // ..
-
-    /* eslint-disable no-console */
-    //console.log(`Training '${training.name}' at ${training.startDate} is saved.`);
-    /* eslint-disable no-console */
-  });
+  /* eslint-disable no-console */
+  trainings.forEach((t) => console.log(`Training '${t.name}' at ${t.startDate} is saved.`));
+  console.log(`Total trainings: ${trainings.length}`);
+  /* eslint-disable no-console */
 })
 .catch((err) => {
   /* eslint-disable no-console */
