@@ -21,6 +21,9 @@
         ],
         "no-console": [
             1
+        ],
+        "linebreak-style": [
+            0
         ]
     },
     "env": {
