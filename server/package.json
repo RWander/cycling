@@ -43,6 +43,7 @@
     "gulp-jasmine": "^2.0.1",
     "gulp-live-server": "0.0.29",
     "jasmine": "^2.4.1",
+    "moment": "^2.11.1",
     "require-dir": "^0.3.0"
   },
   "engines": {
