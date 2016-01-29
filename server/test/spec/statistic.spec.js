@@ -1,3 +1,5 @@
+'use strict';
+
 /* eslint-disable no-undef */
 
 describe('Calculate statistic', function() {
@@ -7,7 +9,10 @@ describe('Calculate statistic', function() {
   //   obj = { };
   // });
 
+  var calculate = require('../../src/libs/statistic');
+
   it('1 is 1', function() {
-    expect(1).toEqual(1);
+    let stat = calculate([]);
+    expect(stat).toEqual({});
   });
 });
