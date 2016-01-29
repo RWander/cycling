@@ -1,10 +1,21 @@
-var gulp = require('gulp-help')(require('gulp'));
-var jasmine = require('gulp-jasmine');
-var debug = require('gulp-debug');
-var path = require('./.path.json');
+'use strict';
 
-gulp.task('test', 'Runs the Jasmine test specs', function () {
-  return gulp.src(path.test)
-    .pipe(debug({ title: 'tested:'}))
-    .pipe(jasmine());
-});
+/* eslint-disable no-console */
+
+var gulp = require('gulp-help')(require('gulp'));
+var path = require('./.path.json');
+var exec = require('child_process').exec;
+
+gulp.task(
+  'test',
+  'Runs the Jasmine test specs',
+  (cb) => {
+    exec(`cd ${path.testDir} && jasmine`, (err, stdout, stderr) => {
+
+      console.log(stdout);
+      console.log(stderr);
+
+      cb(err);
+    });
+  }
+);
