@@ -10,7 +10,7 @@ gulp.task(
   'test',
   'Runs the Jasmine test specs',
   (cb) => {
-    exec(`cd ${path.testDir} && jasmine`, (err, stdout, stderr) => {
+    exec(`cd ${path.testDir} && node jasmine-runner.js`, (err, stdout, stderr) => {
 
       console.log(stdout);
       console.log(stderr);
