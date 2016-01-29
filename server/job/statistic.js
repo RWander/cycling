@@ -2,7 +2,6 @@
 
 /* eslint-disable no-console */
 
-var _ = require('lodash');
 var moment = require('moment');
 var util = require('util');
 var models = require('../src/models');
@@ -46,45 +45,42 @@ function calculate(trainings) {
     let weak = date.format('WW');   // Week of Year (ISO) (01 02 ... 52 53)
     let day = date.format('DD');    // Day of Month (01 02 ... 30 31)
 
-    if (!stat[year]) {
-      stat[year] = getStatisticPoint(t.type);
-    }
-    add(stat[year], t);
+    let point = getStatisticPoint(stat, year, t.type);
+    add(point[t.type], t);
 
-    if (!stat[year][month]) {
-      stat[year][month] = getStatisticPoint(t.type);
-    }
-    add(stat[year][month], t);
+    point = getStatisticPoint(point, month, t.type);
+    add(point[t.type], t);
 
-    if (!stat[year][month][weak]) {
-      stat[year][month][weak] = getStatisticPoint(t.type);
-    }
-    add(stat[year][month][weak], t);
+    point = getStatisticPoint(point, weak, t.type);
+    add(point[t.type], t);
 
-    if (!stat[year][month][weak][day]) {
-      stat[year][month][weak][day] = getStatisticPoint(t.type);
-    }
-    add(stat[year][month][weak][day], t);
+    point = getStatisticPoint(point, day, t.type);
+    add(point[t.type], t);
   });
 
-  debugger;
-
+  // debug
   console.log(util.inspect(stat, { showHidden: false, depth: null }));
 
   return stat;
 }
 
-function getStatisticPoint(type) {
-  return {
-    total: {
-      distance: 0,
-      movingTime: 0,
-      elapsedTime: 0,
-      elevationGain: 0//,
-      // averageSpeed: 0,
-      // maxSpeed: 0
-    }
-  };
+function getStatisticPoint(stat, path, type) {
+  if (!stat[path]) {
+    stat[path] = { };
+  }
+  if (!stat[path][type]) {
+    stat[path][type] = {
+      total: {
+        distance: 0,
+        movingTime: 0,
+        elapsedTime: 0,
+        elevationGain: 0//,
+        // averageSpeed: 0,
+        // maxSpeed: 0
+      }
+    };
+  }
+  return stat[path];
 }
 
 function add(point, training) {
