@@ -43,13 +43,19 @@ describe('Calculate statistic', function() {
       //   // ..
       // }
 
-      // let months = _.ddd(data, TRAINING_TYPE.vals());
-      // expect(months.length).not.toEqual(0);
-      //
-      // // Check months
-      // months.forEach((month) => {
-      //   // ..
-      // });
+      // Check months
+      let months = _.omit(data, TRAINING_TYPE.vals());
+      expect(months.length).not.toEqual(0);
+
+      let monthNames = _.keys(months);
+      monthNames.forEach((monthName) => {
+        let month = months[monthName];
+
+        //debugger;
+
+        // TODO
+        // ..
+      });
     });
   });
 });
