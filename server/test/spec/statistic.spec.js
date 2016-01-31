@@ -6,6 +6,7 @@ describe('Calculate statistic', function() {
   var _ = require('lodash');
   var calculate = require('../../src/libs/statistic');
   var generator = require('./helpers/generator');
+  const TRAINING_TYPE = require('../../src/models').TRAINING_TYPE;
 
   it('Check statistic', function() {
     let trainings = generator.trainings(10);
@@ -19,9 +20,9 @@ describe('Calculate statistic', function() {
       // Statisitic Level # 1 - Month and Totals
       let data = stat[year];
 
-      let runStat = data['1'];
-      let cycStat = data['2'];
-      let skiStat = data['3'];
+      let cycStat = data[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+      let runStat = data[TRAINING_TYPE[TRAINING_TYPE.run]];
+      let skiStat = data[TRAINING_TYPE[TRAINING_TYPE.ski]];
 
       // Anything must be exist
       expect(!!runStat || !!cycStat || !!skiStat).toEqual(true);
@@ -42,13 +43,13 @@ describe('Calculate statistic', function() {
       //   // ..
       // }
 
-      let months = _.ddd(data, ['1', '2', '3']);
-      expect(months.length).not.toEqual(0);
-
-      // Check months
-      months.forEach((month) => {
-        // ..
-      });
+      // let months = _.ddd(data, TRAINING_TYPE.vals());
+      // expect(months.length).not.toEqual(0);
+      //
+      // // Check months
+      // months.forEach((month) => {
+      //   // ..
+      // });
     });
   });
 });

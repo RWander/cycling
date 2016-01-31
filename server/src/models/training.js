@@ -23,11 +23,7 @@ class Training extends Document {
       type: {
         type: String,
         default: TRAINING_TYPE[TRAINING_TYPE.cycling],
-        choices: [
-          TRAINING_TYPE[TRAINING_TYPE.cycling],
-          TRAINING_TYPE[TRAINING_TYPE.run],
-          TRAINING_TYPE[TRAINING_TYPE.ski]
-        ],
+        choices: TRAINING_TYPE.vals(),
         required: true
       },
       startDate: {
