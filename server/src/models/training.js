@@ -1,5 +1,7 @@
 'use strict';
 
+const TRAINING_TYPE =  require('./TrainingType');
+
 var Document = require('camo').Document;
 var Athlete = require('./athlete');
 
@@ -19,12 +21,12 @@ class Training extends Document {
         type: String
       },
       type: {
-        type: Number,
-        default: 1,
+        type: String,
+        default: TRAINING_TYPE[TRAINING_TYPE.cycling],
         choices: [
-          1, // - cycling
-          2, // - running
-          3  // - skiing
+          TRAINING_TYPE[TRAINING_TYPE.cycling],
+          TRAINING_TYPE[TRAINING_TYPE.run],
+          TRAINING_TYPE[TRAINING_TYPE.ski]
         ],
         required: true
       },

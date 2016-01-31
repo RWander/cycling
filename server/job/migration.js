@@ -42,7 +42,7 @@ require('../src/db')
 .then((promises) => Promise.all(promises))
 // 6. Print result.
 .then((trainings) => {
-  trainings.forEach((t) => console.log(`Training '${t.name}' at ${t.startDate} is saved.`));
+  trainings.forEach((t) => console.log(`Training '${t.name}' (type=${t.type}) at ${t.startDate} is saved.`));
   console.log(`Total trainings: ${trainings.length}`);
 })
 .catch(console.log);
@@ -124,14 +124,17 @@ function createTraining(activity) {
 
   var type = activity.type.toLowerCase();
   var lowerName = activity.name.toLowerCase();
+
+  const TYPE = models.TRAINING_TYPE;
+
   if (type === 'ride') {
-    training.type = 1;
+    training.type = TYPE[TYPE.cycling];
   }
   else if (type === 'run' && !lowerName.includes('лыжи')) {
-    training.type = 2;
+    training.type = TYPE[TYPE.run];
   }
   else if (type.includes('ski') || lowerName.includes('лыжи')) {
-    training.type = 3;
+    training.type = TYPE[TYPE.ski];
   }
 
   return training;

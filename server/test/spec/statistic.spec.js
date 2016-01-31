@@ -41,14 +41,14 @@ describe('Calculate statistic', function() {
       //   // TODO
       //   // ..
       // }
-      //
-      // let months = _.ddd(data, ['1', '2', '3']);
-      // expect(months.length).not.toEqual(0);
-      //
-      // // Check months
-      // months.forEach((month) => {
-      //   // ..
-      // });
+
+      let months = _.ddd(data, ['1', '2', '3']);
+      expect(months.length).not.toEqual(0);
+
+      // Check months
+      months.forEach((month) => {
+        // ..
+      });
     });
   });
 });
