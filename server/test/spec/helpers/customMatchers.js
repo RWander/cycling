@@ -29,30 +29,23 @@ beforeEach(function () {
       return {
         compare: (actual) => {
           var month = actual;
+          const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jul', 'Jun', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-          // TODO
-          // ..
-
-          return month !== null;
+          return {
+            pass: months.indexOf(month) > -1
+          };
         }
       };
     },
 
-    // TODO: ES6 - enum support?
-    // ...
-
-    /**
-     * Checks whather the actual value is correct training type in MMM format (1|2|3)
-     */
-    isTrainingType: () => {
+    isWeekNumber: () => {
       return {
         compare: (actual) => {
-          var type = actual;
+          var week = parseInt(actual);
 
-          // TODO
-          // ..
-
-          return type !== null;
+          return {
+            pass: actual.length == 2 && !isNaN(week) && week >= 1 && week <= 53 
+          };
         }
       };
     }
