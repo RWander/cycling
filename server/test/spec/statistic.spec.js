@@ -4,13 +4,20 @@
 
 describe('Calculate statistic', function() {
   var _ = require('lodash');
+  var faker = require('faker');
   var calculate = require('../../src/libs/statistic');
   var generator = require('./helpers/generator');
+
   const TRAINING_TYPE = require('../../src/models').TRAINING_TYPE;
 
   it('Check statistic', function() {
-    let trainings = generator.trainings(10);
+    let trainingCount = faker.random.number({ min: 1, max: 100 });
+    let trainings = generator.trainings(trainingCount);
     let stat = calculate(trainings);
+
+    // not empty statistic
+    expect(stat).not.toBeNull();
+    expect(stat).not.toEqual({});
 
     let createStatPoint = () => {
       return {
