@@ -21,6 +21,13 @@ describe('Calculate statistic', function() {
       };
     };
 
+    let addStatPoint = (x, y) => {
+      x.distance += y.distance;
+      x.movingTime += y.movingTime;
+      x.elapsedTime += y.elapsedTime;
+      x.elevationGain += y.elevationGain;
+    };
+
     // Statisitic Level # 0 - Year
     let years = _.keys(stat);
     years.forEach((year) => {
@@ -109,12 +116,44 @@ describe('Calculate statistic', function() {
             expect(!!cycDayActual || !!runDayActual || !!skiDayActual).toEqual(true);
 
             // Check totals
-            if (cycDayActual) expect(cycDayActual).isCorrectStatisticPoint();
-            if (runDayActual) expect(runDayActual).isCorrectStatisticPoint();
-            if (skiDayActual) expect(skiDayActual).isCorrectStatisticPoint();
+            if (cycDayActual !== undefined) {
+              expect(cycDayActual).isCorrectStatisticPoint();
+
+              addStatPoint(cycWeekExpected, cycDayActual);
+              addStatPoint(cycMonthExpected, cycDayActual);
+              addStatPoint(cycYearExpected, cycDayActual);
+            }
+
+            if (runDayActual !== undefined) {
+              expect(runDayActual).isCorrectStatisticPoint();
+
+              addStatPoint(runWeekExpected, runDayActual);
+              addStatPoint(runMonthExpected, runDayActual);
+              addStatPoint(runYearExpected, runDayActual);
+            }
+
+            if (skiDayActual !== undefined) {
+              expect(skiDayActual).isCorrectStatisticPoint();
+
+              addStatPoint(skiWeekExpected, skiDayActual);
+              addStatPoint(skiMonthExpected, skiDayActual);
+              addStatPoint(skiYearExpected, skiDayActual);
+            }
           });
+
+          if (cycWeekActual) expect(cycWeekActual).toEqual(cycWeekExpected);
+          if (runWeekActual) expect(runWeekActual).toEqual(runWeekExpected);
+          if (skiWeekActual) expect(skiWeekActual).toEqual(skiWeekExpected);
         });
+
+        if (cycMonthActual) expect(cycMonthActual).toEqual(cycMonthExpected);
+        if (runMonthActual) expect(runMonthActual).toEqual(runMonthExpected);
+        if (skiMonthActual) expect(skiMonthActual).toEqual(skiMonthExpected);
       });
+
+      if (cycYearActual) expect(cycYearActual).toEqual(cycYearExpected);
+      if (runYearActual) expect(runYearActual).toEqual(runYearExpected);
+      if (skiYearActual) expect(skiYearActual).toEqual(skiYearExpected);
     });
   });
 });
