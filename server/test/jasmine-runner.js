@@ -5,7 +5,19 @@ var SpecReporter = require('jasmine-spec-reporter');
 var noop = function() {};
 
 var jrunner = new Jasmine();
-jrunner.configureDefaultReporter({print: noop});    // remove default reporter logs
-jasmine.getEnv().addReporter(new SpecReporter());   // add jasmine-spec-reporter
-jrunner.loadConfigFile();                           // load jasmine.json configuration
+
+// remove default reporter logs
+jrunner.configureDefaultReporter({
+  print: noop
+});
+
+// add jasmine-spec-reporter
+jasmine.getEnv().addReporter(new SpecReporter({
+  // all options: https://github.com/bcaudan/jasmine-spec-reporter#default-options
+  displayStacktrace: 'summary'
+}));
+
+// load jasmine.json configuration
+jrunner.loadConfigFile();
+
 jrunner.execute();
