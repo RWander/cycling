@@ -161,21 +161,25 @@ describe('Calculate statistic', function() {
             }
           });
 
+          // week
           if (cycWeekActual) expect(cycWeekActual).toEqual(cycWeekExpected);
           if (runWeekActual) expect(runWeekActual).toEqual(runWeekExpected);
           if (skiWeekActual) expect(skiWeekActual).toEqual(skiWeekExpected);
         });
 
+        // month
         if (cycMonthActual) expect(cycMonthActual).toEqual(cycMonthExpected);
         if (runMonthActual) expect(runMonthActual).toEqual(runMonthExpected);
         if (skiMonthActual) expect(skiMonthActual).toEqual(skiMonthExpected);
       });
 
+      // year
       if (cycYearActual) expect(cycYearActual).toEqual(cycYearExpected);
       if (runYearActual) expect(runYearActual).toEqual(runYearExpected);
       if (skiYearActual) expect(skiYearActual).toEqual(skiYearExpected);
     });
 
+    // total
     if (cycTotalActual) expect(cycTotalActual).toEqual(cycTotalExpected);
     if (runTotalActual) expect(runTotalActual).toEqual(runTotalExpected);
     if (skiTotalActual) expect(skiTotalActual).toEqual(skiTotalExpected);
