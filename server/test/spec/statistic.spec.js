@@ -35,12 +35,22 @@ describe('Calculate statistic', function() {
       x.elevationGain += y.elevationGain;
     };
 
-    // Statisitic Level # 0 - Year
-    let years = _.keys(stat);
-    years.forEach((year) => {
+    let cycTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+    let cycTotalExpected = createStatPoint();
+    let runTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.run]];
+    let runTotalExpected = createStatPoint();
+    let skiTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.ski]];
+    let skiTotalExpected = createStatPoint();
+
+    // Statisitic Level # 1 - Year
+    let years = _.omit(stat, TRAINING_TYPE.vals());
+    expect(years.length).not.toEqual(0);
+
+    let yearsAll = _.keys(years);
+    yearsAll.forEach((year) => {
       expect(year).isYearYYYY();
 
-      // Statisitic Level # 1 - Month and Totals
+      // Statisitic Level # 2 - Month and Totals
       let yearData = stat[year];
 
       let cycYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
@@ -129,6 +139,7 @@ describe('Calculate statistic', function() {
               addStatPoint(cycWeekExpected, cycDayActual);
               addStatPoint(cycMonthExpected, cycDayActual);
               addStatPoint(cycYearExpected, cycDayActual);
+              addStatPoint(cycTotalExpected, cycDayActual);
             }
 
             if (runDayActual !== undefined) {
@@ -137,6 +148,7 @@ describe('Calculate statistic', function() {
               addStatPoint(runWeekExpected, runDayActual);
               addStatPoint(runMonthExpected, runDayActual);
               addStatPoint(runYearExpected, runDayActual);
+              addStatPoint(runTotalExpected, runDayActual);
             }
 
             if (skiDayActual !== undefined) {
@@ -145,6 +157,7 @@ describe('Calculate statistic', function() {
               addStatPoint(skiWeekExpected, skiDayActual);
               addStatPoint(skiMonthExpected, skiDayActual);
               addStatPoint(skiYearExpected, skiDayActual);
+              addStatPoint(skiTotalExpected, skiDayActual);
             }
           });
 
@@ -162,5 +175,9 @@ describe('Calculate statistic', function() {
       if (runYearActual) expect(runYearActual).toEqual(runYearExpected);
       if (skiYearActual) expect(skiYearActual).toEqual(skiYearExpected);
     });
+
+    if (cycTotalActual) expect(cycTotalActual).toEqual(cycTotalExpected);
+    if (runTotalActual) expect(runTotalActual).toEqual(runTotalExpected);
+    if (skiTotalActual) expect(skiTotalActual).toEqual(skiTotalExpected);
   });
 });
