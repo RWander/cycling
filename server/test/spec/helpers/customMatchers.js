@@ -43,8 +43,26 @@ beforeEach(function () {
         compare: (actual) => {
           var week = parseInt(actual);
 
+          // TODO (rwander): Each month contains weeks with the different number
+          // ..
+
           return {
-            pass: actual.length == 2 && !isNaN(week) && week >= 1 && week <= 53 
+            pass: actual.length == 2 && !isNaN(week) && week >= 1 && week <= 53
+          };
+        }
+      };
+    },
+
+    isDayNumber: () => {
+      return {
+        compare: (actual) => {
+          var day = parseInt(actual);
+
+          // TODO (rwander): Month contains 28, 29, 30 or 31 days..
+          // ..
+
+          return {
+            pass: !isNaN(day) && day >= 1 && day <= 31
           };
         }
       };

@@ -41,27 +41,25 @@ function getStatisticPoint(stat, path, type) {
   }
   if (!stat[path][type]) {
     stat[path][type] = {
-      total: {
-        distance: 0,
-        movingTime: 0,
-        elapsedTime: 0,
-        elevationGain: 0//,
-        // averageSpeed: 0,
-        // maxSpeed: 0
-      }
+      distance: 0,
+      movingTime: 0,
+      elapsedTime: 0,
+      elevationGain: 0//,
+      // averageSpeed: 0,
+      // maxSpeed: 0
     };
   }
   return stat[path];
 }
 
 function add(point, training) {
-  if (!point.total[training.type])
-    point.total[training.type] = { };
+  if (!point[training.type])
+    point[training.type] = { };
 
-  point.total.distance += training.distance;
-  point.total.movingTime += training.movingTime;
-  point.total.elapsedTime += training.elapsedTime;
-  point.total.elevationGain += training.elevationGain;
+  point.distance += training.distance;
+  point.movingTime += training.movingTime;
+  point.elapsedTime += training.elapsedTime;
+  point.elevationGain += training.elevationGain;
   // let averageSpeed = training.averageSpeed;
   // let maxSpeed = training.maxSpeed;
 }

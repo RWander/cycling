@@ -12,6 +12,15 @@ describe('Calculate statistic', function() {
     let trainings = generator.trainings(10);
     let stat = calculate(trainings);
 
+    let createStatPoint = () => {
+      return {
+        distance: 0,
+        movingTime: 0,
+        elapsedTime: 0,
+        elevationGain: 0
+      };
+    };
+
     // Statisitic Level # 0 - Year
     let years = _.keys(stat);
     years.forEach((year) => {
@@ -20,12 +29,15 @@ describe('Calculate statistic', function() {
       // Statisitic Level # 1 - Month and Totals
       let yearData = stat[year];
 
-      let cycStatYear = yearData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
-      let runStatYear = yearData[TRAINING_TYPE[TRAINING_TYPE.run]];
-      let skiStatYear = yearData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+      let cycYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+      let cycYearExpected = createStatPoint();
+      let runYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.run]];
+      let runYearExpected = createStatPoint();
+      let skiYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+      let skiYearExpected = createStatPoint();
 
       // Anything must be exist
-      expect(!!runStatYear || !!cycStatYear || !!skiStatYear).toEqual(true);
+      expect(!!runYearActual || !!cycYearActual || !!skiYearActual).toEqual(true);
 
       // // Check totals
       // if (!!runStatYear) {
@@ -53,24 +65,27 @@ describe('Calculate statistic', function() {
 
         let monthData = months[monthName];
 
-        let cycStatMonth = monthData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
-        let runStatMonth = monthData[TRAINING_TYPE[TRAINING_TYPE.run]];
-        let skiStatMonth = monthData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+        let cycMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+        let cycMonthExpected = createStatPoint();
+        let runMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.run]];
+        let runMonthExpected = createStatPoint();
+        let skiMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+        let skiMonthExpected = createStatPoint();
 
-        expect(!!cycStatMonth || !!runStatMonth || !!skiStatMonth).toEqual(true);
+        expect(!!cycMonthActual || !!runMonthActual || !!skiMonthActual).toEqual(true);
 
         // // Check totals
-        // if (!!cycStatMonth) {
+        // if (!!cycMonthActual) {
         //   // TODO
         //   // ..
         // }
         //
-        // if (!!runStatMonth) {
+        // if (!!runMonthActual) {
         //   // TODO
         //   // ..
         // }
         //
-        // if (!!skiStatMonth) {
+        // if (!!skiMonthActual) {
         //   // TODO
         //   // ..
         // }
@@ -85,32 +100,67 @@ describe('Calculate statistic', function() {
 
           let weekData = weeks[weekName];
 
-          let cycStatWeek = weekData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
-          let runStatWeek = weekData[TRAINING_TYPE[TRAINING_TYPE.run]];
-          let skiStatWeek = weekData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+          let cycWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+          let cycWeekExpected = createStatPoint();
+          let runWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.run]];
+          let runWeekExpected = createStatPoint();
+          let skiWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+          let skiWeekExpected = createStatPoint();
 
-          expect(!!cycStatWeek || !!runStatWeek || !!skiStatWeek).toEqual(true);
+          expect(!!cycWeekActual || !!runWeekActual || !!skiWeekActual).toEqual(true);
 
           // // Check totals
-          // if (!!cycStatWeek) {
+          // if (!!cycWeekActual) {
           //   // TODO
           //   // ..
           // }
           //
-          // if (!!runStatWeek) {
+          // if (!!runWeekActual) {
           //   // TODO
           //   // ..
           // }
           //
-          // if (!!skiStatWeek) {
+          // if (!!skiWeekActual) {
           //   // TODO
           //   // ..
           // }
-          //
-          
-        });
 
-        debugger;
+          // Check days
+          let days = _.omit(weekData, TRAINING_TYPE.vals());
+          expect(days.length).not.toEqual(0);
+
+          let daysNums = _.keys(days);
+          daysNums.forEach((day) => {
+            expect(day).isDayNumber();
+
+            let dayData = weekData[day];
+
+            let cycDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+            let cycDayExpected = createStatPoint();
+            let runDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.run]];
+            let runDayExpected = createStatPoint();
+            let skiDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+            let skiDayExpected = createStatPoint();
+
+            expect(!!cycDayActual || !!runDayActual || !!skiDayActual).toEqual(true);
+
+            // // Check totals
+            // if (!!cycDayActual) {
+            //   // TODO
+            //   // ..
+            // }
+            //
+            // if (!!runDayActual) {
+            //   // TODO
+            //   // ..
+            // }
+            //
+            // if (!!skiDayActual) {
+            //   // TODO
+            //   // ..
+            // }
+          });
+        });
       });
     });
   });
