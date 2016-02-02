@@ -53,9 +53,6 @@ function getStatisticPoint(stat, path, type) {
 }
 
 function add(point, training) {
-  if (!point[training.type])
-    point[training.type] = { };
-
   point.distance += training.distance;
   point.movingTime += training.movingTime;
   point.elapsedTime += training.elapsedTime;

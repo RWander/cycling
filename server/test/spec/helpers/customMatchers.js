@@ -28,7 +28,7 @@ beforeEach(function () {
     isMonthMMM: () => {
       return {
         compare: (actual) => {
-          var month = actual;
+          let month = actual;
           const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jul', 'Jun', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
           return {
@@ -41,7 +41,7 @@ beforeEach(function () {
     isWeekNumber: () => {
       return {
         compare: (actual) => {
-          var week = parseInt(actual);
+          let week = parseInt(actual);
 
           // TODO (rwander): Each month contains weeks with the different number
           // ..
@@ -56,13 +56,38 @@ beforeEach(function () {
     isDayNumber: () => {
       return {
         compare: (actual) => {
-          var day = parseInt(actual);
+          let day = parseInt(actual);
 
           // TODO (rwander): Month contains 28, 29, 30 or 31 days..
           // ..
 
           return {
             pass: !isNaN(day) && day >= 1 && day <= 31
+          };
+        }
+      };
+    },
+
+    isCorrectStatisticPoint: () => {
+      return {
+        compare: (actual) => {
+          let point = actual;
+          let keys = Object.keys(point);
+
+          return {
+            pass: keys.length === 4
+              // distance
+              && keys.indexOf('distance') != -1
+              && !isNaN(parseInt(point.distance))
+              // movingTime
+              && keys.indexOf('movingTime') != -1
+              && !isNaN(parseInt(point.movingTime))
+              // elapsedTime
+              && keys.indexOf('elapsedTime') != -1
+              && !isNaN(parseInt(point.elapsedTime))
+              // elevationGain
+              && keys.indexOf('elevationGain') != -1
+              && !isNaN(parseInt(point.elevationGain))
           };
         }
       };

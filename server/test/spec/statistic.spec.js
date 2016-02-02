@@ -39,21 +39,10 @@ describe('Calculate statistic', function() {
       // Anything must be exist
       expect(!!runYearActual || !!cycYearActual || !!skiYearActual).toEqual(true);
 
-      // // Check totals
-      // if (!!runStatYear) {
-      //   // TODO
-      //   // ..
-      // }
-      //
-      // if (!!cycStatYear) {
-      //   // TODO
-      //   // ..
-      // }
-      //
-      // if (!!skiStatYear) {
-      //   // TODO
-      //   // ..
-      // }
+      // Check totals
+      if (runYearActual) expect(runYearActual).isCorrectStatisticPoint();
+      if (cycYearActual) expect(cycYearActual).isCorrectStatisticPoint();
+      if (skiYearActual) expect(skiYearActual).isCorrectStatisticPoint();
 
       // Check months
       let months = _.omit(yearData, TRAINING_TYPE.vals());
@@ -74,21 +63,10 @@ describe('Calculate statistic', function() {
 
         expect(!!cycMonthActual || !!runMonthActual || !!skiMonthActual).toEqual(true);
 
-        // // Check totals
-        // if (!!cycMonthActual) {
-        //   // TODO
-        //   // ..
-        // }
-        //
-        // if (!!runMonthActual) {
-        //   // TODO
-        //   // ..
-        // }
-        //
-        // if (!!skiMonthActual) {
-        //   // TODO
-        //   // ..
-        // }
+        // Check totals
+        if (cycMonthActual) expect(cycMonthActual).isCorrectStatisticPoint();
+        if (runMonthActual) expect(runMonthActual).isCorrectStatisticPoint();
+        if (skiMonthActual) expect(skiMonthActual).isCorrectStatisticPoint();
 
         // Check weeks
         let weeks = _.omit(monthData, TRAINING_TYPE.vals());
@@ -109,21 +87,10 @@ describe('Calculate statistic', function() {
 
           expect(!!cycWeekActual || !!runWeekActual || !!skiWeekActual).toEqual(true);
 
-          // // Check totals
-          // if (!!cycWeekActual) {
-          //   // TODO
-          //   // ..
-          // }
-          //
-          // if (!!runWeekActual) {
-          //   // TODO
-          //   // ..
-          // }
-          //
-          // if (!!skiWeekActual) {
-          //   // TODO
-          //   // ..
-          // }
+          // Check totals
+          if (cycWeekActual) expect(cycWeekActual).isCorrectStatisticPoint();
+          if (runWeekActual) expect(runWeekActual).isCorrectStatisticPoint();
+          if (skiWeekActual) expect(skiWeekActual).isCorrectStatisticPoint();
 
           // Check days
           let days = _.omit(weekData, TRAINING_TYPE.vals());
@@ -136,29 +103,15 @@ describe('Calculate statistic', function() {
             let dayData = weekData[day];
 
             let cycDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
-            let cycDayExpected = createStatPoint();
             let runDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.run]];
-            let runDayExpected = createStatPoint();
             let skiDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.ski]];
-            let skiDayExpected = createStatPoint();
 
             expect(!!cycDayActual || !!runDayActual || !!skiDayActual).toEqual(true);
 
-            // // Check totals
-            // if (!!cycDayActual) {
-            //   // TODO
-            //   // ..
-            // }
-            //
-            // if (!!runDayActual) {
-            //   // TODO
-            //   // ..
-            // }
-            //
-            // if (!!skiDayActual) {
-            //   // TODO
-            //   // ..
-            // }
+            // Check totals
+            if (cycDayActual) expect(cycDayActual).isCorrectStatisticPoint();
+            if (runDayActual) expect(runDayActual).isCorrectStatisticPoint();
+            if (skiDayActual) expect(skiDayActual).isCorrectStatisticPoint();
           });
         });
       });
