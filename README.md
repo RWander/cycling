@@ -1,5 +1,7 @@
 # cycling
 
+[![Build Status](https://travis-ci.org/RWander/cycling.svg?branch=master)](https://travis-ci.org/RWander/cycling)
+
 ### Quick start
 
 The application file system layout is:
