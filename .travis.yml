@@ -2,5 +2,7 @@ language: node_js
 node_js:
   - v5
   - v4
+before_script:
+  - npm install -g jasmine
 script:
   - cd server/test && node jasmine-runner.js
