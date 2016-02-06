@@ -47,7 +47,8 @@
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.4.0",
     "moment": "^2.11.1",
-    "require-dir": "^0.3.0"
+    "require-dir": "^0.3.0",
+    "sinon": "^1.17.3"
   },
   "engines": {
     "node": ">=4.2.5"

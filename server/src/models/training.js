@@ -2,7 +2,9 @@
 
 const TRAINING_TYPE =  require('./TrainingType');
 
+var jpath = require('json-path');
 var Document = require('camo').Document;
+var statistic = require('../libs/statistic');
 var Athlete = require('./athlete');
 
 class Training extends Document {
@@ -70,6 +72,25 @@ class Training extends Document {
 
   static collectionName() {
     return 'trainings';
+  }
+
+  static loadCurrent() {
+    return Training.loadMany({ }, {
+      populate: false // don't load refs
+    });
+  }
+
+  static loadStatisticCurrent(path) {
+    path = path ? path : '';
+    if (Training._statisticObj) {
+      return new Promise(resolve => resolve(jpath.resolve(Training._statisticObj, path)));
+    } else {
+      return Training.loadCurrent()
+        .then(trainings => {
+          Training._statisticObj = statistic(trainings);
+          return jpath.resolve(Training._statisticObj, path);
+        });
+    }
   }
 }
 

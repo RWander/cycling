@@ -18,7 +18,7 @@ function main() {
   app.use(corsHandler); // CORS
 
   // regester routes
-  app.use('/', require('./routes/athletes'));
+  app.use('/', require('./routes/athlete'));
   app.use(notFoundHandler); // catch 404 and forward to error handler
   app.use(errorHandler);    // error handlers
 
