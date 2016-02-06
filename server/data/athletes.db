@@ -1,1 +1,1 @@
-{"firstName":"Роман","lastName":"Корнеев","birthday":{"$$date":569620800000},"country":"Россия","City":"СПб","Bio":"Люблю спорт на свежем воздухе!","_id":"GvtbljVZoeLALOcD"}
+{"firstName":"Роман","lastName":"Корнеев","birthday":{"$$date":569620800000},"country":"Россия","city":"СПб","bio":"Люблю спорт на свежем воздухе!","_id":"GvtbljVZoeLALOcD"}

@@ -22,10 +22,10 @@ class Athlete extends Document {
       country: {
         type: String
       },
-      City: {
+      city: {
         type: String
       },
-      Bio: {
+      bio: {
         type: String
       }
     });

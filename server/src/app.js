@@ -1,7 +1,7 @@
 'use strict';
 
 // connect to db
-require('./db').then(() => main());
+module.exports = require('./db').then(() => main());
 
 function main() {
   let express = require('express');
@@ -56,4 +56,6 @@ function main() {
     console.log('RESTful server "%s" listening at http://%s:%s', app.get('env'), host, port);
     /* eslint-disable no-console */
   }
+
+  return app;
 }
