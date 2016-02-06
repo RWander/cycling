@@ -6,6 +6,10 @@ var strava = require('strava-v3');
 var models = require('../models');
 var athletes = models.Athlete;
 
+var jpath = require('json-path');
+var statistic = require('../libs/statistic');
+var statisticObj;
+
 var router = express.Router();
 
 /**
@@ -23,9 +27,9 @@ router.get('/', (req, res, next) => {
       let info = results[0];
       info.stravaProfile = results[1];
       res.send(info);
-    },
-    err => next(err)
-  );
+    }
+  )
+  .catch(next);
 });
 
 
@@ -34,10 +38,8 @@ router.get('/', (req, res, next) => {
  */
 router.get('/short', (req, res, next) => {
   fromDB()
-    .then(
-      info => res.send(info),
-      err => next(err)
-    );
+    .then(info => res.send(info))
+    .catch(next);
 });
 
 
@@ -46,12 +48,34 @@ router.get('/short', (req, res, next) => {
  */
 router.get('/activities', (req, res, next) => {
   fromStravaAPIGetActivities()
-    .then(
-      activities => res.send(activities),
-      err => next(err)
-    );
+    .then(activities => res.send(activities))
+    .catch(next);
 });
 
+
+/**
+ * GETs a training statistic for the currect athlete.
+ */
+router.get('/statistic', (req, res, next) => {
+  // TODO (rwander): validate req.query param.
+  // ..
+  var path = req.query.path;
+
+  if (statisticObj) {
+    let data = jpath.resolve(statisticObj, path);
+    res.send(data);
+  } else {
+    // calculate statisticObj
+    models.Training.loadMany({ }, {
+      populate: false // don't load refs
+    }).then((trainings) => {
+      statisticObj = statistic(trainings);
+
+      let data = jpath.resolve(statisticObj, path);
+      res.send(data);
+    }).catch(next);
+  }
+});
 
 /**
  * fromDB - Loads athelete info from local db.
