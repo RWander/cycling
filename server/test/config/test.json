@@ -4,6 +4,6 @@
     "port": "5001"
   },
   "db": {
-    "uri": "nedb://../data"
+    "uri": "nedb://./data"
   }
 }
