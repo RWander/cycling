@@ -6,6 +6,25 @@ beforeEach(function () {
   var _ = require('lodash');
 
   jasmine.addMatchers({
+    isEmpty: () => {
+      return {
+        compare: (actual) => {
+          function check() {
+            for (var key in actual) {
+              if (actual.hasOwnProperty(key)){
+                return false;
+              }
+            }
+            return true;
+          }
+
+          return {
+            pass: check(actual)
+          };
+        }
+      };
+    },
+
     /**
      * Checks whather the actual value is year in the YYYY format ([1990, current year]).
      */

@@ -21,7 +21,10 @@ describe('Athlete routes', function()  {
       .end(function(err, res) {
         if (err) throw err;
 
-        expect(res.body).hasAtheleteSchema();
+        let athlete = res.body;
+
+        expect(athlete).not.isEmpty();
+        expect(athlete).hasAtheleteSchema();
         done();
       });
   });
@@ -34,7 +37,10 @@ describe('Athlete routes', function()  {
       .end(function(err, res) {
         if (err) throw err;
 
-        expect(res.body).hasFullAthleteInfoSchema();
+        let data = res.body;
+
+        expect(data).not.isEmpty();
+        expect(data).hasFullAthleteInfoSchema();
         done();
       });
   });
@@ -48,6 +54,7 @@ describe('Athlete routes', function()  {
         if (err) throw err;
 
         let trainings = res.body;
+        expect(trainings).not.isEmpty();
         expect(Array.isArray(trainings)).toBeTruthy();
         trainings.forEach(t => expect(t).hasTrainingSchema());
         done();
@@ -61,6 +68,10 @@ describe('Athlete routes', function()  {
       .expect(200)
       .end(function(err, res) {
         if (err) throw err;
+
+        let stat = res.body;
+
+        expect(stat).not.isEmpty();
 
         // TODO (rwander)
         // validate statistic schema
