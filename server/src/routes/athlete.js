@@ -6,7 +6,7 @@ router.get('/', require('./athlete/getAthlete'));
  // GETs full information about athelete (including tarining log and statistic).
 router.get('/full', require('./athlete/getFullInfo'));
 
-// GETs a full athelete information including track history.
+// GETs athelete's activities.
 router.get('/activities', require('./athlete/getActivities'));
 
 // GETs a training statistic for the currect athlete.

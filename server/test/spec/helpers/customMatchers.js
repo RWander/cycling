@@ -3,8 +3,9 @@
 /* eslint-disable no-undef */
 
 beforeEach(function () {
-  jasmine.addMatchers({
+  var _ = require('lodash');
 
+  jasmine.addMatchers({
     /**
      * Checks whather the actual value is year in the YYYY format ([1990, current year]).
      */
@@ -20,7 +21,6 @@ beforeEach(function () {
         }
       };
     },
-
 
     /**
      * Checks whather the actual value is month in MMM format ('Jan'|'Feb'|'Mar'|'Apr'| ..|'Dec')
@@ -91,6 +91,63 @@ beforeEach(function () {
           };
         }
       };
+    },
+
+    hasAtheleteSchema: () => {
+      return {
+        compare: (actual) => {
+          return {
+            pass: isAtheleteSchema(actual)
+          };
+        }
+      };
+    },
+
+    hasFullAthleteInfoSchema: () => {
+      return {
+        compare: (actual) => {
+          return {
+            pass: isFullAthleteInfoSchema(actual)
+          };
+        }
+      };
+    },
+
+    hasTrainingSchema: () => {
+      return {
+        compare: (actual) => {
+          return {
+            pass: isTrainingSchema(actual)
+          };
+        }
+      };
     }
   });
+
+  function isAtheleteSchema(obj) {
+    let props = _.keys(obj);
+    let diff = _.xor(
+      props,
+      ['_id', 'firstName', 'lastName', 'birthday', 'country', 'city', 'bio']
+    );
+
+    return diff.length === 0;
+  }
+
+  function isFullAthleteInfoSchema(obj) {
+    let props = _.keys(obj);
+    let diff = _.xor(props, ['athlete', 'trainings', 'statistic']);
+
+    return diff.length === 0 && isAtheleteSchema(obj.athlete);
+  }
+
+  function isTrainingSchema(obj) {
+    let props = _.keys(obj);
+    let diff = _.xor(
+      props,
+      ['_id', 'stravaId', 'name', 'type', 'startDate', 'athlete', 'distance', 'movingTime', 'elapsedTime', 'elevationGain', 'averageSpeed', 'maxSpeed']
+    );
+
+    return diff.length === 0;
+  }
 });

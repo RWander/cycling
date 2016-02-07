@@ -2,9 +2,7 @@
 
 /* eslint-disable no-undef */
 
-
 describe('Athlete routes', function()  {
-  var _ = require('lodash');
   var request = require('supertest');
   var app;
 
@@ -23,18 +21,51 @@ describe('Athlete routes', function()  {
       .end(function(err, res) {
         if (err) throw err;
 
-        let props = _.keys(res.body);
-        let diff = _.xor(
-          props,
-          ['_id', 'firstName', 'lastName', 'birthday', 'country', 'city', 'bio']
-        );
-
-        expect(diff).toEqual([]);
-
+        expect(res.body).hasAtheleteSchema();
         done();
       });
   });
 
-  // TODO (rwander): test all routes
-  // ..
+  it('HTTP GET /full - full athlete info', function(done) {
+    request(app)
+      .get('/full')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        expect(res.body).hasFullAthleteInfoSchema();
+        done();
+      });
+  });
+
+  it('HTTP GET /activities - athelete`s activities', function(done) {
+    request(app)
+      .get('/activities')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        let trainings = res.body;
+        expect(Array.isArray(trainings)).toBeTruthy();
+        trainings.forEach(t => expect(t).hasTrainingSchema());
+        done();
+      });
+  });
+
+  it('HTTP GET /statistic - athelete`s activities', function(done) {
+    request(app)
+      .get('/statistic')
+      .expect('Content-Type', /json/)
+      .expect(200)
+      .end(function(err, res) {
+        if (err) throw err;
+
+        // TODO (rwander)
+        // validate statistic schema
+
+        done();
+      });
+  });
 });
