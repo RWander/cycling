@@ -4,6 +4,6 @@
     "port": "5001"
   },
   "db": {
-    "uri": "nedb:///home/roman/cycling/server/data"
+    "uri": "nedb://../data"
   }
 }
