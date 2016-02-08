@@ -9,9 +9,9 @@ gulp.task('watch', "Spy on src files", function() {
     watch([path.src.scss], function(event, cb) {
         gulp.start('build:scss');
     });
-    watch([path.src.ts], function(event, cb) {
-        gulp.start('build:ts');
-    });
+    // watch([path.src.ts], function(event, cb) {
+    //     gulp.start('build:ts');
+    // });
     watch([path.src.img], function(event, cb) {
         gulp.start('build:img');
     });

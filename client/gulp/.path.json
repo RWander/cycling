@@ -2,7 +2,6 @@
   "src": {
     "root": "src/",
     "jade": "src/**/*.jade",
-    "ts": "src/ts/**/*.ts",
     "scss": "src/scss/**/*.scss",
     "img": "src/img/**/*.*"
   },

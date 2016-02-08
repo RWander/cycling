@@ -18,7 +18,7 @@ html(lang='en')
     // HTML5 Shim and Respond.js IE8 support of HTML5 elements and CSS3 media queries
     script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
     script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-  body(ng-app='cycling')
+  body
     // Navigation
     nav.navbar.navbar-default.navbar-fixed-top.topnav(role='navigation')
       .container.topnav
@@ -145,9 +145,6 @@ html(lang='en')
                   span.network-name Linkedin
       // /.container
     // /.banner
-    div(ng-controller='cyclingCtrl')
-      h1 {{Athlete.firstName}} {{Athlete.lastName}} 
-      h4 {{FullInfo}}
     // Footer
     footer
       .container
@@ -167,4 +164,4 @@ html(lang='en')
                 a(href='#contact') Contact
             p.copyright.text-muted.small Copyright © Your Company 2014. All Rights Reserved
     script(src='./js/vendor.min.js')
-    script(src='./js/app.min.js')
+    //script(src='./js/app.min.js')
