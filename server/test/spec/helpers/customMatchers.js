@@ -143,6 +143,9 @@ beforeEach(function () {
     }
   });
 
+  // TODO (rwander): vaildate schema using jsonschema
+  // ..
+
   function isAtheleteSchema(obj) {
     let props = _.keys(obj);
     let diff = _.xor(
