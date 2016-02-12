@@ -1,7 +1,6 @@
 {
   "src": {
     "root": "src/",
-    "jade": "src/**/*.jade",
     "scss": "src/scss/**/*.scss",
     "img": "src/img/**/*.*"
   },

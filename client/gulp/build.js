@@ -6,6 +6,5 @@ var path = require('./.path.json');
 gulp.task('build', 'Builds the site.', function(cb) {
   runSequence('clean',
     ['build:scripts', 'build:styles', 'build:img', 'build:fonts'],
-    'build:jade',
     cb);
 });
