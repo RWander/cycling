@@ -11,6 +11,7 @@
   "keywords": [
     "cycling",
     "running",
+    "skiing",
     "strava",
     "sport",
     "tracking",
@@ -52,6 +53,6 @@
     "supertest": "^1.2.0"
   },
   "engines": {
-    "node": ">=4.2.5"
+    "node": ">=4.3.0"
   }
 }

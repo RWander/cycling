@@ -12,6 +12,7 @@
   "keywords": [
     "cycling",
     "running",
+    "skiing",
     "strava",
     "sport",
     "tracking"
@@ -22,32 +23,11 @@
     "url": "https://github.com/RWander/cycling/issues"
   },
   "homepage": "https://github.com/RWander/cycling",
+  "dependencies": {
+  }
   "devDependencies": {
-    "browser-sync": "^2.11.1",
-    "del": "^2.2.0",
-    "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-concat": "^2.6.0",
-    "gulp-cssmin": "^0.1.7",
-    "gulp-debug": "^2.1.2",
-    "gulp-help": "^1.6.1",
-    "gulp-imagemin": "^2.4.0",
-    "gulp-jasmine": "^2.2.1",
-    "gulp-live-server": "0.0.29",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.2.0",
-    "gulp-size": "^2.0.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-uglify": "^1.5.2",
-    "gulp-watch": "^4.3.5",
-    "imagemin-pngquant": "^4.2.0",
-    "jasmine": "^2.4.1",
-    "main-bower-files": "^2.11.1",
-    "merge-stream": "^1.0.0",
-    "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.5"
   },
   "engines": {
-    "node": ">=0.12.0"
+    "node": ">=4.3.0"
   }
 }
