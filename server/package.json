@@ -47,6 +47,7 @@
     "gulp-exec": "^2.1.2",
     "gulp-help": "^1.6.1",
     "gulp-live-server": "0.0.29",
+    "gulp-util": "^3.0.7",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.4.0",
     "moment": "^2.11.1",
