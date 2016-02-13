@@ -1,37 +1,60 @@
 /* eslint-env node */
-/* eslint-disable no-console */
 
 'use strict';
 
 var gulp = require('gulp-help')(require('gulp'));
-var exec = require('child_process').exec;
+var gutil = require('gulp-util');
+var spawn = require('child_process').spawn;
 
+// for development
 gulp.task(
   'build:dev',
   'Lounch webpack to build for the development env.',
   ['clean'],
-  (cb) => {
-    exec('NODE_ENV=development webpack --display-modules -v', (err, stdout, stderr) => {
-
-      console.log(stdout);
-      console.log(stderr);
-
-      cb(err);
-    });
-  }
+  (cb) => build('development', cb)
 );
 
+// for production
 gulp.task(
   'build:prod',
-  'Lounch webpack to build for the development env.',
+  'Lounch webpack to build for the production env.',
   ['clean'],
-  (cb) => {
-    exec('NODE_ENV=production webpack --display-modules -v', (err, stdout, stderr) => {
-
-      console.log(stdout);
-      console.log(stderr);
-
-      cb(err);
-    });
-  }
+  (cb) => build('production', cb)
 );
+
+function build(env, cb) {
+  let child = spawn(
+    'webpack',
+    ['--display-modules', '-v'],
+    { env: { NODE_ENV: env } });
+
+  let stdout;
+  let stderr;
+
+  child.stdout.setEncoding('utf8');
+  child.stdout.on('data', function (data) {
+    if (data.indexOf('ERROR') === -1) {
+      stdout += data;
+      gutil.log(data);
+    }
+    else {
+      stderr += data;
+      gutil.log(gutil.colors.red(data));
+    }
+  });
+
+  child.stderr.setEncoding('utf8');
+  child.stderr.on('data', function (data) {
+    stderr += data;
+    gutil.log(gutil.colors.red(data));
+  });
+
+  child.on('close', function(code) {
+    if (code === 0 && !stderr) {
+      gutil.log(gutil.colors.green('Build seccess'));
+    } else {
+      gutil.log(gutil.colors.red('Build failed'));
+    }
+    cb();
+  });
+}
