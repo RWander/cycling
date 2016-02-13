@@ -23,6 +23,17 @@ module.exports = {
     new webpack.EnvironmentPlugin('NODE_ENV')
   ],
 
+  resolve: {
+    modulesDirectories: ['node_modules'],
+    extensions: ['', '.js']
+  },
+
+  resolveLoader: {
+    modulesDirectories: ['node_modules'],
+    moduleTemplates: ['*-loader', '*'],
+    extensions: ['', '.js']
+  },
+
   module: {
     loaders: [{
       test: /\.js$/,
@@ -30,3 +41,13 @@ module.exports = {
     }]
   }
 };
+
+if (NODE_ENV === 'production') {
+  module.exports.plugins.push(new webpack.optimize.UglifyJsPlugin({
+    compress: {
+      warnings: false,
+      drop_console: true,
+      unsafe: true
+    }
+  }));
+}
