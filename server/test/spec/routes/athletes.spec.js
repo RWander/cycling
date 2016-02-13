@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-undef */
+/*eslint-env jasmine */
 
 describe('Athlete routes', function()  {
   var request = require('supertest');

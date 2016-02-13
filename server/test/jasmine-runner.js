@@ -1,4 +1,4 @@
-/* eslint-disable no-undef */
+/*eslint-env jasmine */
 
 var Jasmine = require('jasmine');
 var SpecReporter = require('jasmine-spec-reporter');

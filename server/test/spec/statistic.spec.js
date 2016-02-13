@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-undef */
+/*eslint-env jasmine */
 
 describe('Calculate statistic', function() {
   var _ = require('lodash');

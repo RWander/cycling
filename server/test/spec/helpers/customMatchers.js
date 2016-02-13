@@ -1,6 +1,6 @@
 'use strict';
 
-/* eslint-disable no-undef */
+/*eslint-env jasmine */
 
 beforeEach(function () {
   var _ = require('lodash');
