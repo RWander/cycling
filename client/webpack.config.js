@@ -35,23 +35,24 @@ module.exports = {
     })
   ],
 
+  module: {
+    loaders: [
+      { test: /\.js?$/, exclude: /node_modules/, loaders: [/*'react-hot',*/ 'babel'] },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.less/,loader: 'style-loader!css-loader!less-loader' }
+    ]
+  },
+
   resolve: {
     modulesDirectories: ['node_modules'],
-    extensions: ['', '.js']
+    extensions:['','.js','.json']
   },
 
   resolveLoader: {
     modulesDirectories: ['node_modules'],
     moduleTemplates: ['*-loader', '*'],
     extensions: ['', '.js']
-  },
-
-  module: {
-    loaders: [{
-      test: /\.js$/,
-      exclude: /\/node_modules\//,
-      loader: 'babel'
-    }]
   }
 };
 
