@@ -10,7 +10,7 @@ var spawn = require('child_process').spawn;
 gulp.task(
   'build:dev',
   'Lounch webpack to build for the development env.',
-  ['clean'],
+  ['clean', 'build:html'],
   (cb) => build('development', cb)
 );
 
@@ -18,14 +18,24 @@ gulp.task(
 gulp.task(
   'build:prod',
   'Lounch webpack to build for the production env.',
-  ['clean'],
+  ['clean', 'build:html'],
   (cb) => build('production', cb)
+);
+
+gulp.task(
+  'build:html',
+  'Copy all html files to the build directory.',
+  () => {
+    return gulp.src('src/**/*.html')
+      //.pipe(debug({ title: 'html:'}))
+      .pipe(gulp.dest('public'));
+  }
 );
 
 function build(env, cb) {
   let child = spawn(
     'webpack',
-    ['--display-modules', '-v'],
+    [/*'--progress', */'--display-modules', '-v'],
     { env: { NODE_ENV: env } });
 
   let stdout;
