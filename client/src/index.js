@@ -1,4 +1,3 @@
-/*Hello World!*/
 import React from 'react';
 import Hello from './hello.js';
 
@@ -13,4 +12,4 @@ let App = React.createClass({
 React.render(
   <App />,
   document.body
-  )
+);

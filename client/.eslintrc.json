@@ -15,6 +15,9 @@
         "semi": [
             2,
             "always"
+        ],
+        "no-unused-vars": [
+            1
         ]
     },
     "env": {
@@ -26,6 +29,13 @@
         "jsx": true,
         "experimentalObjectRestSpread": true
     },
+    "parserOptions": {
+         "sourceType": "module",
+         "ecmaFeatures": {
+             "jsx": true,
+             "experimentalObjectRestSpread": true
+         }
+     },
     "plugins": [
         "react"
     ]
