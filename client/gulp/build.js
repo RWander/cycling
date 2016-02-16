@@ -3,23 +3,27 @@
 'use strict';
 
 var gulp = require('gulp-help')(require('gulp'));
-var gutil = require('gulp-util');
+var runSequence = require('run-sequence');
 var spawn = require('child_process').spawn;
 
 // for development
 gulp.task(
   'build:dev',
   'Lounch webpack to build for the development env.',
-  ['clean', 'build:html'],
-  (cb) => build('development', cb)
+  () => runSequence('clean',
+    ['build:html', 'build:css'],
+    () => build('development')
+  )
 );
 
 // for production
 gulp.task(
   'build:prod',
   'Lounch webpack to build for the production env.',
-  ['clean', 'build:html'],
-  (cb) => build('production', cb)
+  () => runSequence('clean',
+    ['build:html', 'build:css'],
+    () => build('production')
+  )
 );
 
 gulp.task(
@@ -32,39 +36,26 @@ gulp.task(
   }
 );
 
-function build(env, cb) {
-  let child = spawn(
+gulp.task(
+  'build:css',
+  'Copy vendor css styles to the build directory.',
+  () => {
+    // Twitter Bootstrap
+    let path = 'node_modules/bootstrap/dist/css/bootstrap.min.css*';
+    return gulp.src(path)
+      .pipe(gulp.dest('public/css'));
+  }
+);
+
+function build(env) {
+  var envObj = Object.create(process.env);
+  envObj.NODE_ENV = env;
+
+  spawn(
     'webpack',
-    [/*'--progress', */'--display-modules', '-v'],
-    { env: { NODE_ENV: env } });
-
-  let stdout;
-  let stderr;
-
-  child.stdout.setEncoding('utf8');
-  child.stdout.on('data', function (data) {
-    if (data.indexOf('ERROR') === -1) {
-      stdout += data;
-      gutil.log(data);
-    }
-    else {
-      stderr += data;
-      gutil.log(gutil.colors.red(data));
-    }
-  });
-
-  child.stderr.setEncoding('utf8');
-  child.stderr.on('data', function (data) {
-    stderr += data;
-    gutil.log(gutil.colors.red(data));
-  });
-
-  child.on('close', function(code) {
-    if (code === 0 && !stderr) {
-      gutil.log(gutil.colors.green('Build seccess'));
-    } else {
-      gutil.log(gutil.colors.red('Build failed'));
-    }
-    cb();
-  });
+    ['--progress', '--display-modules', '-v'],
+    {
+      env: envObj,
+      stdio: 'inherit'
+    });
 }
