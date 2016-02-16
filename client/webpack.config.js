@@ -2,8 +2,11 @@
 
 /* eslint-disable no-undef */
 
-const webpack = require('webpack');
+var _ = require('lodash');
+var webpack = require('webpack');
+
 const NODE_ENV = process.env.NODE_ENV || 'development';
+const config = require(`./config/${NODE_ENV}`);
 
 module.exports = {
   // input
@@ -28,7 +31,7 @@ module.exports = {
   devtool: NODE_ENV === 'development' ? 'source-map' : null,
 
   plugins: [
-    new webpack.EnvironmentPlugin('NODE_ENV'), // In client js code you can the NODE_ENV value via process.env.NODE_ENV.
+    new webpack.DefinePlugin(_.merge({ NODE_ENV: JSON.stringify(NODE_ENV) }, config)),
     new webpack.NoErrorsPlugin(), // Don't emit compiled js code if there are any errors
     new webpack.optimize.CommonsChunkPlugin({
       name: 'common'
