@@ -11,7 +11,7 @@ gulp.task(
   'build:dev',
   'Lounch webpack to build for the development env.',
   () => runSequence('clean',
-    ['build:html', 'build:css'],
+    ['build:html', 'build:vendor'],
     () => build('development')
   )
 );
@@ -21,7 +21,7 @@ gulp.task(
   'build:prod',
   'Lounch webpack to build for the production env.',
   () => runSequence('clean',
-    ['build:html', 'build:css'],
+    ['build:html', 'build:vendor'],
     () => build('production')
   )
 );
@@ -37,13 +37,12 @@ gulp.task(
 );
 
 gulp.task(
-  'build:css',
-  'Copy vendor css styles to the build directory.',
+  'build:vendor',
+  'Copy all vendor css/js/fonts to the build directory.',
   () => {
-    // Twitter Bootstrap
-    let path = 'node_modules/bootstrap/dist/css/bootstrap.min.css*';
+    let path = 'src/vendor/**/*';
     return gulp.src(path)
-      .pipe(gulp.dest('public/css'));
+      .pipe(gulp.dest('public'));
   }
 );
 

@@ -29,16 +29,10 @@ let Hello = React.createClass({
   render() {
     return (
       <div>
-        <strong>{this.state.username} from {this.state.country}</strong>
-        <i>{this.state.bio}</i>
+        <h1>{this.state.username}</h1>
+        <p>{this.state.bio}</p>
+        <a className="btn btn-default page-scroll" href="#statistic">Статистика тренировок</a>
       </div>
-      // <div>
-      //   <div className="row">
-      //     <div className="col-md-8">.col-md-8</div>
-      //     <div className="col-md-4">.col-md-4</div>
-      //   </div>
-      //   <input className="btn btn-lg btn-success" type="button" value="Input" />
-      // </div>
     );
   }
 });
