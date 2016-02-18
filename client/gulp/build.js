@@ -40,7 +40,7 @@ gulp.task(
   'build:vendor',
   'Copy all vendor css/js/fonts to the build directory.',
   () => {
-    let path = 'src/vendor/**/*';
+    let path = 'src/static/**/*';
     return gulp.src(path)
       .pipe(gulp.dest('public'));
   }
