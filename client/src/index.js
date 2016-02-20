@@ -1,10 +1,10 @@
 import React from 'react';
-import Hello from './hello.js';
+import Brief from './brief.js';
 
 let App = React.createClass({
   render(){
     return (
-      <Hello />
+      <Brief />
     );
   }
 });
