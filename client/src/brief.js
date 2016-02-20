@@ -11,9 +11,21 @@ var BriefStore = {
 };
 
 let StatisticItem = React.createClass({
+  propTypes: {
+    period : React.PropTypes.string,
+    value: React.PropTypes.string,
+    classes: React.PropTypes.array
+  },
+
+  getDefaultProps: function() {
+    return {
+      classes: 'row'
+    };
+  },
+
   render: function() {
     return (
-      <div className={this.props.className}>
+      <div className={this.props.classes}>
         <div className="col-xs-6 text-right">{this.props.period}</div>
         <div className="col-xs-6 text-left"><samp>{this.props.value}</samp></div>
       </div>
@@ -65,7 +77,7 @@ let Brief = React.createClass({
           { this.state.statistic.slice(0, 1).map(function(stat) {
             return (
               <StatisticItem
-                className="row lead"
+                classes="row lead"
                 period={stat.period}
                 value={stat.value} />
             );
@@ -74,7 +86,6 @@ let Brief = React.createClass({
           { this.state.statistic.slice(1, this.state.statistic.length).map(function(stat) {
             return (
               <StatisticItem
-                className="row"
                 period={stat.period}
                 value={stat.value} />
             );

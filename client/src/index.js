@@ -1,5 +1,6 @@
 import React from 'react';
 import Brief from './brief.js';
+import ReactDOM from 'react-dom';
 
 let App = React.createClass({
   render(){
@@ -9,7 +10,7 @@ let App = React.createClass({
   }
 });
 
-React.render(
+ReactDOM.render(
   <App />,
   document.getElementById('react')
 );
