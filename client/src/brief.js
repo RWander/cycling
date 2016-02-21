@@ -7,13 +7,19 @@ var BriefStore = {
   username: '',
   bio: '',
   country: '',
-  statistic: []
+  statisticToday: {},
+  statisticWeek: {},
+  statisticMonth: {},
+  statisticYear: {},
+  statisticTotal: {}
 };
 
 let StatisticItem = React.createClass({
   propTypes: {
     period : React.PropTypes.string,
-    value: React.PropTypes.string,
+    ski: React.PropTypes.string,
+    run: React.PropTypes.string,
+    cycling: React.PropTypes.string,
     classes: React.PropTypes.array
   },
 
@@ -26,8 +32,10 @@ let StatisticItem = React.createClass({
   render: function() {
     return (
       <div className={this.props.classes}>
-        <div className="col-xs-6 text-right">{this.props.period}</div>
-        <div className="col-xs-6 text-left"><samp>{this.props.value}</samp></div>
+        <div className="col-xs-3 text-right text-nowrap">{this.props.period}</div>
+        <div className="col-xs-3 text-nowrap"><samp>{this.props.cycling}<small>км</small></samp></div>
+        <div className="col-xs-3 text-nowrap"><samp>{this.props.run}<small>км</small></samp></div>
+        <div className="col-xs-3 text-nowrap"><samp>{this.props.ski}<small>км</small></samp></div>
       </div>
     );
   }
@@ -41,27 +49,16 @@ let Brief = React.createClass({
       .get(`${BACKEND}/full`)
       .end((err, res) => {
         let athlete = res.body.athlete;
+        let statistic = res.body.statistic;
 
         this.setState({
           username: `${athlete.firstName} ${athlete.lastName}`,
           bio: athlete.bio,
           country: athlete.country,
-          statistic: [{
-            period: 'Cегодня',
-            value: '20 км'
-          }, {
-            period: 'За неделю',
-            value: '200 км'
-          }, {
-            period: 'За месяц',
-            value: '2000 км'
-          }, {
-            period: 'За год',
-            value: '20000 км'
-          }, {
-            period: 'Всего',
-            value: '200000 км'
-          }]
+          statisticToday: statistic.today,
+          statisticWeek: statistic.week,
+          statisticMonth: statistic.month,
+          statisticYear: statistic.year
         });
       });
   },
@@ -72,24 +69,34 @@ let Brief = React.createClass({
         <h1>{this.state.username}</h1>
         <p>{this.state.bio}</p>
 
-        <div className="well well-lg center-block" style={{ width:'250px', opacity:0.8 }}>
-          { /* Статистика за сегодня */ }
-          { this.state.statistic.slice(0, 1).map(function(stat) {
-            return (
-              <StatisticItem
-                classes="row lead"
-                period={stat.period}
-                value={stat.value} />
-            );
-          })}
-          { /* Статистика за остальное время */ }
-          { this.state.statistic.slice(1, this.state.statistic.length).map(function(stat) {
-            return (
-              <StatisticItem
-                period={stat.period}
-                value={stat.value} />
-            );
-          })}
+        <div className="well well-lg center-block" style={{ width:'450px', opacity:0.8 }}>
+          <div className="row lead">
+            <div className="col-xs-3"></div>
+            <div className="col-xs-3"><img src="img/bike-32.png" title="Велосипед"></img></div>
+            <div className="col-xs-3"><img src="img/running-32.png" title="Бег"></img></div>
+            <div className="col-xs-3"><img src="img/skiing-32.png" title="Беговые лыжи"></img></div>
+          </div>
+          <StatisticItem
+            classes="row lead"
+            period="Сегодня"
+            cycling={this.state.statisticToday.cycling}
+            run={this.state.statisticToday.run}
+            ski={this.state.statisticToday.ski}/>
+          <StatisticItem
+            period="За неделю"
+            cycling={this.state.statisticWeek.cycling}
+            run={this.state.statisticWeek.run}
+            ski={this.state.statisticWeek.ski}/>
+          <StatisticItem
+            period="За месяц"
+            cycling={this.state.statisticMonth.cycling}
+            run={this.state.statisticMonth.run}
+            ski={this.state.statisticMonth.ski}/>
+          <StatisticItem
+            period="За год"
+            cycling={this.state.statisticYear.cycling}
+            run={this.state.statisticYear.run}
+            ski={this.state.statisticYear.ski}/>
           <a className="btn btn-link">Подробно >></a>
         </div>
 

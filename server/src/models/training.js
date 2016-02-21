@@ -3,6 +3,7 @@
 const TRAINING_TYPE =  require('./TrainingType');
 
 var jpath = require('json-path');
+var moment = require('moment');
 var Document = require('camo').Document;
 var statistic = require('../libs/statistic');
 var Athlete = require('./athlete');
@@ -74,12 +75,23 @@ class Training extends Document {
     return 'trainings';
   }
 
+
+  /**
+   * static - Returns the current athlete.
+   *
+   * @return {Promise}
+   */
   static loadCurrent() {
     return Training.loadMany({ }, {
       populate: false // don't load refs
     });
   }
 
+  /**
+   * static - Returns the statistic object of current athlete.
+   *
+   * @return {Promise}
+   */
   static loadStatisticCurrent(path) {
     path = path ? path : '';
     if (Training._statisticObj) {
@@ -90,6 +102,54 @@ class Training extends Document {
           Training._statisticObj = statistic(trainings);
           return jpath.resolve(Training._statisticObj, path);
         });
+    }
+  }
+
+  /**
+   * static - Returns the short statistic object of current athlete.
+   *
+   * @return {Promise}
+   */
+  static loadShortStatistic() {
+    let currentTime = moment();
+    let year = currentTime.format('YYYY');  // Current Year (2016)
+    let month = currentTime.format('MMM');  // Current Month (Feb)
+    let week = currentTime.format('WW');    // Current Week (06)
+    let day = currentTime.format('DD');     // Current Day (10)
+
+    return Training.loadStatisticCurrent()
+      .then(stat => {
+        let todayStat = jpath.resolve(stat, `/${year}/${month}/${week}/${day}`);
+        let weekStat = jpath.resolve(stat, `/${year}/${month}/${week}`);
+        let monthStat = jpath.resolve(stat, `/${year}/${month}`);
+        let yearStat = jpath.resolve(stat, `/${year}`);
+
+        let res = {
+          today: Training._calcShortStatItem(todayStat),
+          week: Training._calcShortStatItem(weekStat),
+          month: Training._calcShortStatItem(monthStat),
+          year: Training._calcShortStatItem(yearStat)
+        };
+
+        return res;
+      });
+  }
+
+  // private
+  static _calcShortStatItem(stat) {
+    if (stat.length > 0) {
+      let s = stat[0];
+      return {
+        cycling: s.cycling ? s.cycling.distance : 0,
+        run: s.run ? s.run.distance : 0,
+        ski: s.ski ? s.ski.distance : 0
+      };
+    } else {
+      return {
+        cycling: 0,
+        run: 0,
+        ski: 0
+      };
     }
   }
 }
