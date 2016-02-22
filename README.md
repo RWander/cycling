@@ -15,9 +15,9 @@ cycling
 
 Install dependecies:
 ```shell
-npm install gulp bower tds -g
+npm install gulp webpack -g
 # server setup
 cd server && npm install && cd ..
 # client setup
-cd client && npm install && tsd install && bower install
+cd client && npm install
 ```
