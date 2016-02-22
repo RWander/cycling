@@ -133,6 +133,8 @@ function createTraining(activity) {
   }
   else if (type.includes('ski') || lowerName.includes('лыжи')) {
     training.type = models.TrainingType[models.TrainingType.ski];
+  } else if (type === 'swim') {
+    training.type = models.TrainingType[models.TrainingType.swim];
   }
 
   return training;

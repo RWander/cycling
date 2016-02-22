@@ -41,6 +41,8 @@ describe('Calculate statistic', function() {
     let runTotalExpected = createStatPoint();
     let skiTotalActual = stat[TrainingType[TrainingType.ski]];
     let skiTotalExpected = createStatPoint();
+    let swimTotalActual = stat[TrainingType[TrainingType.swim]];
+    let swimTotalExpected = createStatPoint();
 
     // Statisitic Level # 1 - Year
     let years = _.omit(stat, TrainingType.vals());
@@ -59,14 +61,17 @@ describe('Calculate statistic', function() {
       let runYearExpected = createStatPoint();
       let skiYearActual = yearData[TrainingType[TrainingType.ski]];
       let skiYearExpected = createStatPoint();
+      let swimYearActual = yearData[TrainingType[TrainingType.swim]];
+      let swimYearExpected = createStatPoint();
 
       // Anything must be exist
-      expect(!!runYearActual || !!cycYearActual || !!skiYearActual).toEqual(true);
+      expect(!!runYearActual || !!cycYearActual || !!skiYearActual || !!swimYearActual ).toEqual(true);
 
       // Check totals
       if (runYearActual) expect(runYearActual).isCorrectStatisticPoint();
       if (cycYearActual) expect(cycYearActual).isCorrectStatisticPoint();
       if (skiYearActual) expect(skiYearActual).isCorrectStatisticPoint();
+      if (swimYearActual) expect(swimYearActual).isCorrectStatisticPoint();
 
       // Check months
       let months = _.omit(yearData, TrainingType.vals());
@@ -84,13 +89,16 @@ describe('Calculate statistic', function() {
         let runMonthExpected = createStatPoint();
         let skiMonthActual = monthData[TrainingType[TrainingType.ski]];
         let skiMonthExpected = createStatPoint();
+        let swimMonthActual = monthData[TrainingType[TrainingType.swim]];
+        let swimMonthExpected = createStatPoint();
 
-        expect(!!cycMonthActual || !!runMonthActual || !!skiMonthActual).toEqual(true);
+        expect(!!cycMonthActual || !!runMonthActual || !!skiMonthActual|| !!swimMonthActual).toEqual(true);
 
         // Check totals
         if (cycMonthActual) expect(cycMonthActual).isCorrectStatisticPoint();
         if (runMonthActual) expect(runMonthActual).isCorrectStatisticPoint();
         if (skiMonthActual) expect(skiMonthActual).isCorrectStatisticPoint();
+        if (swimMonthActual) expect(swimMonthActual).isCorrectStatisticPoint();
 
         // Check weeks
         let weeks = _.omit(monthData, TrainingType.vals());
@@ -108,13 +116,16 @@ describe('Calculate statistic', function() {
           let runWeekExpected = createStatPoint();
           let skiWeekActual = weekData[TrainingType[TrainingType.ski]];
           let skiWeekExpected = createStatPoint();
+          let swimWeekActual = weekData[TrainingType[TrainingType.swim]];
+          let swimWeekExpected = createStatPoint();
 
-          expect(!!cycWeekActual || !!runWeekActual || !!skiWeekActual).toEqual(true);
+          expect(!!cycWeekActual || !!runWeekActual || !!skiWeekActual|| !!swimWeekActual).toEqual(true);
 
           // Check totals
           if (cycWeekActual) expect(cycWeekActual).isCorrectStatisticPoint();
           if (runWeekActual) expect(runWeekActual).isCorrectStatisticPoint();
           if (skiWeekActual) expect(skiWeekActual).isCorrectStatisticPoint();
+          if (swimWeekExpected) expect(swimWeekExpected).isCorrectStatisticPoint();
 
           // Check days
           let days = _.omit(weekData, TrainingType.vals());
@@ -129,8 +140,9 @@ describe('Calculate statistic', function() {
             let cycDayActual = dayData[TrainingType[TrainingType.cycling]];
             let runDayActual = dayData[TrainingType[TrainingType.run]];
             let skiDayActual = dayData[TrainingType[TrainingType.ski]];
+            let swimDayActual = dayData[TrainingType[TrainingType.swim]];
 
-            expect(!!cycDayActual || !!runDayActual || !!skiDayActual).toEqual(true);
+            expect(!!cycDayActual || !!runDayActual || !!skiDayActual|| !!swimDayActual).toEqual(true);
 
             // Check totals
             if (cycDayActual !== undefined) {
@@ -159,34 +171,47 @@ describe('Calculate statistic', function() {
               addStatPoint(skiYearExpected, skiDayActual);
               addStatPoint(skiTotalExpected, skiDayActual);
             }
+
+            if (swimDayActual !== undefined) {
+              expect(swimDayActual).isCorrectStatisticPoint();
+
+              addStatPoint(swimWeekExpected, swimDayActual);
+              addStatPoint(swimMonthExpected, swimDayActual);
+              addStatPoint(swimYearExpected, swimDayActual);
+              addStatPoint(swimTotalExpected, swimDayActual);
+            }
           });
 
           // week
           if (cycWeekActual) expect(cycWeekActual).toEqual(cycWeekExpected);
           if (runWeekActual) expect(runWeekActual).toEqual(runWeekExpected);
           if (skiWeekActual) expect(skiWeekActual).toEqual(skiWeekExpected);
+          if (swimWeekActual) expect(swimWeekActual).toEqual(swimWeekExpected);
         });
 
         // month
         if (cycMonthActual) expect(cycMonthActual).toEqual(cycMonthExpected);
         if (runMonthActual) expect(runMonthActual).toEqual(runMonthExpected);
         if (skiMonthActual) expect(skiMonthActual).toEqual(skiMonthExpected);
+        if (swimMonthActual) expect(swimMonthActual).toEqual(swimMonthExpected);
       });
 
       // year
       if (cycYearActual) expect(cycYearActual).toEqual(cycYearExpected);
       if (runYearActual) expect(runYearActual).toEqual(runYearExpected);
       if (skiYearActual) expect(skiYearActual).toEqual(skiYearExpected);
+      if (swimYearActual) expect(swimYearActual).toEqual(swimYearExpected);
     });
 
     // total
     if (cycTotalActual) expect(cycTotalActual).toEqual(cycTotalExpected);
     if (runTotalActual) expect(runTotalActual).toEqual(runTotalExpected);
     if (skiTotalActual) expect(skiTotalActual).toEqual(skiTotalExpected);
+    if (swimTotalActual) expect(swimTotalActual).toEqual(swimTotalExpected);
   });
 
   it('Check short statistic', function(done) {
-    let trainingCount = faker.random.number({ min: 1, max: 10 });
+    let trainingCount = faker.random.number({ min: 100, max: 150 });
     let trainings = generator.trainings(trainingCount);
     let stat = statistic.calculate(trainings);
     let shotStat = statistic.convertToShort(stat);

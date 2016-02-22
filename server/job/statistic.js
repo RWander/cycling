@@ -4,7 +4,7 @@
 
 var util = require('util');
 var models = require('../src/models');
-var calculate = require('../src/libs/statistic');
+var statistic = require('../src/libs/statistic');
 
 // 1. Connect db
 require('../src/db')
@@ -12,7 +12,7 @@ require('../src/db')
 .then(getAllTrainings)
 // 3. Calculate Statisic
 .then((trainings) => {
-  let stat = calculate(trainings);
+  let stat = statistic.calculate(trainings);
 
   console.log(util.inspect(stat, { showHidden: false, depth: null }));
 

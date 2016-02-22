@@ -68,13 +68,15 @@ function _calcShortStatItem(stat) {
     return {
       cycling: s.cycling ? (s.cycling.distance/1000).toFixed(1) /*m to km*/ : 0,
       run: s.run ? (s.run.distance/1000).toFixed(1) /*m to km*/ : 0,
-      ski: s.ski ? (s.ski.distance/1000).toFixed(1) /*m to km*/ : 0
+      ski: s.ski ? (s.ski.distance/1000).toFixed(1) /*m to km*/ : 0,
+      swim: s.swim ? (s.swim.distance/1000).toFixed(1) /*m to km*/ : 0
     };
   } else {
     return {
       cycling: 0,
       run: 0,
-      ski: 0
+      ski: 0,
+      swim: 0
     };
   }
 }

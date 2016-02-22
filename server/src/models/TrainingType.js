@@ -7,6 +7,6 @@ Enum.prototype.vals = function() {
   return Array.from(TrainingType).map(s => TrainingType[s[1]]);
 };
 
-var TrainingType = new Enum('cycling', 'run', 'ski');
+var TrainingType = new Enum('cycling', 'run', 'ski', 'swim');
 
 module.exports = TrainingType;

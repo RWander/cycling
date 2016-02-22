@@ -117,9 +117,9 @@ beforeEach(function () {
         compare: (actual) => {
           let point = actual;
           let keys = Object.keys(point);
-          
+
           return {
-            pass: keys.length === 3
+            pass: keys.length === 4
               // cycling
               && keys.indexOf('cycling') != -1
               && !isNaN(parseInt(point.cycling))
@@ -129,6 +129,9 @@ beforeEach(function () {
               // ski
               && keys.indexOf('ski') != -1
               && !isNaN(parseInt(point.ski))
+              // swim
+              && keys.indexOf('swim') != -1
+              && !isNaN(parseInt(point.swim))
           };
         }
       };
