@@ -1,6 +1,6 @@
 'use strict';
 
-/*eslint-env jasmine */
+/* eslint-env jasmine */
 
 describe('Calculate statistic', function() {
   var _ = require('lodash');
@@ -186,8 +186,22 @@ describe('Calculate statistic', function() {
   });
 
   it('Check short statistic', function(done) {
-    // TODO
-    // ..
+    let trainingCount = faker.random.number({ min: 1, max: 10 });
+    let trainings = generator.trainings(trainingCount);
+    let stat = statistic.calculate(trainings);
+    let shotStat = statistic.convertToShort(stat);
+
+    // not empty statistic
+    expect(shotStat).not.toBeNull();
+    expect(shotStat).not.toEqual({});
+
+    expect(_.keys(shotStat).length).toEqual(5, 'Shot statistic point should have today, week, month, year and total values');
+    expect(shotStat.today).isCorrectShortStatisticPoint();
+    expect(shotStat.week).isCorrectShortStatisticPoint();
+    expect(shotStat.month).isCorrectShortStatisticPoint();
+    expect(shotStat.year).isCorrectShortStatisticPoint();
+    expect(shotStat.total).isCorrectShortStatisticPoint();
+
     done();
   });
 });

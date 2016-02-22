@@ -112,6 +112,28 @@ beforeEach(function () {
       };
     },
 
+    isCorrectShortStatisticPoint: () => {
+      return {
+        compare: (actual) => {
+          let point = actual;
+          let keys = Object.keys(point);
+          
+          return {
+            pass: keys.length === 3
+              // cycling
+              && keys.indexOf('cycling') != -1
+              && !isNaN(parseInt(point.cycling))
+              // run
+              && keys.indexOf('run') != -1
+              && !isNaN(parseInt(point.run))
+              // ski
+              && keys.indexOf('ski') != -1
+              && !isNaN(parseInt(point.ski))
+          };
+        }
+      };
+    },
+
     hasAtheleteSchema: () => {
       return {
         compare: (actual) => {

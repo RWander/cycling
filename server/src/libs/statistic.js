@@ -54,7 +54,8 @@ var convertToShort = function (statistic) {
     today: _calcShortStatItem(todayStat),
     week: _calcShortStatItem(weekStat),
     month: _calcShortStatItem(monthStat),
-    year: _calcShortStatItem(yearStat)
+    year: _calcShortStatItem(yearStat),
+    total: _calcShortStatItem(statistic)
   };
 
   return res;

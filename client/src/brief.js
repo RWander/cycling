@@ -58,7 +58,8 @@ let Brief = React.createClass({
           statisticToday: statistic.today,
           statisticWeek: statistic.week,
           statisticMonth: statistic.month,
-          statisticYear: statistic.year
+          statisticYear: statistic.year,
+          statisticTotal: statistic.total
         });
       });
   },
@@ -97,6 +98,11 @@ let Brief = React.createClass({
             cycling={this.state.statisticYear.cycling}
             run={this.state.statisticYear.run}
             ski={this.state.statisticYear.ski}/>
+          <StatisticItem
+            period="Всего"
+            cycling={this.state.statisticTotal.cycling}
+            run={this.state.statisticTotal.run}
+            ski={this.state.statisticTotal.ski}/>
           <a className="btn btn-link">Подробно >></a>
         </div>
 
