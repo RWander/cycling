@@ -5,15 +5,15 @@
 describe('Calculate statistic', function() {
   var _ = require('lodash');
   var faker = require('faker');
-  var calculate = require('../../src/libs/statistic');
-  var generator = require('./helpers/generator');
+  var statistic = require('../../../src/libs/statistic');
+  var generator = require('../helpers/generator');
 
-  const TRAINING_TYPE = require('../../src/models').TRAINING_TYPE;
+  const TRAINING_TYPE = require('../../../src/models').TRAINING_TYPE;
 
   it('Check statistic', function() {
     let trainingCount = faker.random.number({ min: 1, max: 100 });
     let trainings = generator.trainings(trainingCount);
-    let stat = calculate(trainings);
+    let stat = statistic.calculate(trainings);
 
     // not empty statistic
     expect(stat).not.toBeNull();
@@ -183,5 +183,11 @@ describe('Calculate statistic', function() {
     if (cycTotalActual) expect(cycTotalActual).toEqual(cycTotalExpected);
     if (runTotalActual) expect(runTotalActual).toEqual(runTotalExpected);
     if (skiTotalActual) expect(skiTotalActual).toEqual(skiTotalExpected);
+  });
+
+  it('Check short statistic', function(done) {
+    // TODO
+    // ..
+    done();
   });
 });

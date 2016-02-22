@@ -1,6 +1,7 @@
 'use strict';
 
 var moment = require('moment');
+var jpath = require('json-path');
 
 /**
  * calculate - Calculate Statisic
@@ -24,15 +25,61 @@ var calculate = function (trainings) {
 
     let point = stat;
     paths.forEach((path) => {
-      point = getStatisticPoint(point, path, t.type);
-      add(point[t.type], t);
+      point = _getStatisticPoint(point, path, t.type);
+      _add(point[t.type], t);
     });
   });
 
   return stat;
 };
 
-function getStatisticPoint(stat, path, type) {
+/**
+ * convertToShort - Returns short statistic
+ *
+ * @param  {Object} Short Statistic.
+ */
+var convertToShort = function (statistic) {
+  let currentTime = moment();
+  let year = currentTime.format('YYYY');  // Current Year (2016)
+  let month = currentTime.format('MMM');  // Current Month (Feb)
+  let week = currentTime.format('WW');    // Current Week (06)
+  let day = currentTime.format('DD');     // Current Day (10)
+
+  let todayStat = jpath.resolve(statistic, `/${year}/${month}/${week}/${day}`);
+  let weekStat = jpath.resolve(statistic, `/${year}/${month}/${week}`);
+  let monthStat = jpath.resolve(statistic, `/${year}/${month}`);
+  let yearStat = jpath.resolve(statistic, `/${year}`);
+
+  let res = {
+    today: _calcShortStatItem(todayStat),
+    week: _calcShortStatItem(weekStat),
+    month: _calcShortStatItem(monthStat),
+    year: _calcShortStatItem(yearStat)
+  };
+
+  return res;
+};
+
+// private
+function _calcShortStatItem(stat) {
+  if (stat.length > 0) {
+    let s = stat[0];
+    return {
+      cycling: s.cycling ? s.cycling.distance : 0,
+      run: s.run ? s.run.distance : 0,
+      ski: s.ski ? s.ski.distance : 0
+    };
+  } else {
+    return {
+      cycling: 0,
+      run: 0,
+      ski: 0
+    };
+  }
+}
+
+// private
+function _getStatisticPoint(stat, path, type) {
   let point;
   if (path === null) {
     point = stat;
@@ -56,7 +103,8 @@ function getStatisticPoint(stat, path, type) {
   return point;
 }
 
-function add(point, training) {
+// private
+function _add(point, training) {
   point.distance += training.distance;
   point.movingTime += training.movingTime;
   point.elapsedTime += training.elapsedTime;
@@ -65,4 +113,7 @@ function add(point, training) {
   // let maxSpeed = training.maxSpeed;
 }
 
-module.exports = calculate;
+module.exports = {
+  calculate: calculate,
+  convertToShort: convertToShort
+};
