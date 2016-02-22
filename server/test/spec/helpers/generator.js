@@ -9,7 +9,7 @@
  */
 var getTrainings = function (count) {
   var faker = require('faker');
-  const TRAINING_TYPE = require('../../../src/models').TRAINING_TYPE;
+  const TrainingType = require('../../../src/models').TrainingType;
 
   let trainings = [];
 
@@ -27,7 +27,7 @@ var getTrainings = function (count) {
       stravaId: faker.random.number(),
       name: faker.lorem.sentence(),
       desc: faker.lorem.sentence(),
-      type: faker.random.arrayElement(TRAINING_TYPE.vals()),
+      type: faker.random.arrayElement(TrainingType.vals()),
       startDate: faker.date.between(new Date(2014, 0, 1), new Date()),
       athlete: {
         // don't use

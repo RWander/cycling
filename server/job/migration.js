@@ -125,16 +125,14 @@ function createTraining(activity) {
   var type = activity.type.toLowerCase();
   var lowerName = activity.name.toLowerCase();
 
-  const TYPE = models.TRAINING_TYPE;
-
   if (type === 'ride') {
-    training.type = TYPE[TYPE.cycling];
+    training.type = models.TrainingType[models.TrainingType.cycling];
   }
   else if (type === 'run' && !lowerName.includes('лыжи')) {
-    training.type = TYPE[TYPE.run];
+    training.type = models.TrainingType[models.TrainingType.run];
   }
   else if (type.includes('ski') || lowerName.includes('лыжи')) {
-    training.type = TYPE[TYPE.ski];
+    training.type = models.TrainingType[models.TrainingType.ski];
   }
 
   return training;

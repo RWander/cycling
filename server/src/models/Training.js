@@ -1,11 +1,11 @@
 'use strict';
 
-const TRAINING_TYPE =  require('./TrainingType');
+const TrainingType =  require('./TrainingType');
 
 var jpath = require('json-path');
 var Document = require('camo').Document;
 var statistic = require('../libs/statistic');
-var Athlete = require('./athlete');
+var Athlete = require('./Athlete');
 
 class Training extends Document {
   constructor () {
@@ -24,8 +24,8 @@ class Training extends Document {
       },
       type: {
         type: String,
-        default: TRAINING_TYPE[TRAINING_TYPE.cycling],
-        choices: TRAINING_TYPE.vals(),
+        default: TrainingType[TrainingType.cycling],
+        choices: TrainingType.vals(),
         required: true
       },
       startDate: {

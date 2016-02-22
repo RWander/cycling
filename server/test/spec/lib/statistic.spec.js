@@ -8,7 +8,7 @@ describe('Calculate statistic', function() {
   var statistic = require('../../../src/libs/statistic');
   var generator = require('../helpers/generator');
 
-  const TRAINING_TYPE = require('../../../src/models').TRAINING_TYPE;
+  const TrainingType = require('../../../src/models').TrainingType;
 
   it('Check statistic', function() {
     let trainingCount = faker.random.number({ min: 1, max: 100 });
@@ -35,15 +35,15 @@ describe('Calculate statistic', function() {
       x.elevationGain += y.elevationGain;
     };
 
-    let cycTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+    let cycTotalActual = stat[TrainingType[TrainingType.cycling]];
     let cycTotalExpected = createStatPoint();
-    let runTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.run]];
+    let runTotalActual = stat[TrainingType[TrainingType.run]];
     let runTotalExpected = createStatPoint();
-    let skiTotalActual = stat[TRAINING_TYPE[TRAINING_TYPE.ski]];
+    let skiTotalActual = stat[TrainingType[TrainingType.ski]];
     let skiTotalExpected = createStatPoint();
 
     // Statisitic Level # 1 - Year
-    let years = _.omit(stat, TRAINING_TYPE.vals());
+    let years = _.omit(stat, TrainingType.vals());
     expect(years.length).not.toEqual(0);
 
     let yearsAll = _.keys(years);
@@ -53,11 +53,11 @@ describe('Calculate statistic', function() {
       // Statisitic Level # 2 - Month and Totals
       let yearData = stat[year];
 
-      let cycYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+      let cycYearActual = yearData[TrainingType[TrainingType.cycling]];
       let cycYearExpected = createStatPoint();
-      let runYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.run]];
+      let runYearActual = yearData[TrainingType[TrainingType.run]];
       let runYearExpected = createStatPoint();
-      let skiYearActual = yearData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+      let skiYearActual = yearData[TrainingType[TrainingType.ski]];
       let skiYearExpected = createStatPoint();
 
       // Anything must be exist
@@ -69,7 +69,7 @@ describe('Calculate statistic', function() {
       if (skiYearActual) expect(skiYearActual).isCorrectStatisticPoint();
 
       // Check months
-      let months = _.omit(yearData, TRAINING_TYPE.vals());
+      let months = _.omit(yearData, TrainingType.vals());
       expect(months.length).not.toEqual(0);
 
       let monthNames = _.keys(months);
@@ -78,11 +78,11 @@ describe('Calculate statistic', function() {
 
         let monthData = months[monthName];
 
-        let cycMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+        let cycMonthActual = monthData[TrainingType[TrainingType.cycling]];
         let cycMonthExpected = createStatPoint();
-        let runMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.run]];
+        let runMonthActual = monthData[TrainingType[TrainingType.run]];
         let runMonthExpected = createStatPoint();
-        let skiMonthActual = monthData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+        let skiMonthActual = monthData[TrainingType[TrainingType.ski]];
         let skiMonthExpected = createStatPoint();
 
         expect(!!cycMonthActual || !!runMonthActual || !!skiMonthActual).toEqual(true);
@@ -93,7 +93,7 @@ describe('Calculate statistic', function() {
         if (skiMonthActual) expect(skiMonthActual).isCorrectStatisticPoint();
 
         // Check weeks
-        let weeks = _.omit(monthData, TRAINING_TYPE.vals());
+        let weeks = _.omit(monthData, TrainingType.vals());
         expect(weeks.length).not.toEqual(0);
 
         let weekNames = _.keys(weeks);
@@ -102,11 +102,11 @@ describe('Calculate statistic', function() {
 
           let weekData = weeks[weekName];
 
-          let cycWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
+          let cycWeekActual = weekData[TrainingType[TrainingType.cycling]];
           let cycWeekExpected = createStatPoint();
-          let runWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.run]];
+          let runWeekActual = weekData[TrainingType[TrainingType.run]];
           let runWeekExpected = createStatPoint();
-          let skiWeekActual = weekData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+          let skiWeekActual = weekData[TrainingType[TrainingType.ski]];
           let skiWeekExpected = createStatPoint();
 
           expect(!!cycWeekActual || !!runWeekActual || !!skiWeekActual).toEqual(true);
@@ -117,7 +117,7 @@ describe('Calculate statistic', function() {
           if (skiWeekActual) expect(skiWeekActual).isCorrectStatisticPoint();
 
           // Check days
-          let days = _.omit(weekData, TRAINING_TYPE.vals());
+          let days = _.omit(weekData, TrainingType.vals());
           expect(days.length).not.toEqual(0);
 
           let daysNums = _.keys(days);
@@ -126,9 +126,9 @@ describe('Calculate statistic', function() {
 
             let dayData = weekData[day];
 
-            let cycDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.cycling]];
-            let runDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.run]];
-            let skiDayActual = dayData[TRAINING_TYPE[TRAINING_TYPE.ski]];
+            let cycDayActual = dayData[TrainingType[TrainingType.cycling]];
+            let runDayActual = dayData[TrainingType[TrainingType.run]];
+            let skiDayActual = dayData[TrainingType[TrainingType.ski]];
 
             expect(!!cycDayActual || !!runDayActual || !!skiDayActual).toEqual(true);
 

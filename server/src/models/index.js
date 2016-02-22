@@ -1,5 +1,1 @@
-module.exports = {
-  Athlete: require('./athlete'),
-  Training: require('./training'),
-  TRAINING_TYPE: require('./TrainingType')
-};
+module.exports = require('require-dir')();
