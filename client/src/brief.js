@@ -33,11 +33,15 @@ let StatisticItem = React.createClass({
   render: function() {
     return (
       <div className={this.props.classes}>
-        <div className="col-xs-4 text-right text-nowrap">{this.props.period}</div>
-        <div className="col-xs-2 text-nowrap"><samp>{this.props.cycling}<small>км</small></samp></div>
-        <div className="col-xs-2 text-nowrap"><samp>{this.props.run}<small>км</small></samp></div>
-        <div className="col-xs-2 text-nowrap"><samp>{this.props.ski}<small>км</small></samp></div>
-        <div className="col-xs-2 text-nowrap"><samp>{this.props.swim}<small>км</small></samp></div>
+        <div className="col-xs-3 text-right text-nowrap">{this.props.period}</div>
+        <div className="col-xs-9">
+          <div className="row">
+            <div className="col-xs-3 text-nowrap"><samp>{this.props.cycling}<small>км</small></samp></div>
+            <div className="col-xs-3 text-nowrap"><samp>{this.props.run}<small>км</small></samp></div>
+            <div className="col-xs-3 text-nowrap"><samp>{this.props.ski}<small>км</small></samp></div>
+            <div className="col-xs-3 text-nowrap"><samp>{this.props.swim}<small>км</small></samp></div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -74,11 +78,15 @@ let Brief = React.createClass({
 
         <div className="well well-lg center-block" style={{ width:'500px', opacity:0.8 }}>
           <div className="row lead">
-            <div className="col-xs-4"></div>
-            <div className="col-xs-2"><img src="img/bike-32.png" title="Велосипед"></img></div>
-            <div className="col-xs-2"><img src="img/running-32.png" title="Бег"></img></div>
-            <div className="col-xs-2"><img src="img/skiing-32.png" title="Беговые лыжи"></img></div>
-            <div className="col-xs-2"><img src="img/swimming-32.png" title="Плавание"></img></div>
+            <div className="col-xs-3"></div>
+            <div className="col-xs-9">
+              <div className="row">
+                <div className="col-xs-3"><img src="img/bike-32.png" title="Велосипед"></img></div>
+                <div className="col-xs-3"><img src="img/running-32.png" title="Бег"></img></div>
+                <div className="col-xs-3"><img src="img/skiing-32.png" title="Беговые лыжи"></img></div>
+                <div className="col-xs-3"><img src="img/swimming-32.png" title="Плавание"></img></div>
+              </div>
+            </div>
           </div>
           <StatisticItem
             classes="row lead"
