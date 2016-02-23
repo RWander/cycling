@@ -1,16 +1,7 @@
 import React from 'react';
 import Brief from './brief.js';
+import Journal from './journal.js';
 import ReactDOM from 'react-dom';
 
-let App = React.createClass({
-  render(){
-    return (
-      <Brief />
-    );
-  }
-});
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('react')
-);
+ReactDOM.render(<Brief />, document.getElementById('brief-component'));
+ReactDOM.render(<Journal />, document.getElementById('journal-component'));
