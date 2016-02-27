@@ -11,3 +11,19 @@ render(
   <Journal />,
   document.getElementById('journal-component')
 );
+
+// TODO: use Redux
+// ..
+// ================================ >>
+import { fetchFullInfo } from './actions';
+import configureStore from './store';
+
+const store = configureStore();
+
+store.subscribe(() =>
+  /*eslint-disable no-console */
+  console.log(store.getState())
+);
+
+fetchFullInfo()(store.dispatch);
+// <<================================
