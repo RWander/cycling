@@ -1,7 +1,13 @@
 import React from 'react';
-import Brief from './brief.js';
-import Journal from './journal.js';
-import ReactDOM from 'react-dom';
+import Brief from './components/brief.js';
+import Journal from './components/journal.js';
+import { render } from 'react-dom';
 
-ReactDOM.render(<Brief />, document.getElementById('brief-component'));
-ReactDOM.render(<Journal />, document.getElementById('journal-component'));
+render(
+  <Brief />,
+  document.getElementById('brief-component')
+);
+render(
+  <Journal />,
+  document.getElementById('journal-component')
+);

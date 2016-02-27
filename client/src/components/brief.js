@@ -16,12 +16,12 @@ var BriefStore = {
 
 let StatisticItem = React.createClass({
   propTypes: {
-    period : React.PropTypes.string,
-    ski: React.PropTypes.string,
-    run: React.PropTypes.string,
-    cycling: React.PropTypes.string,
-    swim: React.PropTypes.string,
-    classes: React.PropTypes.array
+    period : React.PropTypes.string.isRequired,
+    ski: React.PropTypes.string.isRequired,
+    run: React.PropTypes.string.isRequired,
+    cycling: React.PropTypes.string.isRequired,
+    swim: React.PropTypes.string.isRequired,
+    classes: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
