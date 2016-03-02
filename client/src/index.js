@@ -3,7 +3,6 @@ import Brief from './components/brief.js';
 // import Journal from './components/journal.js';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { fetchFullInfo } from './actions';
 import configureStore from './store';
 
 // render(
