@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 export default class Journal extends Component {
   render() {
@@ -7,3 +7,7 @@ export default class Journal extends Component {
     );
   }
 }
+
+Journal.propTypes = {
+  journal: PropTypes.array
+};
