@@ -1,24 +1,15 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { fetchFullInfo } from '../actions';
 
-const StatisticItem = React.createClass({
-  propTypes: {
-    period : React.PropTypes.string.isRequired,
-    ski: React.PropTypes.number.isRequired,
-    run: React.PropTypes.number.isRequired,
-    cycling: React.PropTypes.number.isRequired,
-    swim: React.PropTypes.number.isRequired,
-    classes: React.PropTypes.array.isRequired
-  },
-
-  getDefaultProps: function() {
+class StatisticItem extends Component {
+  getDefaultProps() {
     return {
       classes: 'row'
     };
-  },
+  }
 
-  render: function() {
+  render() {
     const { classes, period, cycling, run, ski, swim } = this.props;
     return (
       <div className={classes}>
@@ -34,25 +25,22 @@ const StatisticItem = React.createClass({
       </div>
     );
   }
-});
+}
 
-const Brief = React.createClass({
+StatisticItem.propTypes = {
+  period : PropTypes.string.isRequired,
+  ski: PropTypes.number.isRequired,
+  run: PropTypes.number.isRequired,
+  cycling: PropTypes.number.isRequired,
+  swim: PropTypes.number.isRequired,
+  classes: PropTypes.array.isRequired
+};
+
+class Brief extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch(fetchFullInfo());
-  },
-
-  propTypes: {
-    dispatch: React.PropTypes.func.isRequired,
-    username : React.PropTypes.string.isRequired,
-    bio: React.PropTypes.string.isRequired,
-    country: React.PropTypes.string.isRequired,
-    statisticToday: React.PropTypes.object.isRequired,
-    statisticWeek: React.PropTypes.object.isRequired,
-    statisticMonth: React.PropTypes.object.isRequired,
-    statisticYear: React.PropTypes.object.isRequired,
-    statisticTotal: React.PropTypes.object.isRequired
-  },
+  }
 
   render() {
     const {
@@ -121,7 +109,19 @@ const Brief = React.createClass({
       );
     }
   }
-});
+}
+
+Brief.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  username : PropTypes.string.isRequired,
+  bio: PropTypes.string.isRequired,
+  country: PropTypes.string.isRequired,
+  statisticToday: PropTypes.object.isRequired,
+  statisticWeek: PropTypes.object.isRequired,
+  statisticMonth: PropTypes.object.isRequired,
+  statisticYear: PropTypes.object.isRequired,
+  statisticTotal: PropTypes.object.isRequired
+};
 
 // export default Brief;
 
