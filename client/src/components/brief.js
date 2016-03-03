@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import { fetchFullInfo } from '../actions';
 
 class StatisticItem extends Component {
-  getDefaultProps() {
-    return {
-      classes: 'row'
-    };
-  }
-
   render() {
     const { classes, period, cycling, run, ski, swim } = this.props;
     return (
@@ -33,7 +27,7 @@ StatisticItem.propTypes = {
   run: PropTypes.number.isRequired,
   cycling: PropTypes.number.isRequired,
   swim: PropTypes.number.isRequired,
-  classes: PropTypes.array.isRequired
+  classes: PropTypes.string.isRequired
 };
 
 class Brief extends Component {
@@ -78,24 +72,28 @@ class Brief extends Component {
               ski={statisticToday.ski}
               swim={statisticToday.swim}/>
             <StatisticItem
+              classes="row"
               period="За неделю"
               cycling={statisticWeek.cycling}
               run={statisticWeek.run}
               ski={statisticWeek.ski}
               swim={statisticWeek.swim}/>
             <StatisticItem
+              classes="row"
               period="За месяц"
               cycling={statisticMonth.cycling}
               run={statisticMonth.run}
               ski={statisticMonth.ski}
               swim={statisticMonth.swim}/>
             <StatisticItem
+              classes="row"
               period="За год"
               cycling={statisticYear.cycling}
               run={statisticYear.run}
               ski={statisticYear.ski}
               swim={statisticYear.swim}/>
             <StatisticItem
+              classes="row"
               period="Всего"
               cycling={statisticTotal.cycling}
               run={statisticTotal.run}
@@ -111,16 +109,23 @@ class Brief extends Component {
   }
 }
 
+const StatisticPointType = PropTypes.shape({
+  cycling: PropTypes.number.isRequired,
+  run: PropTypes.number.isRequired,
+  ski: PropTypes.number.isRequired,
+  swim: PropTypes.number.isRequired
+});
+
 Brief.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  username : PropTypes.string.isRequired,
-  bio: PropTypes.string.isRequired,
-  country: PropTypes.string.isRequired,
-  statisticToday: PropTypes.object.isRequired,
-  statisticWeek: PropTypes.object.isRequired,
-  statisticMonth: PropTypes.object.isRequired,
-  statisticYear: PropTypes.object.isRequired,
-  statisticTotal: PropTypes.object.isRequired
+  username : PropTypes.string,
+  bio: PropTypes.string,
+  country: PropTypes.string,
+  statisticToday: StatisticPointType,
+  statisticWeek: StatisticPointType,
+  statisticMonth: StatisticPointType,
+  statisticYear: StatisticPointType,
+  statisticTotal: StatisticPointType
 };
 
 // export default Brief;
