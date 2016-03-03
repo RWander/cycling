@@ -66,10 +66,10 @@ function _calcShortStatItem(stat) {
   if (stat.length > 0) {
     let s = stat[0];
     return {
-      cycling: s.cycling ? (s.cycling.distance/1000).toFixed(1) /*m to km*/ : 0,
-      run: s.run ? (s.run.distance/1000).toFixed(1) /*m to km*/ : 0,
-      ski: s.ski ? (s.ski.distance/1000).toFixed(1) /*m to km*/ : 0,
-      swim: s.swim ? (s.swim.distance/1000).toFixed(1) /*m to km*/ : 0
+      cycling: s.cycling ? Number((s.cycling.distance/1000).toFixed(1)) /*m to km*/ : 0,
+      run: s.run ? Number((s.run.distance/1000).toFixed(1)) /*m to km*/ : 0,
+      ski: s.ski ? Number((s.ski.distance/1000).toFixed(1)) /*m to km*/ : 0,
+      swim: s.swim ? Number((s.swim.distance/1000).toFixed(1)) /*m to km*/ : 0
     };
   } else {
     return {

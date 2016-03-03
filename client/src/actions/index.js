@@ -17,7 +17,7 @@ export function receiveFullInfo(data) {
 }
 
 export function fetchFullInfo() {
-  return function (dispatch) {
+  return function (dispatch, getState) {
     dispatch(requestFullInfo());
 
     return fetch(`${BACKEND}/full`)
