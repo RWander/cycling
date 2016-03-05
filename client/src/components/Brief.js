@@ -1,6 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
-import { fetchFullInfo } from '../actions';
 
 class StatisticItem extends Component {
   render() {
@@ -31,16 +29,11 @@ StatisticItem.propTypes = {
 };
 
 class Brief extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(fetchFullInfo());
-  }
-
   render() {
     const {
       username, bio, statisticToday, statisticWeek,
       statisticMonth, statisticYear, statisticTotal
-    } = this.props;
+    } = this.props.brief;
 
     if (typeof username === 'undefined') {
       return (
@@ -117,17 +110,16 @@ const StatisticPointType = PropTypes.shape({
 });
 
 Brief.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  username : PropTypes.string,
-  bio: PropTypes.string,
-  country: PropTypes.string,
-  statisticToday: StatisticPointType,
-  statisticWeek: StatisticPointType,
-  statisticMonth: StatisticPointType,
-  statisticYear: StatisticPointType,
-  statisticTotal: StatisticPointType
+  brief: PropTypes.shape({
+    username : PropTypes.string,
+    bio: PropTypes.string,
+    country: PropTypes.string,
+    statisticToday: StatisticPointType,
+    statisticWeek: StatisticPointType,
+    statisticMonth: StatisticPointType,
+    statisticYear: StatisticPointType,
+    statisticTotal: StatisticPointType
+  }).isRequired
 };
 
-// export default Brief;
-
-export default connect(state => state.brief)(Brief);
+export default Brief;
