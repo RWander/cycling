@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     const { brief, journal } = this.props;
     return (
-      <div>
+      <div className="app">
         <section id="intro" className="intro-section">
           <div className="container">
             <Brief brief={brief}/>
