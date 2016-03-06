@@ -23,9 +23,11 @@ cd client && npm install
 ```
 
 Launch site:
+```shell
 # start server
 cd server && gulp server
 # start client in 'development' mode
 cd ../client
 gulp build:dev
 gulp serve:dev
+```
