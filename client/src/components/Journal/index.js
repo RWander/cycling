@@ -1,4 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import Cycling from './Cycling';
+import Run from './Run';
+import Ski from './Ski';
+import Swim from './Swim';
 
 export default class Journal extends Component {
   toggleBtn(btn) {
@@ -13,6 +17,25 @@ export default class Journal extends Component {
 
   render() {
     const { journal } = this.props;
+    const renderTraining = (t) => {
+      if (t.type === 'cycling') {
+        return (
+          <Cycling training={t} />
+        );
+      } else if (t.type === 'run') {
+        return (
+          <Run training={t} />
+        );
+      } else if (t.type === 'ski') {
+        return (
+          <Ski training={t} />
+        );
+      } else if (t.type === 'swim') {
+        return (
+          <Swim training={t} />
+        );
+      }
+    };
     return (
       <div>
         <h1>Журнал тренировок</h1>
@@ -40,9 +63,7 @@ export default class Journal extends Component {
 
           { /* Training list */ }
           {journal.map(training =>
-            <div>
-              {JSON.stringify(training)}
-            </div>
+            <div>{renderTraining(training)}</div>
           )}
         </div>
       </div>
