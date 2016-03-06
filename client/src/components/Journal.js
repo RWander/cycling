@@ -12,10 +12,13 @@ export default class Journal extends Component {
   }
 
   render() {
+    const { journal } = this.props;
     return (
       <div>
         <h1>Журнал тренировок</h1>
         <div className="container">
+
+          { /* Toolbar */ }
           <div className="btn-group" role="group" aria-label="...">
             <button type="button" className="btn btn-success btn-sm" title="Велосипед"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
@@ -34,6 +37,13 @@ export default class Journal extends Component {
               <img src="../img/swimming-32.png" />
             </button>
           </div>
+
+          { /* Training list */ }
+          {journal.map(training =>
+            <div>
+              {JSON.stringify(training)}
+            </div>
+          )}
         </div>
       </div>
     );
