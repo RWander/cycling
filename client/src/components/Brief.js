@@ -94,8 +94,6 @@ class Brief extends Component {
               swim={statisticTotal.swim}/>
             <a className="btn btn-link">Подробно >></a>
           </div>
-
-          <a className="btn btn-default page-scroll" href="#journal">Журнал тренировок</a>
         </div>
       );
     }

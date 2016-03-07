@@ -42,7 +42,7 @@ export default class Journal extends Component {
         <div className="container">
 
           { /* Toolbar */ }
-          <div className="btn-group" role="group" aria-label="...">
+          <div className="btn-group" role="group" aria-label="..." style={{margin:'30px'}}>
             <button type="button" className="btn btn-success btn-sm" title="Велосипед"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/bike-32.png" />

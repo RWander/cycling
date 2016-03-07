@@ -4,11 +4,34 @@ export default class Cycling extends Component {
   render() {
     const { training } = this.props;
     return (
-      <div>cycling - {training._id}</div>
+      <div className="row">
+        <div className="col-md-offset-2 col-md-3">
+          <h4>{training.startDate}</h4>
+          <img src="./img/bike-32.png" title="Велозаезд" />
+        </div>
+        <div className="col-md-7 text-left">
+          <h4><a>{training.name}</a></h4>
+          <p>
+          <small title="Расстояние">р:&nbsp;</small><span><samp><strong>{training.distance}<small>км</small></strong></samp></span>&nbsp;
+          <small title="Общее время">вр:&nbsp;</small><span><samp><strong>{training.elapsedTime}<small>c</small></strong></samp></span>&nbsp;
+          <small title="Средняя скорость">ср.&nbsp;ск:&nbsp;</small><span><samp><strong>{training.averageSpeed}<small>км/ч</small></strong></samp></span>
+          </p>
+        </div>
+      </div>
     );
   }
 }
 
 Cycling.propTypes = {
-  training: PropTypes.object.isRequired
+  training: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    startDate: PropTypes.string.isRequired,
+    distance: PropTypes.number.isRequired,
+    movingTime: PropTypes.number.isRequired,
+    //elapsedTime: PropTypes.number.isRequired,
+    //elevationGain: PropTypes.number.isRequired,
+    averageSpeed: PropTypes.number.isRequired//,
+    //maxSpeed: PropTypes.number.isRequired
+  }).isRequired
 };
