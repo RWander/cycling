@@ -80,10 +80,22 @@ class Training extends Document {
    *
    * @return {Promise}
    */
-  static loadCurrent() {
-    return Training.find({ }, {
-      populate: false // don't load refs
-    });
+  static loadCurrent(type, skip) {
+    const find = { };
+    const options = {
+      sort: '-startDate',
+      populate: false, // don't load refs
+      limit: 10
+    };
+
+    if (type) {
+      find.type = type;
+    }
+    if (skip) {
+      options.skip = skip;
+    }
+
+    return Training.find(find, options);
   }
 
   /**
@@ -96,7 +108,7 @@ class Training extends Document {
     if (Training._statisticObj) {
       return new Promise(resolve => resolve(jpath.resolve(Training._statisticObj, path)));
     } else {
-      return Training.loadCurrent()
+      return Training.find()
         .then(trainings => {
           Training._statisticObj = statistic.calculate(trainings);
           return jpath.resolve(Training._statisticObj, path);

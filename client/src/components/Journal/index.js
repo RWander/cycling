@@ -36,13 +36,13 @@ export default class Journal extends Component {
         );
       }
     };
+
     return (
       <div>
         <h1>Журнал тренировок</h1>
         <div className="container">
-
           { /* Toolbar */ }
-          <div className="btn-group" role="group" aria-label="..." style={{margin:'30px'}}>
+          <div className="btn-group" role="group" aria-label="..." style={{margin: '30px'}}>
             <button type="button" className="btn btn-success btn-sm" title="Велосипед"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/bike-32.png" />
@@ -65,6 +65,18 @@ export default class Journal extends Component {
           {journal.map(training =>
             <div>{renderTraining(training)}</div>
           )}
+
+          { /* The 'More' button */ }
+          <button type="button" className="btn btn-success btn-sm" style={{marginTop: '20px'}}
+            onClick={(e) => {}}>
+            Ещё
+          </button>
+
+          { /* Footer (TODO rwander - вынести в index.html) */ }
+          <div className="footer navbar-bottom text-primary" style={{marginTop:'50px', marginBottom:'10px'}}>
+            <small>Идея и реализация: <a href="mailto:roman.korneyev@gmail.com">Роман Корнеев</a></small>
+            <br/><small>2016</small>
+          </div>
         </div>
       </div>
     );
