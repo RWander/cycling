@@ -13,7 +13,7 @@ export default class Cycling extends Component {
           <h4><a>{training.name}</a></h4>
           <p>
           <small title="Расстояние">р:&nbsp;</small><span><samp><strong>{training.distance}<small>км</small></strong></samp></span>&nbsp;
-          <small title="Общее время">вр:&nbsp;</small><span><samp><strong>{training.elapsedTime}<small>c</small></strong></samp></span>&nbsp;
+          <small title="Общее время">вр:&nbsp;</small><span><samp><strong>{training.elapsedTime}</strong></samp></span>&nbsp;
           <small title="Средняя скорость">ср.&nbsp;ск:&nbsp;</small><span><samp><strong>{training.averageSpeed}<small>км/ч</small></strong></samp></span>
           </p>
         </div>
@@ -28,8 +28,8 @@ Cycling.propTypes = {
     name: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
-    movingTime: PropTypes.number.isRequired,
-    //elapsedTime: PropTypes.number.isRequired,
+    //movingTime: PropTypes.string.isRequired,
+    elapsedTime: PropTypes.string.isRequired,
     //elevationGain: PropTypes.number.isRequired,
     averageSpeed: PropTypes.number.isRequired//,
     //maxSpeed: PropTypes.number.isRequired
