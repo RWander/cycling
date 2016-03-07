@@ -81,7 +81,7 @@ class Training extends Document {
    * @return {Promise}
    */
   static loadCurrent() {
-    return Training.loadMany({ }, {
+    return Training.find({ }, {
       populate: false // don't load refs
     });
   }

@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
-    "camo": "^0.11.4",
+    "camo": "^0.12.1",
     "config": "^1.19.0",
     "express": "^4.13.4",
     "json-path": "^0.1.3",
@@ -50,7 +50,7 @@
     "gulp-util": "^3.0.7",
     "jasmine": "^2.4.1",
     "jasmine-spec-reporter": "^2.4.0",
-    "moment": "^2.11.1",
+    "moment": "^2.12.0",
     "require-dir": "^0.3.0",
     "supertest": "^1.2.0"
   },

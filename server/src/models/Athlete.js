@@ -36,7 +36,7 @@ class Athlete extends Document {
   }
 
   static loadCurrent() {
-    return Athlete.loadOne({ });
+    return Athlete.findOne({ });
   }
 }
 
