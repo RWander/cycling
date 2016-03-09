@@ -2,6 +2,8 @@
 
 export const REQUEST_FULL_INFO = 'REQUEST_FULL_INFO';
 export const RECEIVE_FULL_INFO = 'RECEIVE_FULL_INFO';
+export const REQUEST_JOURNAL = 'REQUEST_JOURNAL';
+export const RECEIVE_JOURNAL = 'RECEIVE_JOURNAL';
 
 export function requestFullInfo() {
   return {
@@ -14,6 +16,10 @@ export function receiveFullInfo(data) {
     type: RECEIVE_FULL_INFO,
     data
   };
+}
+
+export function requestJournal() {
+  
 }
 
 export function fetchFullInfo() {
