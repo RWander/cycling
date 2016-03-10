@@ -29,10 +29,10 @@ export function requestJournal(types, skip) {
   };
 }
 
-export function receiveJournal(journal, ended) {
+export function receiveJournal(trainings, ended) {
   return {
     type: RECEIVE_JOURNAL,
-    journal,
+    trainings,
     ended
   };
 }
@@ -55,8 +55,10 @@ export function fetchJournal(types, skip) {
     return _get(
       `activities?types=${types}&skip=${skip}`,
       json => {
-        const { journal, ended } = json;
-        dispatch(receiveJournal(journal, ended));
+        // TODO: to be continued - BACKEND should return 'trainings' and 'ended'!
+        // const { trainings, ended } = json;
+        // dispatch(receiveJournal(trainings, ended));
+        dispatch(receiveJournal([], true));
       }
     );
   };

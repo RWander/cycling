@@ -8,37 +8,34 @@ import {
 const initState = {
   types: ['cycling', 'swim'],
   ended: false,
-  journal: []
+  trainings: []
 };
 
 const journal = (state = initState, action) => {
+  // TODO: optimize code
+  // ..
   switch (action.type) {
   case REQUEST_FULL_INFO:
     return state;
   case RECEIVE_FULL_INFO: {
-    // const trainings = action.data.trainings.map(convertUnits);
-    // return trainings;
     return {
       types: state.types,
       ended: state.ended,
-      journal: action.data.trainings.map(convertUnits)
+      trainings: action.data.trainings.map(convertUnits)
     };
   }
   case REQUEST_JOURNAL: {
     return {
       types: action.types,
       ended: false,
-
-      // TODO: нужно ли передовать journal если он еще не загружен
-      // ..
-      journal: []
+      trainings: state.trainings.map(t => t)
     };
   }
   case RECEIVE_JOURNAL: {
     return {
       types: state.types,
       ended: action.ended,
-      journal: state.journal.concat(action.journal)
+      trainings: state.trainings.concat(action.trainings)
     };
   }
   default:

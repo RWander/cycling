@@ -77,7 +77,7 @@ export default class Journal extends Component {
           </div>
 
           { /* Training list */ }
-          {journal.journal.map(training =>
+          {journal.trainings.map(training =>
             <div>{renderTraining(training)}</div>
           )}
 
@@ -98,6 +98,8 @@ export default class Journal extends Component {
   }
 }
 
+// TODO: описать объект 'journal'
+// ..
 Journal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   journal: PropTypes.object.isRequired
