@@ -3,8 +3,14 @@ import Cycling from './Cycling';
 import Run from './Run';
 import Ski from './Ski';
 import Swim from './Swim';
+import { fetchJournal } from '../../actions';
 
 export default class Journal extends Component {
+  constructor(props) {
+    super(props);
+    this.onMoreClick = this.onMoreClick.bind(this);
+  }
+
   toggleBtn(btn) {
     if (btn.className.indexOf('btn-success') > -1) {
       btn.classList.remove('btn-success');
@@ -15,8 +21,17 @@ export default class Journal extends Component {
     }
   }
 
+  onMoreClick() {
+    const { dispatch } = this.props;
+    const types = [];
+    const skip = 2;
+
+    dispatch(fetchJournal(types, skip));
+  }
+
   render() {
     const { journal } = this.props;
+
     const renderTraining = (t) => {
       if (t.type === 'cycling') {
         return (
@@ -62,13 +77,13 @@ export default class Journal extends Component {
           </div>
 
           { /* Training list */ }
-          {journal.map(training =>
+          {journal.journal.map(training =>
             <div>{renderTraining(training)}</div>
           )}
 
           { /* The 'More' button */ }
           <button type="button" className="btn btn-success btn-sm" style={{marginTop: '20px'}}
-            onClick={(e) => {}}>
+            onClick={this.onMoreClick}>
             Ещё
           </button>
 
@@ -84,5 +99,6 @@ export default class Journal extends Component {
 }
 
 Journal.propTypes = {
-  journal: PropTypes.array
+  dispatch: PropTypes.func.isRequired,
+  journal: PropTypes.object.isRequired
 };

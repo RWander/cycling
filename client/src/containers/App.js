@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   render() {
-    const { brief, journal } = this.props;
+    const { brief, journal, dispatch } = this.props;
     return (
       <div className="app">
         <section id="intro" className="intro-section">
@@ -21,7 +21,7 @@ class App extends Component {
         </section>
         <section id="journal" className="journal-section">
           <div className="container">
-            <Journal journal={journal}/>
+            <Journal journal={journal} dispatch={dispatch}/>
           </div>
         </section>
       </div>
@@ -32,7 +32,7 @@ class App extends Component {
 App.propTypes = {
   dispatch: PropTypes.func.isRequired,
   brief: PropTypes.object.isRequired,
-  journal: PropTypes.array.isRequired
+  journal: PropTypes.object.isRequired
 };
 
 export default connect(state => state)(App);

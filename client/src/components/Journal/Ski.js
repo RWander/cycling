@@ -28,8 +28,8 @@ Ski.propTypes = {
     name: PropTypes.string.isRequired,
     startDate: PropTypes.string.isRequired,
     distance: PropTypes.number.isRequired,
-    //movingTime: PropTypes.string.isRequired,
-    elapsedTime: PropTypes.string.isRequired,
+    //movingTime: PropTypes.number.isRequired,
+    elapsedTime: PropTypes.number.isRequired,
     //elevationGain: PropTypes.number.isRequired,
     averageSpeed: PropTypes.number.isRequired//,
     //maxSpeed: PropTypes.number.isRequired

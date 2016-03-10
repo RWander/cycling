@@ -1,13 +1,47 @@
-import { REQUEST_FULL_INFO, RECEIVE_FULL_INFO } from '../actions';
+import {
+  REQUEST_FULL_INFO,
+  RECEIVE_FULL_INFO,
+  REQUEST_JOURNAL,
+  RECEIVE_JOURNAL
+} from '../actions';
 
-const journal = (state = [], action) => {
+const initState = {
+  types: ['cycling', 'swim'],
+  ended: false,
+  journal: []
+};
+
+const journal = (state = initState, action) => {
   switch (action.type) {
   case REQUEST_FULL_INFO:
     return state;
   case RECEIVE_FULL_INFO: {
-    const trainings = action.data.trainings.map(convertUnits);
-    return trainings;
-  } default:
+    // const trainings = action.data.trainings.map(convertUnits);
+    // return trainings;
+    return {
+      types: state.types,
+      ended: state.ended,
+      journal: action.data.trainings.map(convertUnits)
+    };
+  }
+  case REQUEST_JOURNAL: {
+    return {
+      types: action.types,
+      ended: false,
+
+      // TODO: нужно ли передовать journal если он еще не загружен
+      // ..
+      journal: []
+    };
+  }
+  case RECEIVE_JOURNAL: {
+    return {
+      types: state.types,
+      ended: action.ended,
+      journal: state.journal.concat(action.journal)
+    };
+  }
+  default:
     return state;
   }
 };
