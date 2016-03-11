@@ -29,11 +29,10 @@ export function requestJournal(types, pageCount) {
   };
 }
 
-export function receiveJournal(trainings, ended) {
+export function receiveJournal(trainings) {
   return {
     type: RECEIVE_JOURNAL,
-    trainings,
-    ended
+    trainings
   };
 }
 
@@ -54,12 +53,7 @@ export function fetchJournal(types, pageCount) {
 
     return _get(
       `activities?types=${types}&pageCount=${pageCount}`,
-      json => {
-        // TODO: to be continued - BACKEND should return 'trainings' and 'ended'!
-        // const { trainings, ended } = json;
-        // dispatch(receiveJournal(trainings, ended));
-        dispatch(receiveJournal(json, false));
-      }
+      json => dispatch(receiveJournal(json))
     );
   };
 }

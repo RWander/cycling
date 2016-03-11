@@ -7,7 +7,6 @@ import {
 
 const initState = {
   types: ['cycling', 'swim'],
-  ended: false,
   pageCount: 0,
   trainings: []
 };
@@ -36,7 +35,6 @@ const journal = (state = initState, action) => {
     return Object.assign(
       { },
       state, {
-        ended: action.ended,
         trainings: state.trainings.concat(action.trainings)
       }
     );

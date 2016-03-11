@@ -52,6 +52,15 @@ export default class Journal extends Component {
       }
     };
 
+    let moreBtn;
+    if ((journal.pageCount + 1) * 10 === journal.trainings.length) {
+      moreBtn =
+        <button type="button" className="btn btn-success btn-sm" style={{marginTop: '20px'}}
+          onClick={this.onMoreClick}>
+          Ещё
+        </button>;
+    }
+
     return (
       <div>
         <h1>Журнал тренировок</h1>
@@ -82,10 +91,7 @@ export default class Journal extends Component {
           )}
 
           { /* The 'More' button */ }
-          <button type="button" className="btn btn-success btn-sm" style={{marginTop: '20px'}}
-            onClick={this.onMoreClick}>
-            Ещё
-          </button>
+          {moreBtn}
 
           { /* Footer (TODO rwander - вынести в index.html) */ }
           <div className="footer navbar-bottom text-primary" style={{marginTop:'50px', marginBottom:'10px'}}>
@@ -101,7 +107,6 @@ export default class Journal extends Component {
 Journal.propTypes = {
   dispatch: PropTypes.func.isRequired,
   journal: PropTypes.shape({
-    ended: PropTypes.bool.isRequired,
     types: PropTypes.array.isRequired,
     pageCount: PropTypes.number.isRequired,
     trainings: PropTypes.array.isRequired
