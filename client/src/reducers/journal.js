@@ -8,6 +8,7 @@ import {
 const initState = {
   types: ['cycling', 'swim'],
   ended: false,
+  pageCount: 0,
   trainings: []
 };
 
@@ -25,15 +26,19 @@ const journal = (state = initState, action) => {
   case REQUEST_JOURNAL: {
     return Object.assign(
       { },
-      state,
-      { types: action.types }
+      state, {
+        types: action.types,
+        pageCount: action.pageCount
+      }
     );
   }
   case RECEIVE_JOURNAL: {
     return Object.assign(
       { },
-      state,
-      { ended: action.ended, trainings: state.trainings.concat(action.trainings) }
+      state, {
+        ended: action.ended,
+        trainings: state.trainings.concat(action.trainings)
+      }
     );
   }
   default:

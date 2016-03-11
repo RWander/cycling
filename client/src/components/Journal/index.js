@@ -22,11 +22,11 @@ export default class Journal extends Component {
   }
 
   onMoreClick() {
-    const { dispatch } = this.props;
+    const { dispatch, journal } = this.props;
     const types = [];
-    const skip = 2;
+    const pageCount = journal.pageCount + 1;
 
-    dispatch(fetchJournal(types, skip));
+    dispatch(fetchJournal(types, pageCount));
   }
 
   render() {
@@ -103,6 +103,7 @@ Journal.propTypes = {
   journal: PropTypes.shape({
     ended: PropTypes.bool.isRequired,
     types: PropTypes.array.isRequired,
+    pageCount: PropTypes.number.isRequired,
     trainings: PropTypes.array.isRequired
   }).isRequired
 };

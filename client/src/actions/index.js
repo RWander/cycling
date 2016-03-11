@@ -21,11 +21,11 @@ export function receiveFullInfo(data) {
 }
 
 // -- Get Journal List
-export function requestJournal(types, skip) {
+export function requestJournal(types, pageCount) {
   return {
     type: REQUEST_JOURNAL,
     types,
-    skip
+    pageCount
   };
 }
 
@@ -48,17 +48,17 @@ export function fetchFullInfo() {
   };
 }
 
-export function fetchJournal(types, skip) {
+export function fetchJournal(types, pageCount) {
   return function (dispatch) {
-    dispatch(requestJournal(types, skip));
+    dispatch(requestJournal(types, pageCount));
 
     return _get(
-      `activities?types=${types}&skip=${skip}`,
+      `activities?types=${types}&pageCount=${pageCount}`,
       json => {
         // TODO: to be continued - BACKEND should return 'trainings' and 'ended'!
         // const { trainings, ended } = json;
         // dispatch(receiveJournal(trainings, ended));
-        dispatch(receiveJournal([], true));
+        dispatch(receiveJournal(json, false));
       }
     );
   };

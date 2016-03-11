@@ -80,7 +80,7 @@ class Training extends Document {
    *
    * @return {Promise}
    */
-  static loadCurrent(type, skip) {
+  static loadCurrent(types, pageCount) {
     const find = { };
     const options = {
       sort: '-startDate',
@@ -88,11 +88,13 @@ class Training extends Document {
       limit: 10
     };
 
-    if (type) {
-      find.type = type;
-    }
-    if (skip) {
-      options.skip = skip;
+    // TODO (rwander): учитывать 'types' param
+    // ..
+    //if (types) {
+    //  find.type = types;
+    //}
+    if (pageCount) {
+      options.skip = pageCount*10;
     }
 
     return Training.find(find, options);
