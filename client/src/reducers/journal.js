@@ -12,31 +12,29 @@ const initState = {
 };
 
 const journal = (state = initState, action) => {
-  // TODO: optimize code
-  // ..
   switch (action.type) {
   case REQUEST_FULL_INFO:
     return state;
   case RECEIVE_FULL_INFO: {
-    return {
-      types: state.types,
-      ended: state.ended,
-      trainings: action.data.trainings.map(convertUnits)
-    };
+    return Object.assign(
+      { },
+      state,
+      { trainings: action.data.trainings.map(convertUnits) }
+    );
   }
   case REQUEST_JOURNAL: {
-    return {
-      types: action.types,
-      ended: false,
-      trainings: state.trainings.map(t => t)
-    };
+    return Object.assign(
+      { },
+      state,
+      { types: action.types }
+    );
   }
   case RECEIVE_JOURNAL: {
-    return {
-      types: state.types,
-      ended: action.ended,
-      trainings: state.trainings.concat(action.trainings)
-    };
+    return Object.assign(
+      { },
+      state,
+      { ended: action.ended, trainings: state.trainings.concat(action.trainings) }
+    );
   }
   default:
     return state;

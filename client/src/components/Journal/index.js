@@ -98,9 +98,11 @@ export default class Journal extends Component {
   }
 }
 
-// TODO: описать объект 'journal'
-// ..
 Journal.propTypes = {
   dispatch: PropTypes.func.isRequired,
-  journal: PropTypes.object.isRequired
+  journal: PropTypes.shape({
+    ended: PropTypes.bool.isRequired,
+    types: PropTypes.array.isRequired,
+    trainings: PropTypes.array.isRequired
+  }).isRequired
 };
