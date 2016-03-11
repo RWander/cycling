@@ -23,10 +23,11 @@ export default class Journal extends Component {
 
   onMoreClick() {
     const { dispatch, journal } = this.props;
-    const types = [];
-    const pageCount = journal.pageCount + 1;
 
-    dispatch(fetchJournal(types, pageCount));
+    dispatch(fetchJournal(
+      journal.types,
+      journal.pageCount + 1
+    ));
   }
 
   render() {
@@ -61,25 +62,36 @@ export default class Journal extends Component {
         </button>;
     }
 
+    const activeClass = 'btn btn-success btn-sm';
+    const disactiveClass = 'btn btn-link btn-sm';
+
     return (
       <div>
         <h1>Журнал тренировок</h1>
         <div className="container">
           { /* Toolbar */ }
           <div className="btn-group" role="group" aria-label="..." style={{margin: '30px'}}>
-            <button type="button" className="btn btn-success btn-sm" title="Велосипед"
+            <button type="button"
+              className={journal.types.indexOf('cycling') > -1 ? activeClass : disactiveClass}
+              title="Велосипед"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/bike-32.png" />
             </button>
-            <button type="button" className="btn btn-success btn-sm" title="Бег"
+            <button type="button"
+              className={journal.types.indexOf('run') > -1 ? activeClass : disactiveClass}
+              title="Бег"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/running-32.png" />
             </button>
-            <button type="button" className="btn btn-link btn-sm" title="Беговые лыжи"
+            <button type="button"
+              className={journal.types.indexOf('ski') > -1 ? activeClass : disactiveClass}
+              title="Беговые лыжи"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/skiing-32.png" />
             </button>
-            <button type="button" className="btn btn-link btn-sm" title="Плавание"
+            <button type="button"
+              className={journal.types.indexOf('swim') > -1 ? activeClass : disactiveClass}
+              title="Плавание"
               onClick={(e) => this.toggleBtn(e.currentTarget)}>
               <img src="../img/swimming-32.png" />
             </button>

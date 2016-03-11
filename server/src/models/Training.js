@@ -88,11 +88,9 @@ class Training extends Document {
       limit: 10
     };
 
-    // TODO (rwander): учитывать 'types' param
-    // ..
-    //if (types) {
-    //  find.type = types;
-    //}
+    if (types) {
+      find.type = { '$in': types };
+    }
     if (pageCount) {
       options.skip = pageCount*10;
     }

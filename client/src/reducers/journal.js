@@ -6,7 +6,7 @@ import {
 } from '../actions';
 
 const initState = {
-  types: ['cycling', 'swim'],
+  types: ['run', 'ski', 'cycling', 'swim'],
   pageCount: 0,
   trainings: []
 };

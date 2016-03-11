@@ -1,5 +1,7 @@
 /* global BACKEND */
 
+import { stringify } from 'qs';
+
 export const REQUEST_FULL_INFO = 'REQUEST_FULL_INFO';
 export const RECEIVE_FULL_INFO = 'RECEIVE_FULL_INFO';
 export const REQUEST_JOURNAL = 'REQUEST_JOURNAL';
@@ -52,7 +54,7 @@ export function fetchJournal(types, pageCount) {
     dispatch(requestJournal(types, pageCount));
 
     return _get(
-      `activities?types=${types}&pageCount=${pageCount}`,
+      `activities?${stringify({types: types, pageCount: pageCount})}`,
       json => dispatch(receiveJournal(json))
     );
   };
