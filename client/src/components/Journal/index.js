@@ -58,6 +58,17 @@ export default class Journal extends Component {
       }
     };
 
+    const renderFilterBtn = (title, type, img) => {
+      return (
+        <button type="button"
+          className={journal.types.indexOf(type) > -1 ? activeClass : disactiveClass}
+          title={title}
+          onClick={() => this.toggle(type)}>
+          <img src={img} />
+        </button>
+      );
+    };
+
     let moreBtn;
     if ((journal.pageCount + 1) * 10 === journal.trainings.length) {
       moreBtn =
@@ -76,30 +87,10 @@ export default class Journal extends Component {
         <div className="container">
           { /* Toolbar */ }
           <div className="btn-group" role="group" aria-label="..." style={{margin: '30px'}}>
-            <button type="button"
-              className={journal.types.indexOf('cycling') > -1 ? activeClass : disactiveClass}
-              title="Велосипед"
-              onClick={() => this.toggle('cycling')}>
-              <img src="../img/bike-32.png" />
-            </button>
-            <button type="button"
-              className={journal.types.indexOf('run') > -1 ? activeClass : disactiveClass}
-              title="Бег"
-              onClick={() => this.toggle('run')}>
-              <img src="../img/running-32.png" />
-            </button>
-            <button type="button"
-              className={journal.types.indexOf('ski') > -1 ? activeClass : disactiveClass}
-              title="Беговые лыжи"
-              onClick={() => this.toggle('ski')}>
-              <img src="../img/skiing-32.png" />
-            </button>
-            <button type="button"
-              className={journal.types.indexOf('swim') > -1 ? activeClass : disactiveClass}
-              title="Плавание"
-              onClick={() => this.toggle('swim')}>
-              <img src="../img/swimming-32.png" />
-            </button>
+            {renderFilterBtn('Велосипед', 'cycling', '../img/bike-32.png')}
+            {renderFilterBtn('Бег', 'run', '../img/running-32.png')}
+            {renderFilterBtn('Беговые лыжи', 'ski', '../img/skiing-32.png')}
+            {renderFilterBtn('Плавание', 'swim', '../img/swimming-32.png')}
           </div>
 
           { /* Training list */ }
