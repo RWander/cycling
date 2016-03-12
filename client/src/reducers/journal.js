@@ -5,6 +5,9 @@ import {
   RECEIVE_JOURNAL
 } from '../actions';
 
+import { duration } from 'moment';
+import 'moment-duration-format';
+
 const initState = {
   types: ['run', 'ski', 'cycling', 'swim'],
   pageCount: 0,
@@ -38,7 +41,7 @@ const journal = (state = initState, action) => {
     return Object.assign(
       { },
       state, {
-        trainings: state.trainings.concat(action.trainings)
+        trainings: state.trainings.concat(action.trainings.map(convertUnits))
       }
     );
   }
@@ -48,12 +51,16 @@ const journal = (state = initState, action) => {
 };
 
 function convertUnits(training) {
-  // TODO (rwander): convertUnits
-  // ..
+  training.distance = Number((training.distance/1000).toFixed(1)) /* m to km */;
 
-  training.distance = Number((training.distance/1000).toFixed(1)) /*m to km*/;
-  //training.elapsedTime = Number((training.elapsedTime/360).toFixed(1)) /*c to km*/;
-  //training.distance = Number((training.distance/1000).toFixed(1)) /*m to km*/;
+  // TODO (rwander): wait for https://github.com/jsmreese/moment-duration-format/issues/43
+  // ..
+  let time = duration(training.elapsedTime, 'seconds').format('hh:mm:ss');
+  if (time.length <= 5) {
+    time = `00:${time}`;
+  }
+  training.elapsedTime = time;
+  training.averageSpeed = Number((training.averageSpeed*3600/1000).toFixed(1)) /* m/s to km/h */;
 
   return training;
 }
