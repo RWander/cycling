@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import groupBy from 'lodash/groupBy';
 import Cycling from './Cycling';
 import Run from './Run';
 import Ski from './Ski';
@@ -37,6 +38,15 @@ export default class Journal extends Component {
 
   render() {
     const { journal } = this.props;
+
+    const renderGroup = (date, trainings) => {
+      return (
+        <div>
+          <h3>{date}</h3>
+          { trainings.map(t => <div>{renderTraining(t)}</div>)}
+        </div>
+      );
+    };
 
     const renderTraining = (t) => {
       if (t.type === 'cycling') {
@@ -81,6 +91,12 @@ export default class Journal extends Component {
     const activeClass = 'btn btn-success btn-sm';
     const disactiveClass = 'btn btn-link btn-sm';
 
+    const groups = groupBy(
+      journal.trainings,
+      (t) => t.startDate.substring(0, 10)
+    );
+    const keys = Object.keys(groups);
+
     return (
       <div>
         <h1>Журнал тренировок</h1>
@@ -94,9 +110,7 @@ export default class Journal extends Component {
           </div>
 
           { /* Training list */ }
-          {journal.trainings.map(training =>
-            <div>{renderTraining(training)}</div>
-          )}
+          { keys.map(k => <div>{renderGroup(k, groups[k])}</div>)}
 
           { /* The 'More' button */ }
           {moreBtn}

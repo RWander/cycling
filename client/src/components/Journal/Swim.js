@@ -5,11 +5,11 @@ export default class Swim extends Component {
     const { training } = this.props;
     return (
       <div className="row">
-        <div className="col-md-offset-2 col-md-3">
-          <h4>{training.startDate}</h4>
+        <div className="col-md-offset-2 col-md-2 text-right">
+          <br />
           <img src="./img/swimming-32.png" title="Плавание" />
         </div>
-        <div className="col-md-7 text-left">
+        <div className="col-md-8 text-left">
           <h4><a>{training.name}</a></h4>
           <p>
             <span><samp><strong>{training.distance}км</strong></samp></span>,&nbsp;
