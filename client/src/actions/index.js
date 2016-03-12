@@ -23,11 +23,12 @@ export function receiveFullInfo(data) {
 }
 
 // -- Get Journal List
-export function requestJournal(types, pageCount) {
+export function requestJournal(types, pageCount, clean) {
   return {
     type: REQUEST_JOURNAL,
     types,
-    pageCount
+    pageCount,
+    clean
   };
 }
 
@@ -49,14 +50,18 @@ export function fetchFullInfo() {
   };
 }
 
-export function fetchJournal(types, pageCount) {
+export function fetchJournal(types, pageCount, clean) {
   return function (dispatch) {
-    dispatch(requestJournal(types, pageCount));
+    dispatch(requestJournal(types, pageCount, clean));
 
-    return _get(
-      `activities?${stringify({types: types, pageCount: pageCount})}`,
-      json => dispatch(receiveJournal(json))
-    );
+    if (clean === false || types.length !== 0) {
+      return _get(
+        `activities?${stringify({types: types, pageCount: pageCount})}`,
+        json => dispatch(receiveJournal(json))
+      );
+    } else {
+      dispatch(receiveJournal([]));
+    }
   };
 }
 

@@ -27,7 +27,10 @@ const journal = (state = initState, action) => {
       { },
       state, {
         types: action.types,
-        pageCount: action.pageCount
+        pageCount: action.pageCount,
+        trainings: action.clean === true
+          ? []
+          : state.trainings.slice()
       }
     );
   }
