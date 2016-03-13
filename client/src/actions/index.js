@@ -7,7 +7,6 @@ export const RECEIVE_FULL_INFO = 'RECEIVE_FULL_INFO';
 export const REQUEST_JOURNAL = 'REQUEST_JOURNAL';
 export const RECEIVE_JOURNAL = 'RECEIVE_JOURNAL';
 
-
 // -- Get Full Info
 export function requestFullInfo() {
   return {

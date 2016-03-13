@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import groupBy from 'lodash/groupBy';
+import moment from 'moment';
 import Cycling from './Cycling';
 import Run from './Run';
 import Ski from './Ski';
@@ -42,7 +43,7 @@ export default class Journal extends Component {
     const renderGroup = (date, trainings) => {
       return (
         <div>
-          <h3>{date}</h3>
+          <h3>{moment(date).format('dd, LL')}</h3>
           { trainings.map(t => <div>{renderTraining(t)}</div>)}
         </div>
       );
