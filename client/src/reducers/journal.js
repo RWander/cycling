@@ -53,7 +53,7 @@ const journal = (state = initState, action) => {
 function convertUnits(training) {
   training.distance = Number((training.distance/1000).toFixed(1)) /* m to km */;
 
-  training.elapsedTime = duration(training.elapsedTime, 'seconds').format('hh:mm:ss', { trim: false });
+  training.movingTime = duration(training.movingTime, 'seconds').format('hh:mm:ss', { trim: false });
   training.averageSpeed = Number((training.averageSpeed*3600/1000).toFixed(1)) /* m/s to km/h */;
 
   return training;
