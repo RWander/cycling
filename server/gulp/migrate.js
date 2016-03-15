@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp-help')(require('gulp'));
+var gutil = require('gulp-util');
 var path = require('./.path.json');
 var exec = require('child_process').exec;
 
@@ -10,10 +11,8 @@ gulp.task(
   (cb) => {
     exec(`node ${path.migration}`, (err, stdout, stderr) => {
 
-      /* eslint-disable no-console */
-      console.log(stdout);
-      console.log(stderr);
-      /* eslint-disable no-console */
+      gutil.log(stdout);
+      gutil.log(stderr);
 
       cb(err);
     });

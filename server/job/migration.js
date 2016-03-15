@@ -5,6 +5,8 @@
 
 'use strict';
 
+/* eslint-disable no-console */
+
 var _ = require('lodash');
 var strava = require('strava-v3');
 var models = require('../src/models');
@@ -14,7 +16,7 @@ var currentAthlete;
 // 1. Connect db
 require('../src/db')
 // 2. Get Current Athlete
-.then(() => getCurrentAthelete())
+.then(getCurrentAthelete)
 // 3. Get all new activities of the currecnt athlete
 .then((athlete) => {
   currentAthlete = athlete;
@@ -40,16 +42,10 @@ require('../src/db')
 .then((promises) => Promise.all(promises))
 // 6. Print result.
 .then((trainings) => {
-  /* eslint-disable no-console */
-  trainings.forEach((t) => console.log(`Training '${t.name}' at ${t.startDate} is saved.`));
+  trainings.forEach((t) => console.log(`Training '${t.name}' (type=${t.type}) at ${t.startDate} is saved.`));
   console.log(`Total trainings: ${trainings.length}`);
-  /* eslint-disable no-console */
 })
-.catch((err) => {
-  /* eslint-disable no-console */
-  console.log(err);
-  /* eslint-disable no-console */
-});
+.catch(console.log);
 
 /**
  * getCurrentAthelete - Loads a current athlete info.
@@ -128,14 +124,17 @@ function createTraining(activity) {
 
   var type = activity.type.toLowerCase();
   var lowerName = activity.name.toLowerCase();
+
   if (type === 'ride') {
-    training.type = 1;
+    training.type = models.TrainingType[models.TrainingType.cycling];
   }
   else if (type === 'run' && !lowerName.includes('лыжи')) {
-    training.type = 2;
+    training.type = models.TrainingType[models.TrainingType.run];
   }
   else if (type.includes('ski') || lowerName.includes('лыжи')) {
-    training.type = 3;
+    training.type = models.TrainingType[models.TrainingType.ski];
+  } else if (type === 'swim') {
+    training.type = models.TrainingType[models.TrainingType.swim];
   }
 
   return training;
