@@ -1,5 +1,5 @@
 /* eslint-env node */
 
 module.exports = {
-  BACKEND: '"http://localhost:5000"'
+  BACKEND: '"http://193.124.179.133:5000"'
 };
