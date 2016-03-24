@@ -1,0 +1,8 @@
+language: node_js
+node_js:
+  - v5
+  - v4
+before_script:
+  - cd server && npm install
+script:
+  - gulp test

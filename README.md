@@ -1,5 +1,7 @@
 # cycling
 
+[![Build Status](https://travis-ci.org/RWander/cycling.svg?branch=master)](https://travis-ci.org/RWander/cycling)
+
 ### Quick start
 
 The application file system layout is:
@@ -13,9 +15,19 @@ cycling
 
 Install dependecies:
 ```shell
-npm install gulp bower tds -g
+npm install gulp webpack -g
 # server setup
-cd server && npm install && tsd install && cd ..
+cd server && npm install && cd ..
 # client setup
-cd client && npm install && tsd install && bower install
+cd client && npm install
+```
+
+Launch site:
+```shell
+# start server
+cd server && gulp server
+# start client in 'development' mode
+cd ../client
+gulp build:dev
+gulp serve:dev
 ```

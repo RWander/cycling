@@ -1,3 +1,5 @@
+/*eslint-env node */
+
 var gulp = require('gulp');
 var requireDir = require('require-dir');
 

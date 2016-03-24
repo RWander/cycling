@@ -1,5 +1,6 @@
 {
-  "app": "dist/app.js",
-  "dist": "dist/",
-  "test": "test/**/*.js"
+  "app": "src/app.js",
+  "testDir": "test",
+  "migration": "job/migration.js",
+  "statistic": "job/statistic.js"
 }
