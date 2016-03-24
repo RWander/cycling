@@ -19,7 +19,9 @@
     "node.js"
   ],
   "files": [],
+  "main": "start.js",
   "scripts": {
+    "start": "node start.js",
     "test": "gulp test"
   },
   "bugs": {
